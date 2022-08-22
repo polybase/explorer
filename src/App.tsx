@@ -1,38 +1,40 @@
-import * as React from "react"
+import * as React from 'react'
 import {
   ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+} from '@chakra-ui/react'
+import { Elements } from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
+// import { ModalProvider } from '@1productaweek/react-modal-hooks'
+import { Global } from '@emotion/react'
+import globalStyles from './globalStyles'
+import { BrowserRouter as Router } from 'react-router-dom'
+import theme from './theme'
+import AppRoutes from './AppRoutes'
+import ScrollToTop from 'modules/common/ScrollToTop'
+import PostHogPageView from 'modules/common/PostHogPageView'
+import { ApiProvider } from 'features/common/ApiProvider'
+import { AuthProvider } from 'features/users/AuthProvider'
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
-  </ChakraProvider>
-)
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY ?? '')
+
+export const App = () => {
+  return (
+    <AuthProvider
+      domain={process.env.REACT_APP_DOMAIN}
+      storagePrefix={process.env.REACT_APP_AUTH_STORAGE_PREFIX}
+    >
+      <ApiProvider baseURL={process.env.REACT_APP_API_URL}>
+        <Elements stripe={stripePromise}>
+          <ChakraProvider>
+            <Global styles={[globalStyles]} />
+            <Router>
+              <PostHogPageView />
+              <ScrollToTop />
+              <AppRoutes />
+            </Router>
+          </ChakraProvider>
+        </Elements>
+      </ApiProvider>
+    </AuthProvider>
+  )
+}

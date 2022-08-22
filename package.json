@@ -2,10 +2,22 @@
   "name": "explorer",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy": "SKIP_PREFLIGHT_CHECK=true NODE_ENV=production yarn build && yarn deploy:netlify",
+    "deploy:netlify": "netlify deploy --dir ./build --prod --functions ./noop"
+  },
   "dependencies": {
+    "@1productaweek/react-modal-hooks": "^0.1.14",
     "@chakra-ui/react": "^2.2.4",
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
+    "@sentry/react": "^7.11.1",
+    "@stripe/react-stripe-js": "^1.10.0",
+    "@stripe/stripe-js": "^1.35.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.0.1",
     "@testing-library/user-event": "^14.1.0",
@@ -13,22 +25,73 @@
     "@types/node": "^12.0.0",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.4",
+    "axios": "^0.27.2",
     "framer-motion": "^6.2.9",
+    "js-cookie": "^3.0.1",
+    "lodash": "^4.17.21",
+    "posthog-js": "^1.29.0",
     "react": "^18.1.0",
+    "react-async-hook": "^4.0.0",
     "react-dom": "^18.1.0",
+    "react-ga": "^3.3.1",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.34.2",
     "react-icons": "^3.0.0",
+    "react-loadable": "^5.5.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.6.3",
     "web-vitals": "^0.2.2"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "rules": {
+      "react/prop-types": [
+        2,
+        {
+          "skipUndeclared": true
+        }
+      ],
+      "react/jsx-handler-names": "off",
+      "quotes": "off",
+      "jsx-quotes": [
+        2,
+        "prefer-single"
+      ],
+      "comma-dangle": [
+        2,
+        "always-multiline"
+      ],
+      "object-curly-spacing": [
+        2,
+        "always"
+      ],
+      "react/display-name": 0,
+      "semi": [
+        "error",
+        "never"
+      ],
+      "no-underscore-dangle": 0,
+      "space-before-function-paren": [
+        "error",
+        "always"
+      ],
+      "arrow-body-style": 0,
+      "no-use-before-define": 0,
+      "arrow-parens": 0,
+      "no-trailing-spaces": "error",
+      "@typescript-eslint/quotes": [
+        "error",
+        "single"
+      ],
+      "@typescript-eslint/indent": [
+        "error",
+        2
+      ]
+    }
   },
   "browserslist": {
     "production": [
@@ -41,5 +104,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.2",
+    "@types/react-helmet": "^6.1.5",
+    "@types/react-loadable": "^5.5.6",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "react-textarea-autosize": "^8.3.4"
   }
 }
