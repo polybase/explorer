@@ -1,7 +1,7 @@
 import React from 'react'
 import { Loading } from 'modules/loading/Loading'
 import {
-  Box, Flex, Button, Spacer, HStack, Heading,
+  Box, Flex, Button, Spacer, HStack, Heading, Container, VStack,
 } from '@chakra-ui/react'
 import { Logo } from './Logo'
 import { useNavigate } from 'react-router-dom'
@@ -48,13 +48,17 @@ export function Layout ({ children, isLoading, logoLink, logoLinkExternal, hideA
 
       </HStack>
       <Box flex='1 1 auto'>
-        {isLoading
-          ? (
-            <Box mt={10} >
-              <Loading loading center data-test='layout-loading' />
-            </Box>
-          )
-          : children}
+        <VStack>
+          <Container size='lg' p={4}>
+            {isLoading
+              ? (
+                <Box mt={10} >
+                  <Loading loading center data-test='layout-loading' />
+                </Box>
+              )
+              : children}
+          </Container>
+        </VStack>
       </Box>
     </Flex>
   )
