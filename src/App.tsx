@@ -25,7 +25,7 @@ export const App = () => {
     >
       <ApiProvider baseURL={process.env.REACT_APP_API_URL}>
         <Elements stripe={stripePromise}>
-          <ChakraProvider>
+          <ChakraProvider theme={theme}>
             <Global styles={[globalStyles]} />
             <Router>
               <PostHogPageView />
