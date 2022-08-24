@@ -7,11 +7,12 @@ export interface UseCollectionReturnValue<T> {
   loading: boolean
 }
 
-export function useCollection<T=any> (collection: Collection<T>|Query<T>): UseCollectionReturnValue<T> {
+export function useCollection<T=any> (collection?: Collection<T>|Query<T>|null): UseCollectionReturnValue<T> {
   const [res, setResult] = useState<UseCollectionReturnValue<T>>({ error: null, data: null, loading: true })
-  const key = collection.key()
+  const key = collection?.key()
 
   useEffect(() => {
+    if (!collection) return
     setResult({ ...res, loading: true })
     const unsub = collection.onSnapshot((data) => {
       setResult({ data, error: null, loading: false })

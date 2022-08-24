@@ -39,9 +39,12 @@
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.34.2",
     "react-icons": "^3.0.0",
+    "react-infinite-scroller": "^1.2.6",
     "react-loadable": "^5.5.0",
+    "react-resizable": "^3.0.4",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-table": "^7.8.0",
     "typescript": "^4.6.3",
     "use-interval": "^1.4.0",
     "web-vitals": "^0.2.2"
@@ -111,7 +114,10 @@
   "devDependencies": {
     "@types/js-cookie": "^3.0.2",
     "@types/react-helmet": "^6.1.5",
+    "@types/react-infinite-scroller": "^1.2.3",
     "@types/react-loadable": "^5.5.6",
+    "@types/react-resizable": "^3.0.2",
+    "@types/react-table": "^7.7.12",
     "babel-plugin-module-resolver": "^4.1.0",
     "react-textarea-autosize": "^8.3.4"
   }

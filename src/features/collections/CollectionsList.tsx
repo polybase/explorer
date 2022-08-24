@@ -1,6 +1,7 @@
 import React from 'react'
 import { Box, Heading, Stack, Container, VStack } from '@chakra-ui/react'
 import { map } from 'lodash'
+import { Link } from 'react-router-dom'
 import { CollectionMeta } from '@spacetimexyz/client'
 import { useSpacetime } from 'modules/spacetime/useSpacetime'
 import { useCollection } from 'modules/spacetime/useCollection'
@@ -11,11 +12,15 @@ export function CollectionsList () {
   const spacetime = useSpacetime()
   const { data, loading, error } = useCollection<CollectionMeta>(spacetime.collection('$collections'))
 
+  console.log(data)
+
   const items = map(data, (item) => {
     return (
-      <Box bg='bw.50' borderRadius='md' p={4} key={item.id}>
-        <Heading size='md'>{item.id}</Heading>
-      </Box>
+      <Link to={`/collections/${item.id}`} key={item.id}>
+        <Box bg='bw.50' borderRadius='md' p={4}>
+          <Heading size='md'>{item.id}</Heading>
+        </Box>
+      </Link>
     )
   })
 

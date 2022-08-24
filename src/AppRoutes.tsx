@@ -5,6 +5,7 @@ import { Home } from './features/home/Home'
 import ReactGA from 'react-ga'
 import { useCurrentUserId } from './features/users/useCurrentUserId'
 import { CollectionsList } from 'features/collections/CollectionsList'
+import { CollectionsDetail } from 'features/collections/CollectionDetail'
 // import { find } from 'lodash'
 
 // const PUBLIC_PATHS = ['/login', '/signup']
@@ -34,6 +35,7 @@ export default function AppRouter () {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/collections' element={<CollectionsList />} />
+      <Route path='/collections/:collectionId' element={<CollectionsDetail />} />
     </Routes>
   )
 }

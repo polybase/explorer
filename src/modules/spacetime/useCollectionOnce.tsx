@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 import { Collection, Query } from '@spacetimexyz/client'
 import { UseCollectionReturnValue } from './useCollection'
 
-export function useCollectionOnce<T=any> (collection: Collection<T>|Query<T>): UseCollectionReturnValue<T> {
+export function useCollectionOnce<T=any> (collection?: Collection<T>|Query<T>|null): UseCollectionReturnValue<T> {
   const [res, setResult] = useState<UseCollectionReturnValue<T>>({ error: null, data: null, loading: true })
-  const key = collection.key()
+  const key = collection?.key()
 
   useEffect(() => {
+    if (!collection) return
     setResult({ ...res, loading: true })
     collection.get().then((data) => {
       setResult({ error: null, data,  loading: false })

@@ -7,11 +7,12 @@ export interface UseDocumentReturnValue<T> {
   loading: boolean
 }
 
-export function useDocument<T=any> (doc: Doc<T>): UseDocumentReturnValue<T> {
+export function useDocument<T=any> (doc?: Doc<T>|null): UseDocumentReturnValue<T> {
   const [res, setResult] = useState<UseDocumentReturnValue<T>>({ error: null, data: null, loading: true })
-  const key = doc.key()
+  const key = doc?.key()
 
   useEffect(() => {
+    if (!doc) return
     setResult({ ...res, loading: true })
     const unsub = doc.onSnapshot((data) => {
       setResult({ data, error: null, loading: false })
