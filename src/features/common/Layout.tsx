@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { useCurrentUserId } from 'features/users/useCurrentUserId'
 import { useAuth } from 'features/users/useAuth'
 import { ColorModeSwitcher } from './ColorModeSwitcher'
+import { useLogin } from 'features/users/useLogin'
 
 export interface LayoutProps {
   children?: React.ReactNode|React.ReactNode[]
@@ -19,9 +20,10 @@ export interface LayoutProps {
 }
 
 export function Layout ({ children, isLoading, logoLink, logoLinkExternal, hideAuthBtns }: LayoutProps) {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const auth = useAuth()
   const [userId, userIdLoading] = useCurrentUserId()
+  const login = useLogin()
 
   return (
     <Flex height='100%' flexDirection='column'>
@@ -38,13 +40,11 @@ export function Layout ({ children, isLoading, logoLink, logoLinkExternal, hideA
           <HStack spacing={2}>
             <ColorModeSwitcher />
             {!userId && !userIdLoading && (
-              <Button onClick={async () => {
-                navigate('/login')
-              }}>Login</Button>)}
+              <Button onClick={login}>Login</Button>)}
             {userId && !userIdLoading && (
               <Button onClick={async () => {
                 await auth.logout()
-                navigate('/login')
+                // navigate('/')
               }}>Logout</Button>
             )}
           </HStack>

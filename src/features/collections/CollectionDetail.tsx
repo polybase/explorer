@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Heading, Stack, Container, VStack } from '@chakra-ui/react'
+import { Box, Heading, Stack } from '@chakra-ui/react'
 import { map } from 'lodash'
 import { Cell } from 'react-table'
 import Table from 'modules/table/Table'

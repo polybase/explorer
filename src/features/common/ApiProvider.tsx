@@ -18,7 +18,7 @@ export function ApiProvider ({ children, baseURL }: ApiProviderProps) {
     setClient(() => axios.create({
       baseURL,
       headers: {
-        authorization: `Bearer ${auth.token}`,
+        authorization: `Bearer ${auth.userId}`,
       },
     }))
   }, [auth, baseURL])

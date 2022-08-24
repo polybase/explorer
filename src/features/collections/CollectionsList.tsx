@@ -12,8 +12,6 @@ export function CollectionsList () {
   const spacetime = useSpacetime()
   const { data, loading, error } = useCollection<CollectionMeta>(spacetime.collection('$collections'))
 
-  console.log(data)
-
   const items = map(data, (item) => {
     return (
       <Link to={`/collections/${item.id}`} key={item.id}>

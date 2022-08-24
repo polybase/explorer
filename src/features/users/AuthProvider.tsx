@@ -1,21 +1,20 @@
 import React, { createContext, useState, useCallback, useEffect, useMemo } from 'react'
 import Cookies from 'js-cookie'
-import ReactGA from 'react-ga'
-import * as Sentry from '@sentry/react'
-import posthog from 'posthog-js'
-// import { useApi } from 'features/common/useApi'
+// import ReactGA from 'react-ga'
+// import * as Sentry from '@sentry/react'
+// import posthog from 'posthog-js'
 
 export interface AuthContextValue {
-  auth: { token: string, userId?: string|undefined|null, loginAsUser: boolean } | null
+  auth: { userId: string } | null
   loading: boolean
-  login: (token: string, userId?: string, email?:string|null, loginAsUser?: boolean) => Promise<void>
+  login: (userId: string) => Promise<void>
   logout: () => Promise<void>
 }
 
 export const AuthContext = createContext<AuthContextValue>({
   loading: true,
   auth: null,
-  login: async (token: string, userId?: string, email?: string|null, loginAsUser?: boolean) => {},
+  login: async (userId: string) => {},
   logout: async () => { console.log('demo logout') },
 })
 
@@ -25,43 +24,36 @@ export interface AuthProviderProps {
   domain?: string
 }
 
-export function AuthProvider ({ children, storagePrefix = 'hirestack.', domain }: AuthProviderProps) {
-  const tokenPath = `${storagePrefix}token`
+export function AuthProvider ({ children, storagePrefix = 'spacetime.', domain }: AuthProviderProps) {
   const userIdPath = `${storagePrefix}userId`
   const loginAsUserPath = `${storagePrefix}loginAsUserPath`
   const [auth, setAuth] = useState<AuthContextValue['auth']>(null)
   const [loading, setLoading] = useState(true)
   // const client = useApi()
 
-  const login = useCallback(async (token: string, userId?: string, email?: string|null, loginAsUser?: boolean) => {
-    Cookies.set(tokenPath, token, { domain })
-    if (loginAsUser) Cookies.set(loginAsUserPath, '1', { domain })
+  const login = useCallback(async (userId: string) => {
+    Cookies.set(userIdPath, userId, { domain })
     if (userId) Cookies.set(userIdPath, userId, { domain })
-    if (!loginAsUser) {
-      if (userId) posthog.identify(userId, { email })
-      if (email) Sentry.setUser({ email, id: userId })
-    }
-    setAuth({ token, userId, loginAsUser: !!loginAsUser })
-    ReactGA.ga('event', 'login')
-  }, [tokenPath, domain, loginAsUserPath, userIdPath])
+    // if (userId) posthog.identify(userId, { email })
+    // if (email) Sentry.setUser({ email, id: userId })
+    setAuth({ userId })
+    // ReactGA.ga('event', 'login')
+  }, [domain, userIdPath])
 
   const logout = useCallback(async () => {
-    Cookies.remove(tokenPath, { domain })
     Cookies.remove(userIdPath, { domain })
     Cookies.remove(loginAsUserPath, { domain })
-    posthog.reset()
+    // posthog.reset()
     // client.cache.reset()
-    Sentry.setUser(null)
+    // Sentry.setUser(null)
     setAuth(null)
-  }, [tokenPath, domain, userIdPath, loginAsUserPath])
+  }, [domain, userIdPath, loginAsUserPath])
 
   useEffect(() => {
-    const token = Cookies.get(tokenPath)
     const userId = Cookies.get(userIdPath)
-    const loginAsUser = Cookies.get(loginAsUserPath) === '1'
     setLoading(false)
-    if (token) setAuth({ token, userId, loginAsUser })
-  }, [loginAsUserPath, tokenPath, userIdPath])
+    if (userId) setAuth({ userId })
+  }, [userIdPath])
 
   const value = useMemo(() => ({
     auth,
