@@ -13,7 +13,7 @@ export function CollectionsList () {
 
   const items = map(data, (item) => {
     return (
-      <Box bg='bw.50' borderRadius='md' p={4}>
+      <Box bg='bw.50' borderRadius='md' p={4} key={item.id}>
         <Heading size='md'>{item.id}</Heading>
       </Box>
     )

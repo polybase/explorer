@@ -2447,9 +2447,9 @@
     "@sinonjs/commons" "^1.7.0"
 
 "@spacetimexyz/client@^0.1.0":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/client/-/client-0.1.6.tgz#0ec6fb3213003ab4db480a0d2a5029c8e7003f52"
-  integrity sha512-FML+VWGsH3upPHjl2RCMK3Tf93a1ffn1X8G2Ujp4Ed7O1ynhscAtm+ywh5++QAFoe7Fpnzk6iC0kICLCopJIoA==
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/client/-/client-0.1.8.tgz#a09632a84417417411dc740716232b38a2eaeff4"
+  integrity sha512-6xMrWMydSxvOAjKWRli3UnzZ6gQyl1nWOAyQKm9kYx+KNCMGr33GkfQiFshIypgnZ58pA6OZZbBcCGkdP8XMIg==
   dependencies:
     ajv "^8.11.0"
     axios "^0.27.2"

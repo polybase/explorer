@@ -12,7 +12,6 @@ export function Home () {
 
   useInterval(async () => {
     const res = await api.get('/v0/status')
-    console.log(res.data)
     const block = res.data?.sync_info?.latest_block_height ?? '-'
     setBlock(block)
   }, 1000, true)
