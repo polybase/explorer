@@ -1,8 +1,9 @@
 import React from 'react'
 import { Loading } from 'modules/loading/Loading'
 import {
-  Box, Flex, Button, Spacer, HStack, Heading, Container, VStack,
+  Box, Flex, Button, Spacer, HStack, Heading,
 } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
 import { Logo } from './Logo'
 import { useNavigate } from 'react-router-dom'
 import { useCurrentUserId } from 'features/users/useCurrentUserId'
@@ -25,10 +26,13 @@ export function Layout ({ children, isLoading, logoLink, logoLinkExternal, hideA
   return (
     <Flex height='100%' flexDirection='column'>
       <HStack p={4}>
-        <HStack>
-          <Logo to={logoLink} external={logoLinkExternal} />
-          <Heading as='h1' size='lg'>Explorer</Heading>
-        </HStack>
+        <Link to='/'>
+
+          <HStack>
+            <Logo to={logoLink} external={logoLinkExternal} />
+            <Heading as='h1' size='lg'>Explorer</Heading>
+          </HStack>
+        </Link>
         <Spacer />
         {!hideAuthBtns && (
           <HStack spacing={2}>
@@ -48,17 +52,13 @@ export function Layout ({ children, isLoading, logoLink, logoLinkExternal, hideA
 
       </HStack>
       <Box flex='1 1 auto'>
-        <VStack>
-          <Container size='lg' p={4}>
-            {isLoading
-              ? (
-                <Box mt={10} >
-                  <Loading loading center data-test='layout-loading' />
-                </Box>
-              )
-              : children}
-          </Container>
-        </VStack>
+        {isLoading
+          ? (
+            <Box mt={10} >
+              <Loading loading center data-test='layout-loading' />
+            </Box>
+          )
+          : children}
       </Box>
     </Flex>
   )

@@ -2447,9 +2447,9 @@
     "@sinonjs/commons" "^1.7.0"
 
 "@spacetimexyz/client@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/client/-/client-0.1.0.tgz#0376604ec0d17f694072b65c709ce6096498a464"
-  integrity sha512-YDFrQuozeR+kvwkExJRf8oCv7OMhRd42Z8shJ7Y27QCSarCLYVfqy1zs0z0CA1Iv76y5XRj00cTXRGOT0xwPYg==
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/client/-/client-0.1.6.tgz#0ec6fb3213003ab4db480a0d2a5029c8e7003f52"
+  integrity sha512-FML+VWGsH3upPHjl2RCMK3Tf93a1ffn1X8G2Ujp4Ed7O1ynhscAtm+ywh5++QAFoe7Fpnzk6iC0kICLCopJIoA==
   dependencies:
     ajv "^8.11.0"
     axios "^0.27.2"
@@ -7390,7 +7390,7 @@ object-keys@^1.1.1:
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
 
-object.assign@^4.1.0, object.assign@^4.1.2:
+object.assign@^4.1.0:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/object.assign/-/object.assign-4.1.2.tgz#0ed54a342eceb37b38ff76eb831a0e788cb63940"
   integrity sha512-ixT2L5THXsApyiUPYKmW+2EHpXXe5Ii3M+f4e+aJFAHao5amFRW6J0OO6c/LU8Be47utCx2GL89hxGB6XSmKuQ==
@@ -7398,6 +7398,16 @@ object.assign@^4.1.0, object.assign@^4.1.2:
     call-bind "^1.0.0"
     define-properties "^1.1.3"
     has-symbols "^1.0.1"
+    object-keys "^1.1.1"
+
+object.assign@^4.1.2:
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/object.assign/-/object.assign-4.1.4.tgz#9673c7c7c351ab8c4d0b516f4343ebf4dfb7799f"
+  integrity sha512-1mxKf0e58bvyjSCtKYY4sRe9itRk3PJpquJOjeIkz885CczcI4IvJJDLPS72oowuSh+pBxUFROpX+TU++hxhZQ==
+  dependencies:
+    call-bind "^1.0.2"
+    define-properties "^1.1.4"
+    has-symbols "^1.0.3"
     object-keys "^1.1.1"
 
 object.entries@^1.1.5:
