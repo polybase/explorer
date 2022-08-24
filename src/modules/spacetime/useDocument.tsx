@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { Doc, SpacetimeError } from '@spacetimexyz/client'
+import { Doc, SpacetimeError, CollectionDocument } from '@spacetimexyz/client'
 
 export interface UseDocumentReturnValue<T> {
   error: SpacetimeError|null
-  data: T|null
+  data: CollectionDocument<T>|null
   loading: boolean
 }
 

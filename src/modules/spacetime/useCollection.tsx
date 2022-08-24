@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { Collection, Query, SpacetimeError } from '@spacetimexyz/client'
+import { Collection, Query, SpacetimeError, CollectionDocument } from '@spacetimexyz/client'
 
 export interface UseCollectionReturnValue<T> {
   error: SpacetimeError|null
-  data: T[]|null
+  data: CollectionDocument<T>[]|null
   loading: boolean
 }
 

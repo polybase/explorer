@@ -27,9 +27,9 @@ export function CollectionsDetail () {
     collectionId ? spacetime.collection(collectionId): null,
   )
 
-  const columns = map(meta?.schema?.properties, (_, key) => {
+  const columns = map(meta?.data?.schema?.properties, (_, key) => {
     return {
-      accessor: key,
+      accessor: `data.${key}`,
       Header: key,
       Cell: ({ cell }: { cell: Cell<any> }) => {
         const str = cell.value ? JSON.stringify(cell.value) : '-'
@@ -43,7 +43,7 @@ export function CollectionsDetail () {
       <Loading loading={loadingData || loadingMeta}>
         <Stack spacing={4}>
           <Stack spacing={4} p={4}>
-            <Heading>{meta?.id}</Heading>
+            <Heading>{meta?.data.id}</Heading>
             <Stack>
               {metaError && <Box color='error'>Failed to fetch metadata: {metaError.message}</Box>}
               {dataErr && <Box color='error'>Failed to records: {dataErr.message}</Box>}
