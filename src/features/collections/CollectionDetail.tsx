@@ -31,7 +31,7 @@ export function CollectionsDetail () {
       Header: key,
       Cell: ({ cell }: { cell: Cell<any> }) => {
         const str = cell.value ? JSON.stringify(cell.value) : '-'
-        return <Box>{str.length > 100 ? `${str.substring(0, 100)}...` : cell.value }</Box>
+        return <Box>{str.length > 100 ? `${str.substring(0, 100)}...` : str }</Box>
       },
     }
   })
