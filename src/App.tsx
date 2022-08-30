@@ -15,7 +15,7 @@ import PostHogPageView from 'modules/common/PostHogPageView'
 import { ApiProvider } from 'features/common/ApiProvider'
 import { AuthProvider } from 'features/users/AuthProvider'
 import { Web3Provider } from 'features/web3/Web3Provider'
-import { SpacetimeProvider } from 'modules/spacetime/SpacetimeProvider'
+import { SpacetimeProvider } from '@spacetimexyz/react'
 import spacetime from 'config/spacetime'
 import web3 from 'config/web3'
 

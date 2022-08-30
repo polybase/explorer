@@ -3,13 +3,11 @@ import { Box, Heading, Stack } from '@chakra-ui/react'
 import { map } from 'lodash'
 import { Cell } from 'react-table'
 import Table from 'modules/table/Table'
-import { useSpacetime } from 'modules/spacetime/useSpacetime'
-import { useDocument } from 'modules/spacetime/useDocument'
+import { useSpacetime, useCollection, useDocument } from '@spacetimexyz/react'
 import { Layout } from 'features/common/Layout'
 import { Loading } from 'modules/loading/Loading'
 import { useParams } from 'react-router-dom'
 import { CollectionMeta } from '@spacetimexyz/client'
-import { useCollection } from 'modules/spacetime/useCollection'
 
 const LIMIT = 20
 
