@@ -13,7 +13,7 @@ export function CollectionsList () {
 
   const items = map(data, (item) => {
     return (
-      <Link to={`/collections/${item.data.id}`} key={item.data.id}>
+      <Link to={`/collections/${encodeURIComponent(item.data.id)}`} key={item.data.id}>
         <Box bg='bw.50' borderRadius='md' p={4}>
           <Heading size='md'>{item.data.id}</Heading>
         </Box>
