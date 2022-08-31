@@ -2644,23 +2644,37 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@spacetimexyz/client@^0.1.0", "@spacetimexyz/client@^0.1.25":
-  version "0.1.25"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/client/-/client-0.1.25.tgz#5196945b7f4b38595f5fdbfa894cf5c2d8793444"
-  integrity sha512-jfWdIzX1xy9KiK69hC/HGFIqbY9ccwFlcavebHJiC3/8F8P4KViefaK6JgYJ9iPTvsWcE7vssazCLL9OJVxo4A==
+"@spacetimexyz/client@^0.1.0", "@spacetimexyz/client@^0.1.26":
+  version "0.1.26"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/client/-/client-0.1.26.tgz#dd7e714cd0d959063ffec4c0a6330e0ddbe63bd9"
+  integrity sha512-zNo1dsmpLKLh349of+iG+ZyfEQj/SNYm9K2JrnMjlWA30FrXbriSYrJhFs09UPTAkBpNP7Fx246fxJ36hfw87g==
   dependencies:
+    "@spacetimexyz/eth" "^0.1.19"
     ajv "^8.11.0"
     axios "^0.27.2"
     lodash.merge "^4.6.2"
-    tweetnacl "^1.0.3"
-    tweetnacl-util "^0.15.1"
+
+"@spacetimexyz/eth@^0.1.19":
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/eth/-/eth-0.1.19.tgz#5d234aef5f1bcf2496752d6edf0d20249183a8a2"
+  integrity sha512-aNGHGRl8Kgsx7hG1sgUjlP0x6w0QkQqX1i5oAT7UwDkXkDlUG+KxolFTJfa9BT97TiEZiJ3jhVPcg4nzb6orKQ==
+  dependencies:
+    "@spacetimexyz/util" "^0.1.15"
 
 "@spacetimexyz/react@^0.1.15":
-  version "0.1.25"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/react/-/react-0.1.25.tgz#d876f9f5bc06849493ca8aef2b2c4ad2dc1a5ee2"
-  integrity sha512-kOfVyCwkrkqkFQhhcYleVBmMvlBfOpiBY6Gu7FBN49LFiwh7SIHADiz4dzAUQF2OOukduJcEp1S4L2BCa3qO8A==
+  version "0.1.26"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/react/-/react-0.1.26.tgz#6f072f3555c50f55b683a8be59176d9eebaca7e5"
+  integrity sha512-iJzAvmfeWSyEG7iJeMWmnRQBS3OoNnESPEgGTc/UHYcjMFjkRPUF5r42AfYgl3cfoXjDEqdb/Xp4DY5jxtW2rQ==
   dependencies:
-    "@spacetimexyz/client" "^0.1.25"
+    "@spacetimexyz/client" "^0.1.26"
+
+"@spacetimexyz/util@^0.1.15":
+  version "0.1.15"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/util/-/util-0.1.15.tgz#1d81e6e93cd6e6b768ef45bb1349356e0ec85e40"
+  integrity sha512-EOX6O7g9VlGSwaX1R46w/VOWCdd02yzbVN7zQW6Y+fzojdB/V9Tgtf6l+UWdxHLWyHs510gPPVb01xQaaZRIXg==
+  dependencies:
+    tweetnacl "^1.0.3"
+    tweetnacl-util "^0.15.1"
 
 "@stripe/react-stripe-js@^1.10.0":
   version "1.10.0"
