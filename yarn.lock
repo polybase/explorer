@@ -2644,24 +2644,23 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@spacetimexyz/client@^0.1.0", "@spacetimexyz/client@^0.1.14":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/client/-/client-0.1.14.tgz#7cd4c4fdfa8278ed5503336be06924f64b40510f"
-  integrity sha512-vqaxPZ1S8AAWzs6JgVx1bbisBhayLEOB4n1JPamgYfjV5Avc4ErDo7Q9FNf89EOiX7L9Mh3o28s9auTZqAsqVg==
+"@spacetimexyz/client@^0.1.0", "@spacetimexyz/client@^0.1.17":
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/client/-/client-0.1.17.tgz#f3d0df04bf1869a5e19d6da371c9c4ae1e46587a"
+  integrity sha512-/FaA4HF8PlPBwii2Z+N2aL9Wn+Xj7F23L6PDZ61x79Tv4I6dewR/HmUUKLy6vonVzJ8BIibibCe/2ja7/+lJCg==
   dependencies:
     ajv "^8.11.0"
     axios "^0.27.2"
     lodash.merge "^4.6.2"
     tweetnacl "^1.0.3"
     tweetnacl-util "^0.15.1"
-    util "^0.12.4"
 
 "@spacetimexyz/react@^0.1.15":
-  version "0.1.15"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/react/-/react-0.1.15.tgz#2807da599d24a48e097652cabcd11fab193d5011"
-  integrity sha512-V00YQHxlRdPcBcBd/F4rj6L4LD/nmN0gYYUDUDxU541MyrCfSPLg1TwkES6XYhNtj3rjiQuzbmV7kV/6xHdMHQ==
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/react/-/react-0.1.17.tgz#36cd0cbfd8e1ed08b2b2ca7e40a89979c9ea2683"
+  integrity sha512-dDuqIIHNFy8OB4fL3sAV/awUU8eFlLn5RItOk+SI9aFc5VOehM1gthfpGwcVII2B4bcJ38B1vg1BzIJO5yvYHw==
   dependencies:
-    "@spacetimexyz/client" "^0.1.14"
+    "@spacetimexyz/client" "^0.1.17"
 
 "@stripe/react-stripe-js@^1.10.0":
   version "1.10.0"
@@ -11724,7 +11723,7 @@ util.promisify@~1.0.0:
     has-symbols "^1.0.1"
     object.getownpropertydescriptors "^2.1.0"
 
-util@^0.12.0, util@^0.12.4:
+util@^0.12.0:
   version "0.12.4"
   resolved "https://registry.yarnpkg.com/util/-/util-0.12.4.tgz#66121a31420df8f01ca0c464be15dfa1d1850253"
   integrity sha512-bxZ9qtSlGUWSOy9Qa9Xgk11kSslpuZwaxCg4sNIDj6FLucDab2JxnHwyNTCpHMtK1MjoQiWQ6DiUMZYbSrO+Sw==
