@@ -1,10 +1,11 @@
 import React from 'react'
 import { Loading } from 'modules/loading/Loading'
 import {
-  Box, Flex, Button, Spacer, HStack, Heading,
+  Box, Flex, Button, Spacer, HStack, Heading, IconButton,
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { Logo } from './Logo'
+import { FaGithub } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { useCurrentUserId } from 'features/users/useCurrentUserId'
 import { useAuth } from 'features/users/useAuth'
@@ -37,8 +38,19 @@ export function Layout ({ children, isLoading, logoLink, logoLinkExternal, hideA
         </Link>
         <Spacer />
         {!hideAuthBtns && (
-          <HStack spacing={2}>
-            <ColorModeSwitcher />
+          <HStack spacing={3}>
+            <HStack spacing={1}>
+              <ColorModeSwitcher />
+              <a href='https://github.com/spacetimehq/explorer' target='_blank' rel='noreferrer'>
+                <IconButton
+                  fontSize='lg'
+                  variant='ghost'
+                  color='current'
+                  icon={<FaGithub size='22px' fontSize='sm' />}
+                  aria-label={'View source on Github'}
+                />
+              </a>
+            </HStack>
             {!userId && !userIdLoading && (
               <Button onClick={login}>Login</Button>)}
             {userId && !userIdLoading && (
