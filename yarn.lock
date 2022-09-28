@@ -2644,35 +2644,44 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@spacetimexyz/client@^0.1.0", "@spacetimexyz/client@^0.1.26":
-  version "0.1.26"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/client/-/client-0.1.26.tgz#dd7e714cd0d959063ffec4c0a6330e0ddbe63bd9"
-  integrity sha512-zNo1dsmpLKLh349of+iG+ZyfEQj/SNYm9K2JrnMjlWA30FrXbriSYrJhFs09UPTAkBpNP7Fx246fxJ36hfw87g==
+"@spacetimexyz/client@^0.2.1-beta2":
+  version "0.2.1-beta2"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/client/-/client-0.2.1-beta2.tgz#5eaf9d21869e71b1a3ed1e609c99799f5bd31d26"
+  integrity sha512-WLIS/OLeYN005JgJvd27CV5A2VOix+86/KkHo5JXxzzY36z6rChJWwRKn+yLcFgm8ht3RtTNYV/4h+zVF6UWEg==
   dependencies:
-    "@spacetimexyz/eth" "^0.1.19"
-    ajv "^8.11.0"
+    "@spacetimexyz/eth" "^0.1.27"
+    "@spacetimexyz/lang" "^0.1.4"
     axios "^0.27.2"
     lodash.merge "^4.6.2"
 
-"@spacetimexyz/eth@^0.1.19":
-  version "0.1.19"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/eth/-/eth-0.1.19.tgz#5d234aef5f1bcf2496752d6edf0d20249183a8a2"
-  integrity sha512-aNGHGRl8Kgsx7hG1sgUjlP0x6w0QkQqX1i5oAT7UwDkXkDlUG+KxolFTJfa9BT97TiEZiJ3jhVPcg4nzb6orKQ==
+"@spacetimexyz/eth@^0.1.27":
+  version "0.1.27"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/eth/-/eth-0.1.27.tgz#e0e4ac59e6dc26fda1daa89fff1497a05bb3ffee"
+  integrity sha512-CxwmXvZHs4OBlqhq/DdN683Y8eIwbwCN0EbzaFoamwALDk0ROMsu0vKcXwkBlR4r7eFcT2DMjcIzSyDVjuH1rQ==
   dependencies:
-    "@spacetimexyz/util" "^0.1.15"
+    "@ethersproject/keccak256" "^5.7.0"
+    "@ethersproject/strings" "^5.7.0"
+    "@spacetimexyz/util" "^0.1.27"
 
-"@spacetimexyz/react@^0.1.15":
-  version "0.1.26"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/react/-/react-0.1.26.tgz#6f072f3555c50f55b683a8be59176d9eebaca7e5"
-  integrity sha512-iJzAvmfeWSyEG7iJeMWmnRQBS3OoNnESPEgGTc/UHYcjMFjkRPUF5r42AfYgl3cfoXjDEqdb/Xp4DY5jxtW2rQ==
-  dependencies:
-    "@spacetimexyz/client" "^0.1.26"
+"@spacetimexyz/lang@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/lang/-/lang-0.1.4.tgz#4ef6865afdf2932fa43ce094e5dece3790cdd68d"
+  integrity sha512-muGtU+CaXkgzTVG0QQHHVLfnBO0BV+UjtYNbkNLWBtnedD8mq5cfzx/84VyUyepn2/L7fgWWzuwkb1Itystyng==
 
-"@spacetimexyz/util@^0.1.15":
-  version "0.1.15"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/util/-/util-0.1.15.tgz#1d81e6e93cd6e6b768ef45bb1349356e0ec85e40"
-  integrity sha512-EOX6O7g9VlGSwaX1R46w/VOWCdd02yzbVN7zQW6Y+fzojdB/V9Tgtf6l+UWdxHLWyHs510gPPVb01xQaaZRIXg==
+"@spacetimexyz/react@^0.2.1-beta2":
+  version "0.2.1-beta2"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/react/-/react-0.2.1-beta2.tgz#8cdbcce271d661f351f4b13a2a406e43d8e49840"
+  integrity sha512-ovrXj7A5lZHyJ/+5pGJ1drZaBHQZNzaFN1H5PXM64YjYkchi5RANvvqUUZXTGouozBdmmgHqvvYW5KY/b5QNrg==
   dependencies:
+    "@spacetimexyz/client" "^0.2.1-beta2"
+
+"@spacetimexyz/util@^0.1.27":
+  version "0.1.27"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/util/-/util-0.1.27.tgz#aeac29f51cae13d3c13904de2ea350208f386a81"
+  integrity sha512-rcpIZAHjOZf7cVg8ghQbZPW1rYN6vhKuBuIAD0CebpMbxfOjOVWU8baEBSZA9PtmTcloY9aCAn3LIk9OO5Losg==
+  dependencies:
+    "@ethersproject/bytes" "^5.7.0"
+    "@ethersproject/signing-key" "^5.7.0"
     tweetnacl "^1.0.3"
     tweetnacl-util "^0.15.1"
 
@@ -3689,7 +3698,7 @@ ajv@^6.10.0, ajv@^6.12.2, ajv@^6.12.3, ajv@^6.12.4, ajv@^6.12.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-ajv@^8.0.0, ajv@^8.11.0, ajv@^8.6.0, ajv@^8.8.0:
+ajv@^8.0.0, ajv@^8.6.0, ajv@^8.8.0:
   version "8.11.0"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-8.11.0.tgz#977e91dd96ca669f54a11e23e378e33b884a565f"
   integrity sha512-wGgprdCvMalC0BztXvitD2hC04YffAvtsUn93JbGXYLAtCUO4xd17mCCZQxUOItiBwZvJScWo8NIvQMQ71rdpg==
@@ -4785,6 +4794,18 @@ copy-to-clipboard@3.3.1:
   integrity sha512-i13qo6kIHTTpCm8/Wup+0b1mVWETvu2kIMzKoK8FpkLkFxlt0znUAHcMzox+T8sPlqtZXq3CulEjQHsYiGFJUw==
   dependencies:
     toggle-selection "^1.0.6"
+
+copy-webpack-plugin@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/copy-webpack-plugin/-/copy-webpack-plugin-11.0.0.tgz#96d4dbdb5f73d02dd72d0528d1958721ab72e04a"
+  integrity sha512-fX2MWpamkW0hZxMEg0+mYnA40LTosOSa5TqZ9GYIBzyJa9C3QUaMPSE2xAi/buNr8u89SfD9wHSQVBzrRa/SOQ==
+  dependencies:
+    fast-glob "^3.2.11"
+    glob-parent "^6.0.1"
+    globby "^13.1.1"
+    normalize-path "^3.0.0"
+    schema-utils "^4.0.0"
+    serialize-javascript "^6.0.0"
 
 core-js-compat@^3.21.0, core-js-compat@^3.22.1:
   version "3.23.5"
@@ -6656,6 +6677,17 @@ globby@^11.0.4, globby@^11.1.0:
     ignore "^5.2.0"
     merge2 "^1.4.1"
     slash "^3.0.0"
+
+globby@^13.1.1:
+  version "13.1.2"
+  resolved "https://registry.yarnpkg.com/globby/-/globby-13.1.2.tgz#29047105582427ab6eca4f905200667b056da515"
+  integrity sha512-LKSDZXToac40u8Q1PQtZihbNdTYSNMuWe+K5l+oa6KgDzSvVrHXlJy40hUP522RjAIoNLJYBJi7ow+rbFpIhHQ==
+  dependencies:
+    dir-glob "^3.0.1"
+    fast-glob "^3.2.11"
+    ignore "^5.2.0"
+    merge2 "^1.4.1"
+    slash "^4.0.0"
 
 got@12.1.0:
   version "12.1.0"

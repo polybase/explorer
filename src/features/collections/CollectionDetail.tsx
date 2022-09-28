@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Box, Heading, Stack } from '@chakra-ui/react'
 import { map } from 'lodash'
 import { Cell } from 'react-table'
@@ -8,6 +8,7 @@ import { Layout } from 'features/common/Layout'
 import { Loading } from 'modules/loading/Loading'
 import { useParams } from 'react-router-dom'
 import { CollectionMeta } from '@spacetimexyz/client'
+import { parse, Program } from '@spacetimexyz/lang/web'
 
 const LIMIT = 20
 
@@ -15,6 +16,7 @@ export function CollectionsDetail () {
   const { collectionId } = useParams()
   const [pageIndex, setPageIndex] = useState(0)
   const spacetime = useSpacetime()
+  const [ast, setAst] = useState<Program>()
 
   // Structure for the table
   const { data: meta, loading: loadingMeta, error: metaError } = useDocument<CollectionMeta>(
@@ -25,10 +27,22 @@ export function CollectionsDetail () {
     collectionId ? spacetime.collection(collectionId): null,
   )
 
-  const columns = map(meta?.data?.schema?.properties, (_, key) => {
+  useEffect(() => {
+    if (!meta?.data?.code) {
+      return
+    }
+
+    parse(meta?.data?.code).then(ast => setAst(ast))
+  }, [meta?.data?.code])
+
+  const shortCollectionName = (id: string) => id.split('/').pop()?.replace(/-/g, '_')
+
+  const fields = ast?.nodes?.find(node => node?.Collection?.name === shortCollectionName(collectionId || ''))?.Collection?.items?.map((item: any) => item?.Field)?.filter(Boolean)
+
+  const columns = map(fields, (field) => {
     return {
-      accessor: `data.${key}`,
-      Header: key,
+      accessor: `data.${field.name}`,
+      Header: field.name,
       Cell: ({ cell }: { cell: Cell<any> }) => {
         const str = cell.value ? JSON.stringify(cell.value) : '-'
         return <Box>{str.length > 100 ? `${str.substring(0, 100)}...` : str }</Box>
@@ -51,9 +65,9 @@ export function CollectionsDetail () {
             <Box width='100%'>
               <Table<any>
                 columns={columns}
-                data={data ?? []}
+                data={data?.data ?? []}
                 // onChange={onChangeHandler}
-                hasMore={!loadingData && LIMIT * (pageIndex + 1) <= (data ?? [])?.length}
+                hasMore={!loadingData && LIMIT * (pageIndex + 1) <= (data?.data ?? [])?.length}
                 loadMore={() => {
                   if (loadingData) return
                   setPageIndex((i) => i + 1)

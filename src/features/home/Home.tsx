@@ -35,7 +35,7 @@ export function Home () {
                 <HStack spacing={6}>
                   <Stat title='Validators' stat={4} />
                   <Link to='collections'>
-                    <Stat title='Collections' stat={data ? data?.length : '-'} />
+                    <Stat title='Collections' stat={data ? data?.data?.length : '-'} />
                   </Link>
                 </HStack>
               </Stack>
