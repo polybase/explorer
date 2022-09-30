@@ -22,6 +22,20 @@ const theme = extendTheme({
     },
   },
   useSystemColorMode: true,
+  colors: {
+    brand: {
+      '50': '#F8ECF8',
+      '100': '#ECCAEC',
+      '200': '#E0A8E1',
+      '300': '#D386D5',
+      '400': '#C764C9',
+      '500': '#BB42BD',
+      '600': '#953597',
+      '700': '#702871',
+      '800': '#4B1A4C',
+      '900': '#250D26',
+    },
+  },
 })
 
 export default theme
