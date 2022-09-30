@@ -12,7 +12,7 @@ export interface LogoProps {
 export function Logo ({ to, external }: LogoProps) {
   const logoEl = (
     <HStack spacing={1}>
-      <Img src={logo} height={'48px'} />
+      <Img src={logo} height={'48px'} minWidth={35} />
     </HStack>
   )
   return to ? <Link isExternal={external} href={to}>{logoEl}</Link> : logoEl
