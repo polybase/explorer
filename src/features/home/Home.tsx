@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { Input, Stack, HStack, Box,  Container, VStack } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { Input, Stack, HStack, Box,  Container, VStack, SimpleGrid } from '@chakra-ui/react'
 import { CollectionMeta } from '@spacetimexyz/client'
 import { useSpacetime, useCollection } from '@spacetimexyz/react'
 import { Layout } from 'features/common/Layout'
@@ -32,12 +31,14 @@ export function Home () {
               </Stack>
               <Stack spacing={6}>
                 <Stat title='Block' stat={block} />
-                <HStack spacing={6}>
-                  <Stat title='Validators' stat={4} />
-                  <Link to='collections'>
-                    <Stat title='Collections' stat={data ? data?.data?.length : '-'} />
-                  </Link>
-                </HStack>
+                <SimpleGrid columns={[1, 2]} spacingX={6} spacingY={6}>
+                  <Box>
+                    <Stat title='Validators' stat={4} />
+                  </Box>
+                  <Box>
+                    <Stat title='Collections' to='/collections' stat={data ? data?.data?.length : '-'} />
+                  </Box>
+                </SimpleGrid>
               </Stack>
             </Stack>
           </Box>

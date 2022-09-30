@@ -1,16 +1,16 @@
 import React from 'react'
 import { Loading } from 'modules/loading/Loading'
 import {
-  Box, Flex, Button, Spacer, HStack, Heading, IconButton,
+  Box, Flex, Spacer, HStack, Heading, IconButton,
+  useDisclosure, useBreakpointValue,
 } from '@chakra-ui/react'
+import { FaBars } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { Logo } from './Logo'
-import { FaGithub } from 'react-icons/fa'
-import { useNavigate } from 'react-router-dom'
-import { useCurrentUserId } from 'features/users/useCurrentUserId'
-import { useAuth } from 'features/users/useAuth'
-import { ColorModeSwitcher } from './ColorModeSwitcher'
-import { useLogin } from 'features/users/useLogin'
+import { NavIcons } from './NavIcons'
+import { Nav } from './Nav'
+import { Sidebar } from './Sidebar'
+import { NavLogin } from './NavLogin'
 
 export interface LayoutProps {
   children?: React.ReactNode|React.ReactNode[]
@@ -21,45 +21,47 @@ export interface LayoutProps {
 }
 
 export function Layout ({ children, isLoading, logoLink, logoLinkExternal, hideAuthBtns }: LayoutProps) {
-  // const navigate = useNavigate()
-  const auth = useAuth()
-  const [userId, userIdLoading] = useCurrentUserId()
-  const login = useLogin()
+
+  const { isOpen, onClose, onOpen, onToggle } = useDisclosure()
+  const isMobile = useBreakpointValue({
+    base: true,
+    sm: true,
+    md: false,
+  })
 
   return (
     <Flex height='100%' flexDirection='column'>
       <HStack p={4}>
         <Link to='/'>
-
           <HStack>
             <Logo to={logoLink} external={logoLinkExternal} />
             <Heading as='h1' size='lg'>Explorer</Heading>
           </HStack>
         </Link>
         <Spacer />
-        {!hideAuthBtns && (
+        {!isMobile ? (
           <HStack spacing={3}>
+            <Box fontWeight='600'>
+              <HStack spacing={3}>
+                <Nav />
+              </HStack>
+            </Box>
             <HStack spacing={1}>
-              <ColorModeSwitcher />
-              <a href='https://github.com/spacetimehq/explorer' target='_blank' rel='noreferrer'>
-                <IconButton
-                  fontSize='lg'
-                  variant='ghost'
-                  color='current'
-                  icon={<FaGithub size='22px' fontSize='sm' />}
-                  aria-label={'View source on Github'}
-                />
-              </a>
+              <NavIcons />
             </HStack>
-            {!userId && !userIdLoading && (
-              <Button onClick={login}>Login</Button>)}
-            {userId && !userIdLoading && (
-              <Button onClick={async () => {
-                await auth.logout()
-                // navigate('/')
-              }}>Logout</Button>
-            )}
+            <NavLogin />
           </HStack>
+        ) : (
+          <IconButton
+            variant='ghost'
+            color='current'
+            onClick={onToggle}
+            size='lg'
+            borderRadius='full'
+            // _hover={{ color: 'brand.500' }}
+            icon={<FaBars fontSize={24} />}
+            aria-label={'Open menu'}
+          />
         )}
 
       </HStack>
@@ -72,6 +74,7 @@ export function Layout ({ children, isLoading, logoLink, logoLinkExternal, hideA
           )
           : children}
       </Box>
+      <Sidebar onClose={onClose} onOpen={onOpen} isOpen={!!(isOpen && isMobile)} />
     </Flex>
   )
 }
