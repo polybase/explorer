@@ -2644,6 +2644,16 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@spacetimexyz/client@0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/client/-/client-0.2.2.tgz#c3ab718c24dc2cf591d4cef926778f90638c5e16"
+  integrity sha512-seZmIzA9qVQb75qdxqlKPZRUJrPo0zwZGcKgy2949na9bNqJ6PUUtn3EcKeSUD768nE7Xc0hcNNCRHKIEtB20g==
+  dependencies:
+    "@spacetimexyz/eth" "^0.1.27"
+    "@spacetimexyz/lang" "0.1.5"
+    axios "^0.27.2"
+    lodash.merge "^4.6.2"
+
 "@spacetimexyz/client@^0.2.1-beta2":
   version "0.2.1-beta2"
   resolved "https://registry.yarnpkg.com/@spacetimexyz/client/-/client-0.2.1-beta2.tgz#5eaf9d21869e71b1a3ed1e609c99799f5bd31d26"
