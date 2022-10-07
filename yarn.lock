@@ -2644,13 +2644,13 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@spacetimexyz/client@0.2.3-beta1":
-  version "0.2.3-beta1"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/client/-/client-0.2.3-beta1.tgz#34d8b5675947430dbd47ac704f65bd0239196c85"
-  integrity sha512-p951crUTTkJq31IxkdLdillFqOfbDRx1fHIIb89Tu/Z0pSyJRsKT/vbXCYjVRxHIG0fgfD/kJgwiYF7K4brnHA==
+"@spacetimexyz/client@0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/client/-/client-0.2.3.tgz#3108a18cfede14fe2edc33c8f7d49b69e19c3de4"
+  integrity sha512-BRW4s63UuM/ZYwR4lc8ur5GisjrZziqCNj8iuWglf3p/LsBNZndixqWXlvZCGkCPtbyU5UmF07U42oasJsTvIg==
   dependencies:
     "@spacetimexyz/eth" "^0.1.27"
-    "@spacetimexyz/lang" "0.2.0-beta1"
+    "@spacetimexyz/lang" "0.2.0"
     axios "^0.27.2"
     lodash.merge "^4.6.2"
 
@@ -2663,15 +2663,15 @@
     "@ethersproject/strings" "^5.7.0"
     "@spacetimexyz/util" "^0.1.27"
 
-"@spacetimexyz/lang@0.2.0-beta1":
-  version "0.2.0-beta1"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/lang/-/lang-0.2.0-beta1.tgz#9c7cc0a55039f2077c06986eb08e86b87b8f3db4"
-  integrity sha512-rVu4Gy8OhsDhkAa7hv0W9G+xe/8iBpcqTxURHFMuPnpxVFJh9ObcbHbgWf9P51+KRefSGJtogms/0v7JTyA5dg==
+"@spacetimexyz/lang@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/lang/-/lang-0.2.0.tgz#991fe3a46642138e65547fde1f8fa1838e5ae7e6"
+  integrity sha512-DwpWUKlow9BZ9wCGS0saZ+/aJJBbU1+j0aVFI3mHZDRJKeT7ZkHkorDEZxH4KydBJSx1Z+nFysnwnFFtVpNN3Q==
 
-"@spacetimexyz/react@0.2.3-beta1":
-  version "0.2.3-beta1"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/react/-/react-0.2.3-beta1.tgz#ebd65622f010a1c8c3d66922ce1c5328402d3b4a"
-  integrity sha512-DxyNQ02aqX/mD7+JomcdRsDeMMNczqpKsuv2l28a3ff9v948lYG6s9QOpRCGkzPKcuTBQabWYaEXDtFqR8tHDw==
+"@spacetimexyz/react@0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/react/-/react-0.2.3.tgz#87a6c50464a04a266600f71a40d5465f53b941c0"
+  integrity sha512-sb2OZ3XpTFxydB+MLdubfE+CzYt7BfUGD3sbSIRresaiXKqR7V1IJ1yHlchkaSwRWm8BRH5IdYrSKmomGxBB6w==
 
 "@spacetimexyz/util@^0.1.27":
   version "0.1.27"
