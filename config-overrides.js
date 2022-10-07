@@ -1,5 +1,4 @@
 const webpack = require('webpack')
-const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = function override (config) {
   const fallback = config.resolve.fallback || {}
@@ -17,14 +16,6 @@ module.exports = function override (config) {
     new webpack.ProvidePlugin({
       process: 'process/browser',
       Buffer: ['buffer', 'Buffer'],
-    }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: 'node_modules/@spacetimexyz/lang/web/*.wasm',
-          to: 'static/js/[name][ext]',
-        },
-      ],
     }),
   ])
   config.module.rules.unshift({

@@ -2644,23 +2644,13 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@spacetimexyz/client@0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/client/-/client-0.2.2.tgz#c3ab718c24dc2cf591d4cef926778f90638c5e16"
-  integrity sha512-seZmIzA9qVQb75qdxqlKPZRUJrPo0zwZGcKgy2949na9bNqJ6PUUtn3EcKeSUD768nE7Xc0hcNNCRHKIEtB20g==
+"@spacetimexyz/client@0.2.3-beta1":
+  version "0.2.3-beta1"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/client/-/client-0.2.3-beta1.tgz#34d8b5675947430dbd47ac704f65bd0239196c85"
+  integrity sha512-p951crUTTkJq31IxkdLdillFqOfbDRx1fHIIb89Tu/Z0pSyJRsKT/vbXCYjVRxHIG0fgfD/kJgwiYF7K4brnHA==
   dependencies:
     "@spacetimexyz/eth" "^0.1.27"
-    "@spacetimexyz/lang" "0.1.5"
-    axios "^0.27.2"
-    lodash.merge "^4.6.2"
-
-"@spacetimexyz/client@^0.2.1-beta2":
-  version "0.2.1-beta2"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/client/-/client-0.2.1-beta2.tgz#5eaf9d21869e71b1a3ed1e609c99799f5bd31d26"
-  integrity sha512-WLIS/OLeYN005JgJvd27CV5A2VOix+86/KkHo5JXxzzY36z6rChJWwRKn+yLcFgm8ht3RtTNYV/4h+zVF6UWEg==
-  dependencies:
-    "@spacetimexyz/eth" "^0.1.27"
-    "@spacetimexyz/lang" "^0.1.4"
+    "@spacetimexyz/lang" "0.2.0-beta1"
     axios "^0.27.2"
     lodash.merge "^4.6.2"
 
@@ -2673,22 +2663,15 @@
     "@ethersproject/strings" "^5.7.0"
     "@spacetimexyz/util" "^0.1.27"
 
-"@spacetimexyz/lang@0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/lang/-/lang-0.1.5.tgz#535964319a7b5b58d9b83e3874b8648f55a7bc9e"
-  integrity sha512-v4IbclOBE03eONqYArdsiTIjc8UuMAtFIOIW2psnO31eVKy9+FfL0T85Z+Ck0hrrj0uLCsaTxn5MxU9QK3BmlA==
+"@spacetimexyz/lang@0.2.0-beta1":
+  version "0.2.0-beta1"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/lang/-/lang-0.2.0-beta1.tgz#9c7cc0a55039f2077c06986eb08e86b87b8f3db4"
+  integrity sha512-rVu4Gy8OhsDhkAa7hv0W9G+xe/8iBpcqTxURHFMuPnpxVFJh9ObcbHbgWf9P51+KRefSGJtogms/0v7JTyA5dg==
 
-"@spacetimexyz/lang@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/lang/-/lang-0.1.4.tgz#4ef6865afdf2932fa43ce094e5dece3790cdd68d"
-  integrity sha512-muGtU+CaXkgzTVG0QQHHVLfnBO0BV+UjtYNbkNLWBtnedD8mq5cfzx/84VyUyepn2/L7fgWWzuwkb1Itystyng==
-
-"@spacetimexyz/react@^0.2.1-beta2":
-  version "0.2.1-beta2"
-  resolved "https://registry.yarnpkg.com/@spacetimexyz/react/-/react-0.2.1-beta2.tgz#8cdbcce271d661f351f4b13a2a406e43d8e49840"
-  integrity sha512-ovrXj7A5lZHyJ/+5pGJ1drZaBHQZNzaFN1H5PXM64YjYkchi5RANvvqUUZXTGouozBdmmgHqvvYW5KY/b5QNrg==
-  dependencies:
-    "@spacetimexyz/client" "^0.2.1-beta2"
+"@spacetimexyz/react@0.2.3-beta1":
+  version "0.2.3-beta1"
+  resolved "https://registry.yarnpkg.com/@spacetimexyz/react/-/react-0.2.3-beta1.tgz#ebd65622f010a1c8c3d66922ce1c5328402d3b4a"
+  integrity sha512-DxyNQ02aqX/mD7+JomcdRsDeMMNczqpKsuv2l28a3ff9v948lYG6s9QOpRCGkzPKcuTBQabWYaEXDtFqR8tHDw==
 
 "@spacetimexyz/util@^0.1.27":
   version "0.1.27"
@@ -4810,18 +4793,6 @@ copy-to-clipboard@3.3.1:
   dependencies:
     toggle-selection "^1.0.6"
 
-copy-webpack-plugin@^11.0.0:
-  version "11.0.0"
-  resolved "https://registry.yarnpkg.com/copy-webpack-plugin/-/copy-webpack-plugin-11.0.0.tgz#96d4dbdb5f73d02dd72d0528d1958721ab72e04a"
-  integrity sha512-fX2MWpamkW0hZxMEg0+mYnA40LTosOSa5TqZ9GYIBzyJa9C3QUaMPSE2xAi/buNr8u89SfD9wHSQVBzrRa/SOQ==
-  dependencies:
-    fast-glob "^3.2.11"
-    glob-parent "^6.0.1"
-    globby "^13.1.1"
-    normalize-path "^3.0.0"
-    schema-utils "^4.0.0"
-    serialize-javascript "^6.0.0"
-
 core-js-compat@^3.21.0, core-js-compat@^3.22.1:
   version "3.23.5"
   resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.23.5.tgz#11edce2f1c4f69a96d30ce77c805ce118909cd5b"
@@ -6692,17 +6663,6 @@ globby@^11.0.4, globby@^11.1.0:
     ignore "^5.2.0"
     merge2 "^1.4.1"
     slash "^3.0.0"
-
-globby@^13.1.1:
-  version "13.1.2"
-  resolved "https://registry.yarnpkg.com/globby/-/globby-13.1.2.tgz#29047105582427ab6eca4f905200667b056da515"
-  integrity sha512-LKSDZXToac40u8Q1PQtZihbNdTYSNMuWe+K5l+oa6KgDzSvVrHXlJy40hUP522RjAIoNLJYBJi7ow+rbFpIhHQ==
-  dependencies:
-    dir-glob "^3.0.1"
-    fast-glob "^3.2.11"
-    ignore "^5.2.0"
-    merge2 "^1.4.1"
-    slash "^4.0.0"
 
 got@12.1.0:
   version "12.1.0"
