@@ -8,7 +8,7 @@ import { Layout } from 'features/common/Layout'
 import { Loading } from 'modules/loading/Loading'
 import { useParams } from 'react-router-dom'
 import { CollectionMeta } from '@spacetimexyz/client'
-import { parse, Program } from '@spacetimexyz/lang/web'
+import { parse, Program } from '@spacetimexyz/lang'
 
 const LIMIT = 20
 
