@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { Input, Stack, HStack, Box,  Container, VStack, SimpleGrid } from '@chakra-ui/react'
-import { CollectionMeta } from '@spacetimexyz/client'
-import { useSpacetime, useCollection } from '@spacetimexyz/react'
+import { CollectionMeta } from '@polybase/client'
+import { usePolybase, useCollection } from '@polybase/react'
 import { Layout } from 'features/common/Layout'
 import { useApi } from 'features/common/useApi'
 import useInterval from 'use-interval'
 import { Stat } from './Stat'
 
 export function Home () {
-  const spacetime = useSpacetime()
+  const polybase = usePolybase()
   const api = useApi()
   const [block, setBlock] = useState('-')
 
@@ -18,7 +18,7 @@ export function Home () {
     setBlock(block)
   }, 1000, true)
 
-  const { data } = useCollection<CollectionMeta>(spacetime.collection('$collections'))
+  const { data } = useCollection<CollectionMeta>(polybase.collection('$collections'))
 
   return (
     <Layout>

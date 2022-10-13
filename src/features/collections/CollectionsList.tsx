@@ -2,14 +2,14 @@ import React from 'react'
 import { Box, Heading, Stack, Container, VStack } from '@chakra-ui/react'
 import { map } from 'lodash'
 import { Link } from 'react-router-dom'
-import { CollectionMeta } from '@spacetimexyz/client'
-import { useSpacetime, useCollection } from '@spacetimexyz/react'
+import { CollectionMeta } from '@polybase/client'
+import { usePolybase, useCollection } from '@polybase/react'
 import { Layout } from 'features/common/Layout'
 import { Loading } from 'modules/loading/Loading'
 
 export function CollectionsList () {
-  const spacetime = useSpacetime()
-  const { data, loading, error } = useCollection<CollectionMeta>(spacetime.collection('$collections'))
+  const polybase = usePolybase()
+  const { data, loading, error } = useCollection<CollectionMeta>(polybase.collection('$collections'))
 
   const items = map(data?.data, (item) => {
     return (

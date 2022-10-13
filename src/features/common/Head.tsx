@@ -10,7 +10,7 @@ function Head ({ title, desc }: TitleProps) {
   if (!title) return null
   return (
     <Helmet>
-      <title>{title} | Spacetime Explorer</title>
+      <title>{title} | Polybase Explorer</title>
       {desc && <meta name='description' content={desc} />}
     </Helmet>
   )

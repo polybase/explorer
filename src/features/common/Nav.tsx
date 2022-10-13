@@ -9,7 +9,7 @@ const NAV_LINKS = [{
   to: '/collections',
 }, {
   title: 'Docs',
-  to: 'https://docs.spacetime.xyz',
+  to: 'https://docs.polybase.xyz',
   external: true,
 }]
 

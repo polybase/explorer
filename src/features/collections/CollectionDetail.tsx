@@ -1,30 +1,30 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Heading, Stack } from '@chakra-ui/react'
 import { map } from 'lodash'
 import { Cell } from 'react-table'
 import Table from 'modules/table/Table'
-import { useSpacetime, useCollection, useDocument } from '@spacetimexyz/react'
+import { usePolybase, useCollection, useDocument } from '@polybase/react'
 import { Layout } from 'features/common/Layout'
 import { Loading } from 'modules/loading/Loading'
 import { useParams } from 'react-router-dom'
-import { CollectionMeta } from '@spacetimexyz/client'
-import { parse, Program } from '@spacetimexyz/lang'
+import { CollectionMeta } from '@polybase/client'
+import { parse, Program } from '@polybase/polylang'
 
 const LIMIT = 20
 
 export function CollectionsDetail () {
   const { collectionId } = useParams()
   const [pageIndex, setPageIndex] = useState(0)
-  const spacetime = useSpacetime()
+  const polybase = usePolybase()
   const [ast, setAst] = useState<Program>()
 
   // Structure for the table
   const { data: meta, loading: loadingMeta, error: metaError } = useDocument<CollectionMeta>(
-    collectionId ? spacetime.collection('$collections').doc(collectionId) : null,
+    collectionId ? polybase.collection('$collections').doc(collectionId) : null,
   )
 
   const { data, loading: loadingData, error: dataErr } = useCollection<any>(
-    collectionId ? spacetime.collection(collectionId): null,
+    collectionId ? polybase.collection(collectionId): null,
   )
 
   useEffect(() => {

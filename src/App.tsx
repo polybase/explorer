@@ -15,8 +15,8 @@ import PostHogPageView from 'modules/common/PostHogPageView'
 import { ApiProvider } from 'features/common/ApiProvider'
 import { AuthProvider } from 'features/users/AuthProvider'
 import { Web3Provider } from 'features/web3/Web3Provider'
-import { SpacetimeProvider } from '@spacetimexyz/react'
-import spacetime from 'config/spacetime'
+import { PolybaseProvider } from '@polybase/react'
+import polybase from 'config/polybase'
 import web3 from 'config/web3'
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY ?? '')
@@ -24,7 +24,7 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY ?? '')
 export const App = () => {
   return (
     <Web3Provider web3={web3}>
-      <SpacetimeProvider spacetime={spacetime}>
+      <PolybaseProvider polybase={polybase}>
         <AuthProvider
           domain={process.env.REACT_APP_DOMAIN}
           storagePrefix={process.env.REACT_APP_AUTH_STORAGE_PREFIX}
@@ -42,7 +42,7 @@ export const App = () => {
             </Elements>
           </ApiProvider>
         </AuthProvider>
-      </SpacetimeProvider>
+      </PolybaseProvider>
     </Web3Provider>
   )
 }
