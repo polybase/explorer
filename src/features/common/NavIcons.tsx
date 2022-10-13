@@ -9,7 +9,7 @@ export function NavIcons () {
   return (
     <>
       <ColorModeSwitcher />
-      <a href='https://github.com/polybasehq/explorer' target='_blank' rel='noreferrer'>
+      <a href='https://github.com/polybase/explorer' target='_blank' rel='noreferrer'>
         <IconButton
           fontSize='lg'
           variant='ghost'
