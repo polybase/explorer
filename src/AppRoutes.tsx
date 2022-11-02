@@ -4,8 +4,8 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import { Home } from './features/home/Home'
 import ReactGA from 'react-ga'
 import { useCurrentUserId } from './features/users/useCurrentUserId'
-import { ContractsList } from 'features/contracts/ContractList'
-import { ContractsDetail } from 'features/contracts/ContractDetail'
+import { CollectionsList } from 'features/collections/CollectionList'
+import { CollectionsDetail } from 'features/collections/CollectionDetail'
 // import { find } from 'lodash'
 
 // const PUBLIC_PATHS = ['/login', '/signup']
@@ -34,8 +34,8 @@ export default function AppRouter () {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/contracts' element={<ContractsList />} />
-      <Route path='/contracts/:contractId' element={<ContractsDetail />} />
+      <Route path='/collections' element={<CollectionsList />} />
+      <Route path='/collections/:collectionId' element={<CollectionsDetail />} />
     </Routes>
   )
 }

@@ -2520,13 +2520,13 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@polybase/client@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@polybase/client/-/client-0.3.0.tgz#0cd43d602b0ede93232c9263c47cb3a4af36b01e"
-  integrity sha512-lx1OTWDpPY2FPb5bKm0VvVLbsr2pmB9Ro+8PirDB2DErFFkBtUiAVHIDDMqiREILPEeifLSJf+yBntOk/gsHpw==
+"@polybase/client@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@polybase/client/-/client-0.3.1.tgz#60109669e80fb4f36fe574ebf42c26a488adbd97"
+  integrity sha512-CFj9GIKEiDTQxbrPSKhrHgaTX3bWOlv58jCmZPWSvUEJa9SNlXqifCeAErWmovzksPymLJr67tMRQD/WJrp5EQ==
   dependencies:
     "@polybase/eth" "^0.3.0"
-    "@polybase/polylang" "^0.3.0"
+    "@polybase/polylang" "^0.3.1"
     axios "^0.27.2"
     lodash.merge "^4.6.2"
 
@@ -2539,15 +2539,15 @@
     "@ethersproject/strings" "^5.7.0"
     "@polybase/util" "^0.3.0"
 
-"@polybase/polylang@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@polybase/polylang/-/polylang-0.3.0.tgz#c3c084e06c4459eca2b446734542a20d8ad5b0bb"
-  integrity sha512-Gpq6eGjCGt8wd3k0G4BSTB9XX9AtGAk2br9u3g4iaWTORsIPW0iukiHb8Ok+Xt5nDKYBLZLyy5Yq97u6Exbe1w==
+"@polybase/polylang@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@polybase/polylang/-/polylang-0.3.1.tgz#d7e030512070ceca59af9e0054bb10776e573ff1"
+  integrity sha512-cfbHQePe5mFZRtxQYLLW0Go9BwEqXWOdL7U2stJIk4glmB8oH50tD8r8J8gdCuAfzWq0L8slmf67qMVXljnpSQ==
 
-"@polybase/react@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@polybase/react/-/react-0.3.0.tgz#8694343273c907aac6c4cb2d9749a4e3c7cd1d44"
-  integrity sha512-UxHlEH10F+vpPrHlI8bcqdvatDmug08tW0pzJ8gvO38gZvzyTcXXf72+eACCcK+jAsKHwAtk7GZXPyuAzxC5Ow==
+"@polybase/react@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@polybase/react/-/react-0.3.1.tgz#ffe04b7ef9769cb43e1c2f9c4375a22ce60c976f"
+  integrity sha512-2+9gEO1vRM2UvTt7ESL84Wbv94hcDXE6QoSFW0+0HcP4OEe6CtMFDXmpXGx0c7DELfitKkY4hqIJYGbQwSUnyw==
 
 "@polybase/util@^0.3.0":
   version "0.3.0"

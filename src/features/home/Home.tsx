@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Input, Stack, Box,  Container, VStack, SimpleGrid } from '@chakra-ui/react'
-import { ContractMeta } from '@polybase/client'
-import { usePolybase, useContract } from '@polybase/react'
+import { CollectionMeta } from '@polybase/client'
+import { usePolybase, useCollection } from '@polybase/react'
 import { Layout } from 'features/common/Layout'
 import { useApi } from 'features/common/useApi'
 import useInterval from 'use-interval'
@@ -18,7 +18,7 @@ export function Home () {
     setBlock(block)
   }, 1000, true)
 
-  const { data } = useContract<ContractMeta>(polybase.contract('$Contract'))
+  const { data } = useCollection<CollectionMeta>(polybase.collection('Collection'))
 
   return (
     <Layout>
@@ -36,7 +36,7 @@ export function Home () {
                     <Stat title='Validators' stat={4} />
                   </Box>
                   <Box>
-                    <Stat title='Contracts' to='/contracts' stat={data ? data?.data?.length : '-'} />
+                    <Stat title='Collections' to='/collections' stat={data ? data?.data?.length : '-'} />
                   </Box>
                 </SimpleGrid>
               </Stack>

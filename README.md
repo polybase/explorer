@@ -1,6 +1,6 @@
 # Polybase Explorer
 
-Explorer for [Polybase](https://polybase.xyz) - explore blocks, contracts and transactions for the decentralized database.
+Explorer for [Polybase](https://polybase.xyz) - explore blocks, collections and transactions for the decentralized database.
 
 ### Links
 

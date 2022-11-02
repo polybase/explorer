@@ -3,28 +3,28 @@ import { Box, Heading, Stack } from '@chakra-ui/react'
 import { map } from 'lodash'
 import { Cell } from 'react-table'
 import Table from 'modules/table/Table'
-import { usePolybase, useContract, useDocument } from '@polybase/react'
+import { usePolybase, useCollection, useDocument } from '@polybase/react'
 import { Layout } from 'features/common/Layout'
 import { Loading } from 'modules/loading/Loading'
 import { useParams } from 'react-router-dom'
-import { ContractMeta } from '@polybase/client'
+import { CollectionMeta } from '@polybase/client'
 import { parse, Program } from '@polybase/polylang'
 
 const LIMIT = 20
 
-export function ContractsDetail () {
-  const { contractId } = useParams()
+export function CollectionsDetail () {
+  const { collectionId } = useParams()
   const [pageIndex, setPageIndex] = useState(0)
   const polybase = usePolybase()
   const [ast, setAst] = useState<Program>()
 
   // Structure for the table
-  const { data: meta, loading: loadingMeta, error: metaError } = useDocument<ContractMeta>(
-    contractId ? polybase.contract('$Contract').doc(contractId) : null,
+  const { data: meta, loading: loadingMeta, error: metaError } = useDocument<CollectionMeta>(
+    collectionId ? polybase.collection('Collection').doc(collectionId) : null,
   )
 
-  const { data, loading: loadingData, error: dataErr } = useContract<any>(
-    contractId ? polybase.contract(contractId): null,
+  const { data, loading: loadingData, error: dataErr } = useCollection<any>(
+    collectionId ? polybase.collection(collectionId): null,
   )
 
   useEffect(() => {
@@ -35,9 +35,9 @@ export function ContractsDetail () {
     parse(meta?.data?.code).then(ast => setAst(ast))
   }, [meta?.data?.code])
 
-  const shortContractName = (id: string) => id.split('/').pop()?.replace(/-/g, '_')
+  const shortCollectionName = (id: string) => id.split('/').pop()?.replace(/-/g, '_')
 
-  const fields = ast?.nodes?.find(node => node?.Contract?.name === shortContractName(contractId || ''))?.Contract?.items?.map((item: any) => item?.Field)?.filter(Boolean)
+  const fields = ast?.nodes?.find(node => node?.Collection?.name === shortCollectionName(collectionId || ''))?.Collection?.items?.map((item: any) => item?.Field)?.filter(Boolean)
 
   const columns = map(fields, (field) => {
     return {
