@@ -5,8 +5,8 @@ import {
 import { Link } from 'react-router-dom'
 
 const NAV_LINKS = [{
-  title: 'Contracts',
-  to: '/contracts',
+  title: 'Collections',
+  to: '/collections',
 }, {
   title: 'Docs',
   to: 'https://docs.polybase.xyz',
