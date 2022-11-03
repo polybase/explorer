@@ -1,10 +1,34 @@
 import { ColorModeScript } from '@chakra-ui/react'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
+import { BrowserTracing } from '@sentry/tracing'
+import * as Sentry from '@sentry/react'
 import { App } from './App'
 import reportWebVitals from './reportWebVitals'
 import * as serviceWorker from './serviceWorker'
 import posthog from 'posthog-js'
+
+const {
+  REACT_APP_VERSION,
+  REACT_APP_SENTRY_DSN,
+  REACT_APP_ENV_NAME,
+  NODE_ENV,
+} = process.env
+
+if (NODE_ENV === 'production') {
+  Sentry.init({
+    dsn: REACT_APP_SENTRY_DSN,
+    integrations: [new BrowserTracing()],
+
+    // Set tracesSampleRate to 1.0 to capture 100%
+    // of transactions for performance monitoring.
+    // We recommend adjusting this value in production
+    tracesSampleRate: 1.0,
+    release: `v${REACT_APP_VERSION}`,
+    environment: REACT_APP_ENV_NAME,
+  })
+}
+
 
 // Analytics
 posthog.init('phc_DBZY8MbRdRIIwSwX4ZSwTAjy5ogdQPDMVdPObOuQQf', { api_host: 'https://app.posthog.com' })
