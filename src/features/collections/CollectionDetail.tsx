@@ -53,8 +53,11 @@ export function CollectionsDetail () {
   return (
     <Layout>
       <Loading loading={loadingData || loadingMeta}>
-        <Stack spacing={4}>
-          <Stack spacing={4} p={4}>
+        <Stack spacing={4} p={4}>
+          <Stack spacing={4}>
+            <Heading size='md' color='bw.800' textTransform='uppercase'>
+              Collection details
+            </Heading>
             <Heading>{meta?.data.id}</Heading>
             <Stack>
               {metaError && <Box color='error'>Failed to fetch metadata: {metaError.message}</Box>}
