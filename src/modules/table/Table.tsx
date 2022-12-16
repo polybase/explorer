@@ -9,6 +9,7 @@ import {
   useResizeColumns,
   TableOptions,
   TableInstance,
+  TableState,
   HeaderGroup,
   UseTableOptions,
   UsePaginationInstanceProps,
@@ -28,7 +29,7 @@ export interface TableInstanceState<T extends Record<string, any>> extends UseRe
   pageSize: number
 }
 export interface TableInstanceWithState<T extends Record<string, any>> extends TableInstanceWithHooks<T> {
-  state: TableInstanceState<T>
+  state: TableState<T>
   headerGroups: Array<HeaderGroupProps<T>>
 }
 
@@ -36,7 +37,7 @@ export interface AllUseTableOptions<D extends Record<string, any>> extends UseTa
 
 export interface TableProps<T extends Record<string, any>> extends Omit<TableOptions<T>, 'data'> {
   data?: T[]|null
-  onChange?: (state: TableInstanceState<T>) => void
+  onChange?: (state: TableState<T>) => void
   hasMore?: boolean
   loadMore: (pageIndex: number) => void
 }
@@ -91,10 +92,10 @@ function Table <T extends Record<string, any>> ({ columns, data, onChange, loadM
         <Box flex='0 0 auto'>
           {headerGroups.map((headerGroup) => (
             // eslint-disable-next-line react/jsx-key
-            <Box {...headerGroup.getHeaderGroupProps()} className='tr'>
+            <Box {...headerGroup.getHeaderGroupProps()} className='tr' borderBottomWidth='3px' borderColor='bw.200' mb={2}>
               {headerGroup.headers.map((column) => (
                 // eslint-disable-next-line react/jsx-key
-                <Box {...column.getHeaderProps()} className='th'>
+                <Box {...column.getHeaderProps()} className='th' color='bw.600'>
                   {column.render('Header')}
                   {/* Use column.getResizerProps to hook up the events correctly */}
                   <Box
@@ -114,8 +115,8 @@ function Table <T extends Record<string, any>> ({ columns, data, onChange, loadM
             hasMore={hasMore}
             loader={
               <Box
-                bg='gray.50'
-                color='gray.600'
+                bg='bw.50'
+                color='bw.600'
                 px={4}
                 py={2}
                 key={0}
@@ -130,11 +131,11 @@ function Table <T extends Record<string, any>> ({ columns, data, onChange, loadM
               prepareRow(row)
               return (
               // eslint-disable-next-line react/jsx-key
-                <Box {...row.getRowProps()} className='tr'>
+                <Box {...row.getRowProps()} className='tr' borderColor='bw.100'>
                   {row.cells.map(cell => {
                     return (
                     // eslint-disable-next-line react/jsx-key
-                      <Box {...cell.getCellProps()} className='td'>
+                      <Box {...cell.getCellProps()}>
                         {cell.render('Cell')}
                       </Box>
                     )
@@ -155,8 +156,6 @@ const styles = {
     display: flex;
     flex-direction: column;
     border-spacing: 0;
-    border-top: 1px solid #EDEDED;
-    border-bottom: 1px solid #EDEDED;
     width: 100%;
     height: 100%;
     font-size: 0.94em;
@@ -172,7 +171,6 @@ const styles = {
 
     .th {
       font-weight: 600;
-      color: #777;
       text-transform: uppercase;
       font-size: 0.9em;
     }
@@ -186,7 +184,6 @@ const styles = {
       margin: 0;
       min-height: 50px;
       padding: 0.5em 0.4em;
-      border-bottom: 1px solid #EDEDED;
       flex: 1 0 auto;
       word-break: break-word;
       display: flex !important;

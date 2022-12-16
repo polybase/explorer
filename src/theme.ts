@@ -20,6 +20,8 @@ const theme = extendTheme({
       },
       'html, body, #root': {
         height: '100%',
+        fontSize: '14px',
+        color: 'bw.800',
       },
       body: {
         // fontSize: '15px',
@@ -65,7 +67,10 @@ const theme = extendTheme({
   components: {
     Input: {
       baseStyle: {
-        textTransform: 'uppercase',
+        // define the part you're going to style
+        field: {
+          textTransform: 'uppercase',
+        },
       },
     },
     Button: {

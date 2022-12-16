@@ -18,9 +18,10 @@ export interface LayoutProps {
   logoLinkExternal?: boolean
   isLoading?: boolean
   hideAuthBtns?: boolean
+  maxW?: string
 }
 
-export function Layout ({ children, isLoading, logoLink, logoLinkExternal, hideAuthBtns }: LayoutProps) {
+export function Layout ({ children, isLoading, logoLink, logoLinkExternal, maxW }: LayoutProps) {
 
   const { isOpen, onClose, onOpen, onToggle } = useDisclosure()
   const isMobile = useBreakpointValue({
@@ -31,7 +32,7 @@ export function Layout ({ children, isLoading, logoLink, logoLinkExternal, hideA
 
   return (
     <Flex height='100%' flexDirection='column'>
-      <Container maxW='container.xl'>
+      <Container maxW={maxW ?? '100%'}>
         <HStack p={4}>
           <Link to='/'>
             <HStack>

@@ -6,7 +6,7 @@ export interface StatProps extends HeadingProps {
 
 export function Stat ({ stat, ...props }: StatProps) {
   return (
-    <Heading size='4xl' bgGradient='linear(to-l, #7928CA, #FF0080)' bgClip='text' float='left' {...props}>
+    <Heading size='4xl' bgGradient='linear(to-l, #7928CA, #FF0080)' bgClip='text'  {...props}>
       {stat}
     </Heading>
   )
