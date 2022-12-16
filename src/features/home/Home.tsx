@@ -27,7 +27,7 @@ export function Home () {
           <Box>
             <Stack spacing='6'>
               <Stack>
-                <Input size='lg' placeholder='Search for a txn'  />
+                <Input size='lg' variant='filled' placeholder='Search for a txn'  />
               </Stack>
               <Stack spacing={6}>
                 <Stat title='Block' stat={block} />

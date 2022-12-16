@@ -34,7 +34,9 @@ export function Layout ({ children, isLoading, logoLink, logoLinkExternal, hideA
       <HStack p={4}>
         <Link to='/'>
           <HStack>
-            <Logo to={logoLink} external={logoLinkExternal} />
+            <Box borderRadius='md' overflow='hidden'>
+              <Logo to={logoLink} external={logoLinkExternal} />
+            </Box>
             <Heading as='h1' size='lg'>Explorer</Heading>
           </HStack>
         </Link>

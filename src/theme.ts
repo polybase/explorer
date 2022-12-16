@@ -5,7 +5,26 @@ import { extendTheme } from '@chakra-ui/react'
 const mode = (light: any, _dark: any) => ({ default: light, _dark })
 
 const theme = extendTheme({
-  // initialColorMode: 'light',
+  initialColorMode: 'dark',
+  useSystemColorMode: false,
+  styles: {
+    global: (props: any) => ({
+      '*': {
+        margin: 0,
+        padding: 0,
+        boxSizing: 'border-box',
+      },
+      'html, body, #root': {
+        height: '100%',
+      },
+      body: {
+        fontFamily: '"Open Sans", "Source Sans Pro", Arial, Helvetica, sans-serif',
+        height: '100%',
+        backgroundImage: props.colorMode === 'dark' ? 'linear-gradient(var(--chakra-colors-gradient), var(--chakra-colors-gray-800))' : undefined,
+        backgroundRepeat: 'repeat-x,no-repeat',
+      },
+    }),
+  },
   semanticTokens: {
     colors: {
       error: 'red.500',
@@ -21,8 +40,8 @@ const theme = extendTheme({
       'bw.900': mode('rgba(0, 0, 0, 0.92)', 'rgba(255, 255, 255, 0.92)'),
     },
   },
-  useSystemColorMode: true,
   colors: {
+    gradient: '#501044',
     brand: {
       '50': '#F8ECF8',
       '100': '#ECCAEC',
