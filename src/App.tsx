@@ -5,6 +5,8 @@ import {
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import { BrowserRouter as Router } from 'react-router-dom'
+import '@fontsource/inter/400.css'
+import '@fontsource/inter/600.css'
 import theme from './theme'
 import AppRoutes from './AppRoutes'
 import ScrollToTop from 'modules/common/ScrollToTop'

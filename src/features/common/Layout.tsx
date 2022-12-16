@@ -2,7 +2,7 @@ import React from 'react'
 import { Loading } from 'modules/loading/Loading'
 import {
   Box, Flex, Spacer, HStack, Heading, IconButton,
-  useDisclosure, useBreakpointValue,
+  useDisclosure, useBreakpointValue, Container,
 } from '@chakra-ui/react'
 import { FaBars } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
@@ -31,42 +31,42 @@ export function Layout ({ children, isLoading, logoLink, logoLinkExternal, hideA
 
   return (
     <Flex height='100%' flexDirection='column'>
-      <HStack p={4}>
-        <Link to='/'>
-          <HStack>
-            <Box borderRadius='md' overflow='hidden'>
+      <Container maxW='container.xl'>
+        <HStack p={4}>
+          <Link to='/'>
+            <HStack>
               <Logo to={logoLink} external={logoLinkExternal} />
-            </Box>
-            <Heading as='h1' size='lg'>Explorer</Heading>
-          </HStack>
-        </Link>
-        <Spacer />
-        {!isMobile ? (
-          <HStack spacing={3}>
-            <Box fontWeight='600'>
-              <HStack spacing={3}>
-                <Nav />
-              </HStack>
-            </Box>
-            <HStack spacing={1}>
-              <NavIcons />
+              <Heading as='h1' size='lg'>Explorer</Heading>
             </HStack>
-            <NavLogin />
-          </HStack>
-        ) : (
-          <IconButton
-            variant='ghost'
-            color='current'
-            onClick={onToggle}
-            size='lg'
-            borderRadius='full'
-            // _hover={{ color: 'brand.500' }}
-            icon={<FaBars fontSize={24} />}
-            aria-label={'Open menu'}
-          />
-        )}
+          </Link>
+          <Spacer />
+          {!isMobile ? (
+            <HStack spacing={3}>
+              <Box fontWeight='600'>
+                <HStack spacing={3}>
+                  <Nav />
+                </HStack>
+              </Box>
+              <HStack spacing={1}>
+                <NavIcons />
+              </HStack>
+              <NavLogin />
+            </HStack>
+          ) : (
+            <IconButton
+              variant='ghost'
+              color='current'
+              onClick={onToggle}
+              size='lg'
+              borderRadius='full'
+              // _hover={{ color: 'brand.500' }}
+              icon={<FaBars fontSize={24} />}
+              aria-label={'Open menu'}
+            />
+          )}
 
-      </HStack>
+        </HStack>
+      </Container>
       <Box flex='1 1 auto'>
         {isLoading
           ? (

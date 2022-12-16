@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  HStack, Img, Link,
+  Box, Img, Link,
 } from '@chakra-ui/react'
 import logo from 'img/logo.svg'
 
@@ -11,9 +11,9 @@ export interface LogoProps {
 
 export function Logo ({ to, external }: LogoProps) {
   const logoEl = (
-    <HStack spacing={1}>
+    <Box borderRadius='md' overflow='hidden'>
       <Img src={logo} height={'48px'} minWidth={35} />
-    </HStack>
+    </Box>
   )
   return to ? <Link isExternal={external} href={to}>{logoEl}</Link> : logoEl
 }

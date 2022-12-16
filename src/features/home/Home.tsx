@@ -1,11 +1,14 @@
 import { useState } from 'react'
-import { Input, Stack, Box,  Container, VStack, SimpleGrid } from '@chakra-ui/react'
+import { Input, InputGroup, InputRightElement, Stack, Box,  Container, VStack, SimpleGrid, IconButton } from '@chakra-ui/react'
 import { CollectionMeta } from '@polybase/client'
 import { usePolybase, useCollection } from '@polybase/react'
 import { Layout } from 'features/common/Layout'
+import { Panel } from 'features/common/Panel'
 import { useApi } from 'features/common/useApi'
 import useInterval from 'use-interval'
+import { StatBox } from './StatBox'
 import { Stat } from './Stat'
+import { FaSearch } from 'react-icons/fa'
 
 export function Home () {
   const polybase = usePolybase()
@@ -20,27 +23,71 @@ export function Home () {
 
   const { data } = useCollection<CollectionMeta>(polybase.collection('Collection'))
 
+  const spacingX = 6
+  const spacingY = 6
+
   return (
     <Layout>
       <VStack>
-        <Container size='lg' p={4}>
-          <Box>
-            <Stack spacing='6'>
-              <Stack>
-                <Input size='lg' variant='filled' placeholder='Search for a txn'  />
-              </Stack>
-              <Stack spacing={6}>
-                <Stat title='Block' stat={block} />
-                <SimpleGrid columns={[1, 2]} spacingX={6} spacingY={6}>
+        <Container maxW='container.xl' p={4} >
+          <Box px={4}>
+            <SimpleGrid columns={[1, 2, 3]} spacingX={spacingX} spacingY={spacingY}>
+              <Stack spacing={spacingY}>
+                <Box>
+                  <InputGroup>
+                    <Input size='lg' fontSize='sm' fontWeight='semibold' textTransform='uppercase' variant='filled' placeholder='Search txn or block' colorScheme='brand'  />
+                    <InputRightElement height='100%' children={(
+                      <Box pr={2}>
+                        <IconButton color='bw.600' aria-label='Search' icon={<FaSearch />} />
+                      </Box>
+                    )}
+                    />
+                  </InputGroup>
+                </Box>
+                <Panel title='Blocks'>
                   <Box>
-                    <Stat title='Validators' stat={4} />
+                    <Stat size='2xl' stat={block} />
                   </Box>
-                  <Box>
-                    <Stat title='Collections' to='/collections' stat={data ? data?.data?.length : '-'} />
-                  </Box>
-                </SimpleGrid>
+                </Panel>
               </Stack>
-            </Stack>
+              <Stack spacing={spacingY}>
+                <Panel title='Events'>
+                  <Box>
+
+                  </Box>
+                </Panel>
+                <Box>
+                  <StatBox title='Validators' stat={4} />
+                </Box>
+              </Stack>
+              <Stack spacing={spacingY}>
+                <Panel title='Alpha' bg='warning' color='whiteAlpha.900' _dark={{ color: 'whiteAlpha.800' }}>
+                  <Box fontSize='sm'>
+                  During Alpha, Polybase is running all the indexers (validators) on the network. All access to the decentralised database must be proxied through our gateway.
+                  </Box>
+                </Panel>
+                <Panel title='Welcome'>
+                  <Box fontSize='sm' color='bw.700'>
+                    Polybase is a decentralised database, powered by ZK-STARKs.
+                  </Box>
+                </Panel>
+                <Panel title='Quick Links'>
+                  <Box>
+
+                  </Box>
+                </Panel>
+                <Box>
+                  <StatBox title='Collections' to='/collections' stat={data ? data?.data?.length : '-'} />
+                </Box>
+                <Box>
+                  <Stack spacing='6'>
+                    <Stack spacing={6}>
+                      <StatBox title='Block' stat={block} />
+                    </Stack>
+                  </Stack>
+                </Box>
+              </Stack>
+            </SimpleGrid>
           </Box>
         </Container>
       </VStack>
