@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react'
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
+import { Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom'
 // import Loadable from 'modules/loading/Loadable'
 import { Home } from './features/home/Home'
 import ReactGA from 'react-ga'
-import { useCurrentUserId } from './features/users/useCurrentUserId'
 import { CollectionsList } from 'features/collections/CollectionList'
 import { CollectionsDetail } from 'features/collections/CollectionDetail'
 import { RecordDetail } from 'features/collections/RecordDetail'
-// import { find } from 'lodash'
-
-// const PUBLIC_PATHS = ['/login', '/signup']
+import { Email } from 'features/users/Email'
+import { Dashboard } from 'features/dashboard/Dashboard'
+import { CreateCollection } from 'features/collections/CreateCollection'
+import { useIsLoggedIn } from 'features/users/useIsLoggedIn'
 
 export default function AppRouter () {
-  const [userId, userIdLoading] = useCurrentUserId()
+  const [isLoggedIn, isLoggedInLoading] = useIsLoggedIn()
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -21,23 +21,20 @@ export default function AppRouter () {
     ReactGA.pageview(location.pathname)
   }, [location.pathname])
 
-  // useEffect(() => {
-  //   if (location.pathname === '/') return navigate('/w')
-  //   if (userIdLoading || userId || find(PUBLIC_PATHS, (path) => location.pathname.startsWith(path))) return
-  //   navigate('/login', {
-  //     state: {
-  //       redirectTo: location.pathname,
-  //       redirectState: location.state,
-  //     },
-  //   })
-  // }, [location.pathname, location.state, navigate, userId, userIdLoading])
+  useEffect(() => {
+    if (!isLoggedIn && !isLoggedInLoading && location.pathname.startsWith('/d')) return navigate('/')
+  }, [location.pathname, location.state, navigate, isLoggedIn, isLoggedInLoading])
 
   return (
     <Routes>
       <Route path='/' element={<Home />} />
+      <Route path='/email' element={<Email />} />
+      <Route path='/d/*' element={<Dashboard />} />
       <Route path='/collections' element={<CollectionsList />} />
+      <Route path='/collections/create' element={<CreateCollection />} />
       <Route path='/collections/:collectionId' element={<CollectionsDetail />} />
       <Route path='/collections/:collectionId/:recordId' element={<RecordDetail />} />
+      <Route path='/*' element={<Navigate to='/' />} />
     </Routes>
   )
 }
