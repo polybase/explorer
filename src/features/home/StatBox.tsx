@@ -1,6 +1,6 @@
 import { Box, Heading, Stack, Flex, Spacer } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { Stat } from './Stat'
+import { Stat } from '../common/Stat'
 
 export interface StatBoxProps {
   title: string

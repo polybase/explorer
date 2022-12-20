@@ -11,10 +11,8 @@ export interface CollectionMetaEx extends CollectionMeta {
 export function CollectionsShortList () {
   const polybase = usePolybase()
   const { data, loading, error } = useCollection<CollectionMeta>(
-    polybase.collection('Collection').limit(5).sort('lastRecordUpdated'),
+    polybase.collection('Collection').limit(5),
   )
-
-  console.log(data)
 
   const items = data?.data ? data?.data.map((item) => {
     return (

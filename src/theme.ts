@@ -50,6 +50,18 @@ const theme = extendTheme({
   },
   colors: {
     gradient: '#501044',
+    brand: {
+      '50': '#F6EFF6',
+      '100': '#E5D2E5',
+      '200': '#D4B5D4',
+      '300': '#C398C3',
+      '400': '#B27AB2',
+      '500': '#A25DA1',
+      '600': '#814B80',
+      '700': '#613860',
+      '800': '#412540',
+      '900': '#201320',
+    },
     orange:
     {
       50: '#ffeee1',
@@ -70,12 +82,47 @@ const theme = extendTheme({
         // define the part you're going to style
         field: {
           textTransform: 'uppercase',
+          ':focus-visible': {
+            borderColor: 'brand.400 !important',
+          },
+        },
+      },
+      varient: {
+        primary: {
+          padding: '1em',
         },
       },
     },
     Button: {
       baseStyle: {
         textTransform: 'uppercase',
+      },
+      variants: {
+        primary: {
+          fontSize: 'md',
+          background: 'brand.500',
+          color: 'bw.800',
+          ':hover': {
+            background: 'brand.600',
+          },
+          ':active': {
+            background: 'brand.700',
+          },
+        },
+      },
+    },
+    Tabs: {
+      baseStyle: {
+        root: {
+          color: 'bw.500',
+        },
+        tab: {
+          fontWeight: 'semibold',
+          mr: '2em',
+          _selected: {
+            color: 'brand.300',
+          },
+        },
       },
     },
   },
