@@ -1,33 +1,27 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { FaSearch } from 'react-icons/fa'
+import useInterval from 'use-interval'
 import { Input, InputGroup, InputRightElement, Stack, Box,  Container, VStack, SimpleGrid, IconButton } from '@chakra-ui/react'
 import { Layout } from 'features/common/Layout'
 import { Panel } from 'features/common/Panel'
 import { useApi } from 'features/common/useApi'
-import useInterval from 'use-interval'
-import { Stat } from './Stat'
-import { FaSearch } from 'react-icons/fa'
+import { Stat } from 'features/common/Stat'
 import { EventList } from 'features/events/EventList'
 import { List } from 'features/common/List'
 import { ListLink } from 'features/common/ListLink'
-import { CollectionsShortList } from 'features/collections/CollectionShortList'
+import { CollectionPanel } from 'features/collections/CollectionPanel'
 import { Map } from './Map'
 
 export function Home () {
   const api = useApi()
   const [block, setBlock] = useState('-')
-  const [count, setCount] = useState('-')
+
 
   useInterval(async () => {
     const res = await api.get('/v0/status')
     const block = res.data?.sync_info?.latest_block_height ?? '-'
     setBlock(block)
-  }, 1000, true)
-
-  useInterval(async () => {
-    const res = await api.get('/v0/collections')
-    const count = res.data?.count
-    setCount(count)
   }, 1000, true)
 
   const spacingX = 6
@@ -65,16 +59,7 @@ export function Home () {
                 </Box>
                 <Box>
                   <Link to='/collections'>
-                    <Panel title='Collections'>
-                      <Stack spacing={4}>
-                        <Box>
-                          <Stat size='2xl' stat={count ? count : '-'} />
-                        </Box>
-                        <Box>
-                          <CollectionsShortList />
-                        </Box>
-                      </Stack>
-                    </Panel>
+                    <CollectionPanel />
                   </Link>
                 </Box>
               </Stack>

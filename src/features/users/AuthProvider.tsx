@@ -1,20 +1,19 @@
 import React, { createContext, useState, useCallback, useEffect, useMemo } from 'react'
 import Cookies from 'js-cookie'
-// import ReactGA from 'react-ga'
-// import * as Sentry from '@sentry/react'
-// import posthog from 'posthog-js'
+import * as Sentry from '@sentry/react'
+import posthog from 'posthog-js'
 
 export interface AuthContextValue {
-  auth: { userId: string } | null
+  auth: { publicKey: string } | null
   loading: boolean
-  login: (userId: string) => Promise<void>
+  login: (publicKey: string) => Promise<void>
   logout: () => Promise<void>
 }
 
 export const AuthContext = createContext<AuthContextValue>({
   loading: true,
   auth: null,
-  login: async (userId: string) => {},
+  login: async (publicKey: string) => {},
   logout: async () => { console.log('demo logout') },
 })
 
@@ -25,35 +24,28 @@ export interface AuthProviderProps {
 }
 
 export function AuthProvider ({ children, storagePrefix = 'polybase.', domain }: AuthProviderProps) {
-  const userIdPath = `${storagePrefix}userId`
-  const loginAsUserPath = `${storagePrefix}loginAsUserPath`
+  const userPkPath = `${storagePrefix}publicKey`
   const [auth, setAuth] = useState<AuthContextValue['auth']>(null)
   const [loading, setLoading] = useState(true)
-  // const client = useApi()
 
-  const login = useCallback(async (userId: string) => {
-    Cookies.set(userIdPath, userId, { domain })
-    if (userId) Cookies.set(userIdPath, userId, { domain })
-    // if (userId) posthog.identify(userId, { email })
-    // if (email) Sentry.setUser({ email, id: userId })
-    setAuth({ userId })
-    // ReactGA.ga('event', 'login')
-  }, [domain, userIdPath])
+  const login = useCallback(async (publicKey: string) => {
+    Cookies.set(userPkPath, publicKey, { domain })
+    if (publicKey) posthog.identify(publicKey)
+    if (publicKey) Sentry.setUser({ id: publicKey })
+    setAuth({ publicKey })
+  }, [domain, userPkPath])
 
   const logout = useCallback(async () => {
-    Cookies.remove(userIdPath, { domain })
-    Cookies.remove(loginAsUserPath, { domain })
-    // posthog.reset()
-    // client.cache.reset()
-    // Sentry.setUser(null)
+    posthog.reset()
+    Sentry.setUser(null)
     setAuth(null)
-  }, [domain, userIdPath, loginAsUserPath])
+  }, [])
 
   useEffect(() => {
-    const userId = Cookies.get(userIdPath)
+    const pk = Cookies.get(userPkPath)
     setLoading(false)
-    if (userId) setAuth({ userId })
-  }, [userIdPath])
+    if (pk) setAuth({ publicKey: pk })
+  }, [userPkPath])
 
   const value = useMemo(() => ({
     auth,
