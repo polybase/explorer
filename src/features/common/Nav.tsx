@@ -16,7 +16,7 @@ const NAV_LINKS = [{
 export function Nav () {
   const el = NAV_LINKS.map(({ title, to, external }) => {
     const el = (
-      <Box _hover={{ color: 'brand.500' }} fontWeight='600' key={title} p={2}>
+      <Box color='bw.800' textTransform='uppercase' _hover={{ color: 'brand.500' }} fontWeight='600' key={title} p={2}>
         {title}
       </Box>
     )

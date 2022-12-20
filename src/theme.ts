@@ -5,10 +5,37 @@ import { extendTheme } from '@chakra-ui/react'
 const mode = (light: any, _dark: any) => ({ default: light, _dark })
 
 const theme = extendTheme({
-  // initialColorMode: 'light',
+  initialColorMode: 'dark',
+  // useSystemColorMode: false,
+  fonts: {
+    heading: 'Inter, "Open Sans", "Source Sans Pro", Arial, Helvetica, sans-serif',
+    body: 'Inter, "Open Sans", "Source Sans Pro", Arial, Helvetica, sans-serif',
+  },
+  styles: {
+    global: (props: any) => ({
+      '*': {
+        margin: 0,
+        padding: 0,
+        boxSizing: 'border-box',
+      },
+      'html, body, #root': {
+        height: '100%',
+        fontSize: '14px',
+        color: 'bw.800',
+      },
+      body: {
+        // fontSize: '15px',
+        fontFamily: 'Inter, "Open Sans", "Source Sans Pro", Arial, Helvetica, sans-serif',
+        height: '100%',
+        backgroundImage: props.colorMode === 'dark' ? 'linear-gradient(var(--chakra-colors-gradient), var(--chakra-colors-gray-800))' : undefined,
+        backgroundRepeat: 'repeat-x,no-repeat',
+      },
+    }),
+  },
   semanticTokens: {
     colors: {
       error: 'red.500',
+      warning: mode('#ca4b03c7', '#cc630887'),
       'bw.50': mode('rgba(0, 0, 0, 0.04)', 'rgba(255, 255, 255, 0.04)'),
       'bw.100': mode('rgba(0, 0, 0, 0.06)','rgba(255, 255, 255, 0.06)'),
       'bw.200': mode('rgba(0, 0, 0, 0.08)', 'rgba(255, 255, 255, 0.08)'),
@@ -21,19 +48,35 @@ const theme = extendTheme({
       'bw.900': mode('rgba(0, 0, 0, 0.92)', 'rgba(255, 255, 255, 0.92)'),
     },
   },
-  useSystemColorMode: true,
   colors: {
-    brand: {
-      '50': '#F8ECF8',
-      '100': '#ECCAEC',
-      '200': '#E0A8E1',
-      '300': '#D386D5',
-      '400': '#C764C9',
-      '500': '#BB42BD',
-      '600': '#953597',
-      '700': '#702871',
-      '800': '#4B1A4C',
-      '900': '#250D26',
+    gradient: '#501044',
+    orange:
+    {
+      50: '#ffeee1',
+      100: '#f6d0bb',
+      200: '#ecb193',
+      300: '#e2936a',
+      400: '#d87440',
+      500: '#E2852E',
+      600: '#95461d',
+      700: '#6b3113',
+      800: '#421d08',
+      900: '#1d0700',
+    },
+  },
+  components: {
+    Input: {
+      baseStyle: {
+        // define the part you're going to style
+        field: {
+          textTransform: 'uppercase',
+        },
+      },
+    },
+    Button: {
+      baseStyle: {
+        textTransform: 'uppercase',
+      },
     },
   },
 })

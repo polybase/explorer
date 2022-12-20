@@ -4,10 +4,9 @@ import {
 } from '@chakra-ui/react'
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
-// import { ModalProvider } from '@1productaweek/react-modal-hooks'
-import { Global } from '@emotion/react'
-import globalStyles from './globalStyles'
 import { BrowserRouter as Router } from 'react-router-dom'
+import '@fontsource/inter/400.css'
+import '@fontsource/inter/600.css'
 import theme from './theme'
 import AppRoutes from './AppRoutes'
 import ScrollToTop from 'modules/common/ScrollToTop'
@@ -32,7 +31,6 @@ export const App = () => {
           <ApiProvider baseURL={process.env.REACT_APP_API_URL}>
             <Elements stripe={stripePromise}>
               <ChakraProvider theme={theme}>
-                <Global styles={[globalStyles]} />
                 <Router>
                   <PostHogPageView />
                   <ScrollToTop />
