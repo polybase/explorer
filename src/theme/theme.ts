@@ -1,10 +1,13 @@
-import { extendTheme } from '@chakra-ui/react'
+import { extendTheme, withDefaultColorScheme } from '@chakra-ui/react'
+import { Input } from './input'
+import { Button } from './button'
+import { Tabs } from './tabs'
 
 const mode = (light: any, _dark: any) => ({ default: light, _dark })
 
 const theme = extendTheme({
   initialColorMode: 'dark',
-  // useSystemColorMode: false,
+  useSystemColorMode: false,
   fonts: {
     heading: 'Inter, "Open Sans", "Source Sans Pro", Arial, Helvetica, sans-serif',
     body: 'Inter, "Open Sans", "Source Sans Pro", Arial, Helvetica, sans-serif',
@@ -23,7 +26,7 @@ const theme = extendTheme({
       },
       body: {
         fontFamily: 'Inter, "Open Sans", "Source Sans Pro", Arial, Helvetica, sans-serif',
-        height: '100%',
+        backgroundColor: props.colorMode === 'dark' ? 'var(--chakra-colors-gray-800)' : '#fff',
         backgroundImage: props.colorMode === 'dark' ? 'linear-gradient(var(--chakra-colors-gradient), var(--chakra-colors-gray-800))' : undefined,
         backgroundRepeat: 'repeat-x,no-repeat',
       },
@@ -33,6 +36,7 @@ const theme = extendTheme({
     colors: {
       error: 'red.500',
       warning: mode('#ca4b03c7', '#cc630887'),
+      'bw.10': mode('rgba(0, 0, 0, 0.01)', 'rgba(255, 255, 255, 0.01)'),
       'bw.50': mode('rgba(0, 0, 0, 0.04)', 'rgba(255, 255, 255, 0.04)'),
       'bw.100': mode('rgba(0, 0, 0, 0.06)','rgba(255, 255, 255, 0.06)'),
       'bw.200': mode('rgba(0, 0, 0, 0.08)', 'rgba(255, 255, 255, 0.08)'),
@@ -59,6 +63,18 @@ const theme = extendTheme({
       '800': '#412540',
       '900': '#201320',
     },
+    gray: {
+      '50': '#F3F1F3',
+      '100': '#DED9DE',
+      '200': '#C9C0C9',
+      '300': '#B4A7B4',
+      '400': '#9E8E9E',
+      '500': '#897689',
+      '600': '#6E5E6E',
+      '700': '#524752',
+      '800': '#372F37',
+      '900': '#1B181B',
+    },
     orange:
     {
       50: '#ffeee1',
@@ -74,56 +90,11 @@ const theme = extendTheme({
     },
   },
   components: {
-    Input: {
-      baseStyle: {
-        // define the part you're going to style
-        field: {
-          textTransform: 'uppercase',
-          ':focus-visible': {
-            borderColor: 'brand.400 !important',
-          },
-        },
-      },
-      varient: {
-        primary: {
-          padding: '1em',
-        },
-      },
-    },
-    Button: {
-      baseStyle: {
-        textTransform: 'uppercase',
-      },
-      variants: {
-        primary: {
-          fontSize: 'md',
-          background: 'brand.500',
-          color: 'bw.800',
-          ':hover': {
-            background: 'brand.600',
-          },
-          ':active': {
-            background: 'brand.700',
-          },
-        },
-      },
-    },
-    Tabs: {
-      baseStyle: {
-        root: {
-          color: 'bw.500',
-        },
-        tab: {
-          fontWeight: 'semibold',
-          mr: '2em',
-          _selected: {
-            color: 'brand.300',
-          },
-        },
-      },
-    },
+    Input,
+    Button,
+    Tabs,
   },
-})
+}, withDefaultColorScheme({ colorScheme: 'gray' }))
 
 export default theme
 

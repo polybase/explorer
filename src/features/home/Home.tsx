@@ -35,8 +35,8 @@ export function Home () {
             <SimpleGrid columns={[1, 2, 3]} spacingX={spacingX} spacingY={spacingY}>
               <Stack spacing={spacingY}>
                 <Box>
-                  <InputGroup>
-                    <Input size='lg' fontWeight='semibold' variant='filled' placeholder='Search txn or block' colorScheme='brand'  />
+                  <InputGroup border='1px solid' borderRadius='lg' borderColor='bw.100' _dark={{ borderColor: 'transparent' }}>
+                    <Input size='lg' fontWeight='semibold' variant='filled' placeholder='Search txn or block'  />
                     <InputRightElement height='100%' children={(
                       <Box pr={2}>
                         <IconButton color='bw.600' aria-label='Search' icon={<FaSearch />} />
