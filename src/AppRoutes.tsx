@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom'
-// import Loadable from 'modules/loading/Loadable'
 import { Home } from './features/home/Home'
+import posthog from 'posthog-js'
 import ReactGA from 'react-ga'
 import { CollectionsList } from 'features/collections/CollectionList'
 import { CollectionsDetail } from 'features/collections/CollectionDetail'
@@ -19,6 +19,7 @@ export default function AppRouter () {
   useEffect(() => {
     ReactGA.set({ page: location.pathname })
     ReactGA.pageview(location.pathname)
+    posthog.capture('$pageview')
   }, [location.pathname])
 
   useEffect(() => {
