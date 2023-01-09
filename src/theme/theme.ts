@@ -27,6 +27,7 @@ const theme = extendTheme({
         fontFamily: 'Inter, "Open Sans", "Source Sans Pro", Arial, Helvetica, sans-serif',
         backgroundColor: props.colorMode === 'dark' ? '#0F1117' : '#fff',
         backgroundPosition: 'top right',
+        backgroundAttachment: 'fixed',
         backgroundImage: 'url(background.png)',
         backgroundRepeat: 'no-repeat',
       },
