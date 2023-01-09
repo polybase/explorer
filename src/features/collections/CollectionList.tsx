@@ -1,21 +1,24 @@
-import { Box, Heading, Stack } from '@chakra-ui/react'
+import { Box, Heading} from '@chakra-ui/react'
 import { map } from 'lodash'
 import { Link } from 'react-router-dom'
 import { CollectionMeta } from '@polybase/client'
 import { usePolybase, useCollection } from '@polybase/react'
 import { Loading } from 'modules/loading/Loading'
+import Pagination from 'features/common/Pagination'
+import { PaginationProps } from 'features/common/Pagination'
+import { useState } from 'react'
 
 export interface CollectionListProps {
-  pk?: string|null
+  pk?: string | null,
 }
 
-export function CollectionList ({ pk }: CollectionListProps) {
+export function CollectionList({ pk }: CollectionListProps) {
   const polybase = usePolybase()
 
-  const query = polybase
-    .collection('Collection')
-    .limit(100)
+  const [page, setPage] = useState(1)
 
+  const query = polybase
+    .collection('Collection').limit(500)
 
   const { data, loading, error } = useCollection<CollectionMeta>(
     pk
@@ -33,12 +36,17 @@ export function CollectionList ({ pk }: CollectionListProps) {
     )
   })
 
+  const pageProps: PaginationProps = {
+    page: page || 1,
+    setPage: setPage,
+    pageLength: 100,
+    items: items,
+  }
+
   return (
     <Loading loading={loading}>
       {error && <Box color='error'>{error.message}</Box>}
-      <Stack spacing={4}>
-        {items}
-      </Stack>
+        <Pagination {...pageProps} ></Pagination>
     </Loading>
   )
 }
