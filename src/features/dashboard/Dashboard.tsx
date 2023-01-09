@@ -20,8 +20,8 @@ export function Dashboard () {
           index={PATHS.indexOf(location.pathname)}
           >
             <TabList>
-              <Tab>DASHBOARD</Tab>
-              <Tab>COLLECTIONS</Tab>
+              <Tab>Dashboard</Tab>
+              <Tab>Collections</Tab>
               {/* <Tab>SETTINGS</Tab> */}
             </TabList>
 
