@@ -1,9 +1,11 @@
-import { Box, Grid, GridItem, Stack, Button } from '@chakra-ui/react'
+import { Box, Grid, GridItem, Stack, Button, Center } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { Panel } from 'features/common/Panel'
 import { CollectionPanel } from 'features/collections/CollectionPanel'
+import { useCurrentUserId } from 'features/users/useCurrentUserId'
 
 export function DashboardDashboard () {
+  const [publicKey] = useCurrentUserId()
   const spacing = 6
   return (
     <Box p={4} py={spacing}>
@@ -14,7 +16,6 @@ export function DashboardDashboard () {
       >
         <GridItem colSpan={[1]}>
           <Stack spacing={spacing}>
-
             <Panel title='Get Started'>
               <Box>
                 <Link to='/collections/create'>
@@ -22,12 +23,14 @@ export function DashboardDashboard () {
                 </Link>
               </Box>
             </Panel>
-            <CollectionPanel />
+            <CollectionPanel pk={publicKey} />
           </Stack>
         </GridItem>
         <GridItem colSpan={[1, 2]}>
           <Panel title='Usage'>
-            <Box />
+            <Center height='140px'>
+              <Box fontWeight='semibold'>METRICS WILL APPEAR HERE SHORTLY</Box>
+            </Center>
           </Panel>
         </GridItem>
       </Grid>
