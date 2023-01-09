@@ -2,13 +2,22 @@ import { Polybase } from '@polybase/client'
 import { ethPersonalSign } from '@polybase/eth'
 
 const schema = `
-collection users {
-  id: string; 
 
-  constructor () {
-    this.id =  ctx.publicKey;
+    collection Companies {
+    id: string;
+    founders: string;
+    founded: string; 
+    website: string; 
+    twitter: string; 
+  
+    constructor (id: string, founders: string, founded: string, website: string, twitter: string) {
+      this.id = id;
+      this.founders = founders;
+      this.founded = founded;
+      this.website = website;
+      this.twitter = twitter;
+    }
   }
-}
 `
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY ?? ''

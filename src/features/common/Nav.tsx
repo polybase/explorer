@@ -27,7 +27,6 @@ export function Nav () {
         textTransform='uppercase'
         _hover={{ color: 'brand.500' }}
         fontWeight='600'
-        key={external ? undefined : title}
         p={2}
       >
         {title}
@@ -47,7 +46,7 @@ export function Nav () {
     }
 
     return (
-      <Link to={to}>
+      <Link to={to} key={title}>
         {el}
       </Link>
     )
