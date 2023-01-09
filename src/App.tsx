@@ -15,14 +15,12 @@ import { ApiProvider } from 'features/common/ApiProvider'
 import { AuthProvider } from 'features/users/AuthProvider'
 import { PolybaseProvider } from '@polybase/react'
 import polybase from 'config/polybase'
-import { DefaultDarkMode } from 'features/common/DefaultDarkMode'
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY ?? '')
 
 export const App = () => {
   return (
     <PolybaseProvider polybase={polybase}>
-      <DefaultDarkMode />
       <AuthProvider
         domain={process.env.REACT_APP_DOMAIN}
         storagePrefix={process.env.REACT_APP_AUTH_STORAGE_PREFIX}
