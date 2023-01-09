@@ -18,7 +18,7 @@ export function CollectionList({ pk }: CollectionListProps) {
   const [page, setPage] = useState(1)
 
   const query = polybase
-    .collection('Collection').limit(500)
+    .collection('Collection')
 
   const { data, loading, error } = useCollection<CollectionMeta>(
     pk
