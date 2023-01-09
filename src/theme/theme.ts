@@ -6,8 +6,7 @@ import { Tabs } from './tabs'
 const mode = (light: any, _dark: any) => ({ default: light, _dark })
 
 const theme = extendTheme({
-  initialColorMode: 'dark',
-  useSystemColorMode: false,
+  useSystemColorMode: true,
   fonts: {
     heading: 'Inter, "Open Sans", "Source Sans Pro", Arial, Helvetica, sans-serif',
     body: 'Inter, "Open Sans", "Source Sans Pro", Arial, Helvetica, sans-serif',
@@ -26,9 +25,10 @@ const theme = extendTheme({
       },
       body: {
         fontFamily: 'Inter, "Open Sans", "Source Sans Pro", Arial, Helvetica, sans-serif',
-        backgroundColor: props.colorMode === 'dark' ? 'var(--chakra-colors-gray-800)' : '#fff',
-        backgroundImage: props.colorMode === 'dark' ? 'linear-gradient(var(--chakra-colors-gradient), var(--chakra-colors-gray-800))' : undefined,
-        backgroundRepeat: 'repeat-x,no-repeat',
+        backgroundColor: props.colorMode === 'dark' ? '#0F1117' : '#fff',
+        backgroundPosition: 'top right',
+        backgroundImage: 'url(background.png)',
+        backgroundRepeat: 'no-repeat',
       },
     }),
   },
