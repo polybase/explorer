@@ -1,8 +1,6 @@
 import { Button, Stack, Box, HStack, Container } from '@chakra-ui/react';
 
 
-/** @jsx Pagination */
-
 export interface PaginationProps {
     page: number,
     setPage: any,

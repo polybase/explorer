@@ -8,10 +8,6 @@ import Pagination from 'features/common/Pagination';
 import { PaginationProps } from 'features/common/Pagination';
 import { useState } from 'react';
 
-
-/** @jsx CollectionList */
-
-
 export interface CollectionListProps {
   pk?: string | null,
 }
