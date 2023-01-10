@@ -1,4 +1,4 @@
-import { Tabs, TabList, Tab } from '@chakra-ui/react'
+import { Tabs, TabList, Tab, TabsProps } from '@chakra-ui/react'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 
 export interface TabPath {
@@ -7,18 +7,20 @@ export interface TabPath {
   element: React.ReactElement
 }
 
-export interface TabRouterProps {
+export interface TabRouterProps extends Omit<TabsProps, 'children'> {
   prefix?: string
   tabs: TabPath[]
 }
 
-export function TabRouter ({ tabs, prefix }: TabRouterProps) {
+export function TabRouter ({ tabs, prefix, ...props }: TabRouterProps) {
   const location = useLocation()
   const navigate = useNavigate()
   const paths = tabs.map(({ path }) => prefix ? `${prefix}${path}` : path)
 
   return (
-    <Tabs size='lg'
+    <Tabs
+      size='lg'
+      {...props}
       onChange={(i) => {
         const t = tabs[i]
         navigate(prefix ? `${prefix}${t.path}` : t.path)

@@ -2,16 +2,13 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { Stack, Box, HStack, Heading  } from '@chakra-ui/react'
 import useInterval from 'use-interval'
-import { CollectionMeta } from '@polybase/client'
 import { usePolybase, useCollection } from '@polybase/react'
+import { CollectionMetaEx } from '../types'
 import { useApi } from 'features/common/useApi'
 import { Stat } from 'features/common/Stat'
 import { Panel } from 'features/common/Panel'
 import { List } from 'features/common/List'
 
-export interface CollectionMetaEx extends CollectionMeta {
-  lastRecordUpdated: string
-}
 
 export interface CollectionPanelProps {
   pk?: string|null

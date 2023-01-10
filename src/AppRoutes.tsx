@@ -5,7 +5,6 @@ import posthog from 'posthog-js'
 import ReactGA from 'react-ga'
 import { CollectionListPage } from 'features/collections/CollectionListPage'
 import { CollectionsDetail } from 'features/collections/CollectionDetail'
-import { RecordDetail } from 'features/collections/RecordDetail'
 import { Email } from 'features/users/Email'
 import { Dashboard } from 'features/dashboard/Dashboard'
 import { CreateCollection } from 'features/collections/CreateCollection'
@@ -33,8 +32,7 @@ export default function AppRouter () {
       <Route path='/d/*' element={<Dashboard />} />
       <Route path='/collections' element={<CollectionListPage />} />
       <Route path='/collections/create' element={<CreateCollection />} />
-      <Route path='/collections/:collectionId' element={<CollectionsDetail />} />
-      <Route path='/collections/:collectionId/:recordId' element={<RecordDetail />} />
+      <Route path='/collections/:collectionId/*' element={<CollectionsDetail />} />
       <Route path='/*' element={<Navigate to='/' />} />
     </Routes>
   )
