@@ -6,8 +6,8 @@ export function CollectionListPage () {
   return (
     <Layout maxW='container.xl'>
       <VStack>
-        <Container maxW='container.md' p={4}>
-          <Stack spacing={4}>
+        <Container maxW='container.xl'>
+          <Stack spacing={4} p={4}>
             <Heading>Collections</Heading>
             <CollectionList />
           </Stack>

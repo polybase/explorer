@@ -23,7 +23,7 @@
     "@emotion/styled": "^11.10.5",
     "@fontsource/inter": "^4.5.14",
     "@metamask/eth-sig-util": "^5.0.2",
-    "@polybase/client": "^0.3.11",
+    "@polybase/client": "^0.3.19",
     "@polybase/codemirror-lang-javascript": "^6.1.2",
     "@polybase/eth": "^0.3.11",
     "@polybase/polylang": "^0.3.1",

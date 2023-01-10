@@ -56,12 +56,9 @@ export function CollectionsDetail () {
                     </BreadcrumbItem>
                   )
                 })}
-
               </Breadcrumb>
               <Heading>{collectionName}</Heading>
-              <Stack>
-                {metaError && <Box color='error'>Failed to fetch metadata: {metaError.message}</Box>}
-              </Stack>
+              {metaError && <Box color='error'>Failed to fetch metadata: {metaError.message}</Box>}
             </Stack>
             <Stack spacing={4} flex='1 1 auto'>
               <TabRouter

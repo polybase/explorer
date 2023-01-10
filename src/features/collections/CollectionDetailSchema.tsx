@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { Box } from '@chakra-ui/react'
+import { Box, Button } from '@chakra-ui/react'
 import CodeMirror from '@uiw/react-codemirror'
 import { ViewUpdate } from '@codemirror/view'
 import { atomone } from '@uiw/codemirror-theme-atomone'
@@ -28,7 +28,12 @@ export function CollectionDetailSchema ({ collectionId }: CollectionDetailSchema
   return (
     <Loading loading={loadingMeta} height='100%'>
       <Box height='100%' flex='1 1 auto' position='relative'>
-        <Box position='absolute' top={3} left={3} right={3} bottom={0}>
+        <Box position='absolute' top={3} left={0} right={0} bottom={0}>
+          <Box position='absolute' right={2} top={2} zIndex={1000}>
+            <Button>
+              READ ONLY
+            </Button>
+          </Box>
           <CodeMirror
             theme={atomone}
             readOnly={meta?.data.publicKey !== publicKey}
