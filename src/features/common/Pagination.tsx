@@ -1,19 +1,19 @@
-import { Button, Stack, Box, HStack, Container } from '@chakra-ui/react';
+import { Button, Stack, Box, HStack, Container } from '@chakra-ui/react'
 
 
 export interface PaginationProps {
-    page: number,
-    setPage: any,
-    pageLength: number,
-    items: any,
+  page: number,
+  setPage: any,
+  pageLength: number,
+  items: any,
 }
 
-export default function Pagination({ page, setPage, pageLength, items }: PaginationProps) {
+export default function Pagination ({ page, setPage, pageLength, items }: PaginationProps) {
 
   if (page * pageLength - items.length > pageLength) {
-    setPage(page - 1);
+    setPage(page - 1)
   }
-  const pageItems = items.slice(pageLength * (page - 1), pageLength * page);
+  const pageItems = items.slice(pageLength * (page - 1), pageLength * page)
 
   return (
 
@@ -29,5 +29,5 @@ export default function Pagination({ page, setPage, pageLength, items }: Paginat
         </HStack>
       </Container>
     </Container>
-  );
+  )
 }
