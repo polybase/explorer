@@ -34,7 +34,7 @@ export function Home () {
           <Box px={4}>
             <SimpleGrid columns={[1, 2, 3]} spacingX={spacingX} spacingY={spacingY}>
               <Stack spacing={spacingY}>
-                <Box>
+                {/* <Box>
                   <InputGroup border='1px solid' borderRadius='lg' borderColor='bw.100' _dark={{ borderColor: 'transparent' }}>
                     <Input size='lg' fontWeight='semibold' variant='filled' placeholder='Search txn or block'  />
                     <InputRightElement height='100%' children={(
@@ -44,7 +44,7 @@ export function Home () {
                     )}
                     />
                   </InputGroup>
-                </Box>
+                </Box> */}
                 <Box>
                   <Panel title='Blocks'>
                     <Stack spacing={4}>
