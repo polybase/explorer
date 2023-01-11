@@ -16,7 +16,6 @@ export default function Pagination ({ page, setPage, pageLength, items }: Pagina
   const fetchData = () => {
     setPage(page + 1)
     pageItems.concat(items.slice(pageLength * (page - 1), pageLength * page))
-    console.log(pageItems)
     return pageItems
   }
 
@@ -32,9 +31,6 @@ export default function Pagination ({ page, setPage, pageLength, items }: Pagina
         >
           {pageItems}
         </InfiniteScroll>
-
-
-
       </Stack>
     </Container>
   )
