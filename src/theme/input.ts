@@ -34,7 +34,6 @@ export const Input = defineMultiStyleConfig({
       _dark: {
         bg: 'bw.50',
       },
-      textTransform: 'uppercase',
       ':focus-visible': {
         borderColor: 'brand.400 !important',
       },
