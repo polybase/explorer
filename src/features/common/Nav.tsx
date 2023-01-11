@@ -24,7 +24,6 @@ export function Nav () {
     const el = (
       <Box
         color='bw.800'
-        textTransform='uppercase'
         _hover={{ color: 'brand.500' }}
         fontWeight='600'
         p={2}

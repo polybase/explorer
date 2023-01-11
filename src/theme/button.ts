@@ -69,7 +69,6 @@ const variantSolid = defineStyle((props) => {
 
 export const Button = defineStyleConfig({
   baseStyle: {
-    textTransform: 'uppercase',
   },
   variants: {
     solid: variantSolid,
