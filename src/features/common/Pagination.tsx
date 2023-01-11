@@ -1,6 +1,5 @@
 import { Stack, Container } from '@chakra-ui/react'
-import { EmotionJSX } from '@emotion/react/types/jsx-namespace'
-import { useState } from 'react'
+import { ReactElement, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 
@@ -8,7 +7,7 @@ export interface PaginationProps {
   page: number,
   setPage: (page: number) => void,
   pageLength: number,
-  items: EmotionJSX.Element[],
+  items: ReactElement[],
 }
 
 

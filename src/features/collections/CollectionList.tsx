@@ -12,7 +12,7 @@ export interface CollectionListProps {
   pk?: string | null,
 }
 
-const pageLength = 15
+const PAGE_LENGTH = 100
 
 export function CollectionList ({ pk }: CollectionListProps) {
   const polybase = usePolybase()
@@ -20,7 +20,7 @@ export function CollectionList ({ pk }: CollectionListProps) {
   const [page, setPage] = useState(1)
 
   const query = polybase
-    .collection('Collection').limit(page*pageLength)
+    .collection('Collection').limit(page * PAGE_LENGTH)
 
   const { data, loading, error } = useCollection<CollectionMeta>(
     pk
@@ -41,7 +41,7 @@ export function CollectionList ({ pk }: CollectionListProps) {
   const pageProps: PaginationProps = {
     page: page || 1,
     setPage: setPage,
-    pageLength: pageLength,
+    pageLength:PAGE_LENGTH,
     items: items,
   }
 
