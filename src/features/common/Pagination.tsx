@@ -20,6 +20,9 @@ export default function Pagination ({ page, setPage, pageLength, items }: Pagina
       setHasMore(true)
       setPage(page + 1)
       return items
+    }else  if(items.length < pageLength){
+      setHasMore(false)
+      return items
     }
     setHasMore(false)
     return items
