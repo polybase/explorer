@@ -18,7 +18,7 @@ export function CollectionList ({ pk }: CollectionListProps) {
   const [page, setPage] = useState(1)
 
   const query = polybase
-    .collection('Collection')
+    .collection('Collection').limit(-1)
 
   const { data, loading, error } = useCollection<CollectionMeta>(
     pk
@@ -39,7 +39,7 @@ export function CollectionList ({ pk }: CollectionListProps) {
   const pageProps: PaginationProps = {
     page: page || 1,
     setPage: setPage,
-    pageLength: 10,
+    pageLength: 20,
     items: items,
   }
 

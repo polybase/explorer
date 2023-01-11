@@ -1,4 +1,5 @@
-import { Button, Stack, Box, HStack, Container } from '@chakra-ui/react'
+import { Stack, Container } from '@chakra-ui/react'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 
 export interface PaginationProps {
@@ -10,24 +11,31 @@ export interface PaginationProps {
 
 export default function Pagination ({ page, setPage, pageLength, items }: PaginationProps) {
 
-  if (page * pageLength - items.length > pageLength) {
-    setPage(page - 1)
+  let pageItems = items.slice(0, pageLength * page)
+
+  const fetchData = () => {
+    setPage(page + 1)
+    pageItems.concat(items.slice(pageLength * (page - 1), pageLength * page))
+    console.log(pageItems)
+    return pageItems
   }
-  const pageItems = items.slice(pageLength * (page - 1), pageLength * page)
 
   return (
 
     <Container maxW='container.md' p={4} alignSelf={'center'} >
       <Stack spacing={4}>
-        {pageItems}
+        <InfiniteScroll
+          dataLength={pageItems.length}
+          next={fetchData}
+          hasMore={true}
+          loader={''}
+        >
+          {pageItems}
+        </InfiniteScroll>
+
+
+
       </Stack>
-      <Container maxW='container.md' p={4} >
-        <HStack width={'max'} spacing={4} justify={'center'}>
-          <Button onClick={() => setPage(page - 1)} > {'<'} </Button>
-          <Box>{page}</Box>
-          <Button onClick={() => setPage(page + 1)}> {'>'} </Button>
-        </HStack>
-      </Container>
     </Container>
   )
 }
