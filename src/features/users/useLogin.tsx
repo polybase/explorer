@@ -3,9 +3,9 @@ import { usePolybase } from '@polybase/react'
 import { extractPublicKey } from '@metamask/eth-sig-util'
 import { Polybase } from '@polybase/client'
 import { sign } from '@polybase/eth'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from './useAuth'
 import { User } from 'features/types'
-import { useNavigate } from 'react-router-dom'
 
 export function useLogin () {
   const { login } = useAuth()
