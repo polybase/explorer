@@ -1,37 +1,48 @@
 import { Stack, Container } from '@chakra-ui/react'
+import { EmotionJSX } from '@emotion/react/types/jsx-namespace'
+import { useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 
 export interface PaginationProps {
   page: number,
-  setPage: any,
+  setPage: (page: number) => void,
   pageLength: number,
-  items: any,
+  items: EmotionJSX.Element[],
 }
+
 
 export default function Pagination ({ page, setPage, pageLength, items }: PaginationProps) {
 
-  let pageItems = items.slice(0, pageLength * page)
+  const [hasMore, setHasMore] = useState(true)
 
   const fetchData = () => {
-    setPage(page + 1)
-    pageItems.concat(items.slice(pageLength * (page - 1), pageLength * page))
-    return pageItems
+    if (items.length >= page * pageLength) {
+      setHasMore(true)
+      setPage(page + 1)
+      return items
+    }
+    setHasMore(false)
+    return items
   }
 
   return (
-
     <Container maxW='container.md' p={4} alignSelf={'center'} >
-      <Stack spacing={4}>
-        <InfiniteScroll
-          dataLength={pageItems.length}
-          next={fetchData}
-          hasMore={true}
-          loader={''}
-        >
-          {pageItems}
-        </InfiniteScroll>
-      </Stack>
+      <InfiniteScroll
+        dataLength={items.length}
+        next={fetchData}
+        hasMore={hasMore}
+        loader={'Loading...'}
+        endMessage={
+          <p style={{ textAlign: 'center' }}>
+            <b>Yay! You have seen it all</b>
+          </p>
+        }
+      >
+        <Stack spacing={4}>
+          {items}
+        </Stack>
+      </InfiniteScroll>
     </Container>
   )
 }
