@@ -3751,10 +3751,10 @@
     "@codemirror/state" "^6.0.0"
     "@codemirror/view" "^6.0.0"
 
-"@uiw/codemirror-theme-atomone@^4.19.5":
+"@uiw/codemirror-theme-vscode@^4.19.5":
   version "4.19.5"
-  resolved "https://registry.yarnpkg.com/@uiw/codemirror-theme-atomone/-/codemirror-theme-atomone-4.19.5.tgz#575dff2e2a3c4008f55990ad2492d861effcf1e2"
-  integrity sha512-2oT53DCy9C8beSNdT97OHzEUzQiSIJXDmqMk2Du5mfCZwubVasx4DE0on7Nu4JgXqd37QbDQJfgxV5HQHJMG1w==
+  resolved "https://registry.yarnpkg.com/@uiw/codemirror-theme-vscode/-/codemirror-theme-vscode-4.19.5.tgz#dc7618152201b581b3a1ecc21cc517d3ba90540d"
+  integrity sha512-9Zl8IcRXWzbEpGP++5GTaSHFA5KV0YfbrLWTXly5hqAZ91vLQ35otBJjMk3bfjvxF+9cjLlAxlPSr4iIOuS+4g==
   dependencies:
     "@uiw/codemirror-themes" "4.19.5"
 
