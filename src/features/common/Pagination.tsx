@@ -14,22 +14,19 @@ export interface PaginationProps {
 export default function Pagination ({ page, setPage, pageLength, items }: PaginationProps) {
 
   const [hasMore, setHasMore] = useState(true)
-
   const fetchData = () => {
     if (items.length >= page * pageLength) {
       setHasMore(true)
       setPage(page + 1)
-      return items
-    }else  if(items.length < pageLength){
+    } else if (items.length < pageLength) {
       setHasMore(false)
-      return items
     }
     setHasMore(false)
     return items
   }
 
   return (
-    <Container maxW='container.md' p={4} alignSelf={'center'} >
+    <Container maxW='container.md' p={4} alignSelf={'center'}>
       <InfiniteScroll
         dataLength={items.length}
         next={fetchData}

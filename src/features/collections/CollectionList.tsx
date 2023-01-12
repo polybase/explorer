@@ -6,7 +6,7 @@ import { usePolybase, useCollection } from '@polybase/react'
 import { Loading } from 'modules/loading/Loading'
 import Pagination from 'features/common/Pagination'
 import { PaginationProps } from 'features/common/Pagination'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 export interface CollectionListProps {
   pk?: string | null,
@@ -38,11 +38,16 @@ export function CollectionList ({ pk }: CollectionListProps) {
     )
   })
 
+  const ref:any = useRef([])
+  if (items){
+    ref.current = items
+  }
+
   const pageProps: PaginationProps = {
     page: page || 1,
-    setPage: setPage,
+    setPage,
     pageLength:PAGE_LENGTH,
-    items: items,
+    items: ref.current,
   }
 
   return (
