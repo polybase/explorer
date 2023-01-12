@@ -26,7 +26,7 @@
     "@polybase/client": "^0.3.19",
     "@polybase/codemirror-lang-javascript": "^6.1.2",
     "@polybase/eth": "^0.3.11",
-    "@polybase/polylang": "^0.3.1",
+    "@polybase/polylang": "^0.4.4",
     "@polybase/react": "^0.3.6",
     "@polybase/util": "^0.3.11",
     "@sentry/react": "^7.28.0",
