@@ -19,8 +19,12 @@ collection ${name} {
   // Constructor is called when a new record is
   // created, make sure to assign a value to this.id
   constructor (id: string) {
-    // Allow the user to prov
+    // this.id must be assigned in the constructor
     this.id = id;
+    
+    // You can assign the publicKey of the user who is
+    // creating the record, this can then be used to
+    // control permissions for the record (see below)
     this.publicKey = ctx.publicKey;
   }
 
@@ -28,7 +32,7 @@ collection ${name} {
   // You can add your own functions to determine rules
   // on who can update the records data
   function setName (name: string) {
-    if (ctx.publicKey != this.public) {
+    if (ctx.publicKey != this.publicKey) {
       error('You are not the owner');
     }
     this.name = name;
