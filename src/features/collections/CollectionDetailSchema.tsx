@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react'
 import { Box, Button } from '@chakra-ui/react'
 import CodeMirror from '@uiw/react-codemirror'
 import { ViewUpdate } from '@codemirror/view'
-import { atomone } from '@uiw/codemirror-theme-atomone'
+import { vscodeDark } from '@uiw/codemirror-theme-vscode'
 import { javascript } from '@polybase/codemirror-lang-javascript'
 import { usePolybase, useRecord } from '@polybase/react'
 import { CollectionMetaEx } from '../types'
@@ -53,7 +53,7 @@ export function CollectionDetailSchema ({ collectionId }: CollectionDetailSchema
             </Button>
           </Box>
           <CodeMirror
-            theme={atomone}
+            theme={vscodeDark}
             readOnly={meta?.data.publicKey !== publicKey}
             style={{
               borderRadius: 5,
