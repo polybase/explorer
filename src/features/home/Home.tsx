@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaSearch } from 'react-icons/fa'
 import useInterval from 'use-interval'
-import { Input, InputGroup, InputRightElement, Stack, Box,  Container, VStack, SimpleGrid, IconButton } from '@chakra-ui/react'
+import { Link as ChakraLink, Input, InputGroup, InputRightElement, Stack, Box,  Container, VStack, SimpleGrid, IconButton } from '@chakra-ui/react'
 import { Layout } from 'features/common/Layout'
 import { Panel } from 'features/common/Panel'
 import { useApi } from 'features/common/useApi'
@@ -84,9 +84,9 @@ export function Home () {
               </Stack>
               <Stack spacing={spacingY}>
                 <Box>
-                  <Panel title='Alpha' bg='warning' color='whiteAlpha.900' _dark={{ color: 'whiteAlpha.800' }}>
+                  <Panel title='Testnet'>
                     <Box>
-                   During Alpha, Polybase is running all the indexers (validators) on the network. All access to the decentralised database must be proxied through our gateway.
+                    Polybase currently runs all the indexers on the network and requests are proxied through our gateway. We are committed to decentralisation, and you can find our <ChakraLink fontWeight='bold' isExternal href='https://polybase.xyz/blog/roadmap-2023'>decentralisation roadmap</ChakraLink> here.
                     </Box>
                   </Panel>
                 </Box>
