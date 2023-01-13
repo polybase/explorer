@@ -2781,11 +2781,11 @@
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
     source-map "^0.7.3"
-
-"@polybase/client@^0.3.11":
-  version "0.3.12"
-  resolved "https://registry.npmjs.org/@polybase/client/-/client-0.3.12.tgz"
-  integrity sha512-cKNRC4eAAc3QJf16aBSga7DNvd/4ml3IJzZ8Ysgtxq2Mg9Q1CdBO8rT7VH/uJo2wWgaKrRq7BmqdBcMYHJeTkw==
+    
+"@polybase/client@^0.3.19":
+  version "0.3.19"
+  resolved "https://registry.yarnpkg.com/@polybase/client/-/client-0.3.19.tgz#b68e0fd97ce534a57e5513479c1d116f0acf30bd"
+  integrity sha512-YCXoiWs8PC2Tx58eZFGbb/zI4g8iXWCA/9z9S8VVBBJIFjZTbqcsfViwZJ/4BH6BNNfX9Qu1T7fKu61ztCeuvA==
   dependencies:
     "@polybase/eth" "^0.3.13"
     "@polybase/polylang" "0.4.4"
@@ -2835,11 +2835,6 @@
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/@polybase/polylang/-/polylang-0.4.4.tgz#d5a02621af9d1716ca63cab358618cde7519c8e1"
   integrity sha512-FADipju/wlBKdEeS4xcf85fcW0U+9OwehdYVkq7xNIjEz3DClaT0bQqQoVqmUGn1wMxmXqA1wSvsk9/aEuwzAQ==
-
-"@polybase/polylang@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.npmjs.org/@polybase/polylang/-/polylang-0.3.1.tgz"
-  integrity sha512-cfbHQePe5mFZRtxQYLLW0Go9BwEqXWOdL7U2stJIk4glmB8oH50tD8r8J8gdCuAfzWq0L8slmf67qMVXljnpSQ==
 
 "@polybase/react@^0.3.6":
   version "0.3.12"
