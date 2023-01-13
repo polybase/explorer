@@ -46,7 +46,7 @@ export function CollectionList ({ pk }: CollectionListProps) {
   const pageProps: PaginationProps = {
     page: page || 1,
     setPage,
-    pageLength:PAGE_LENGTH,
+    pageLength: PAGE_LENGTH,
     items: ref.current,
   }
 

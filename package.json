@@ -110,7 +110,13 @@
         "error",
         2
       ],
-      "keyword-spacing": "error"
+      "keyword-spacing": "error",
+      "key-spacing": [
+        "error",
+        {
+          "mode": "strict"
+        }
+      ]
     }
   },
   "browserslist": {
