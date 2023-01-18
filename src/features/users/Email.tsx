@@ -42,7 +42,7 @@ export function Email () {
       email,
       pk: publicKey,
       source: `Explorer/${process.env.REACT_APP_ENV_NAME ?? ''}`,
-      tags:  Array.from(tags),
+      tags: Array.from(tags),
     })
     if (publicKey) posthog.identify(publicKey, { email })
     if (publicKey) Sentry.setUser({ id: publicKey, email })

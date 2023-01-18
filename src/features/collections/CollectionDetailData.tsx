@@ -12,7 +12,7 @@ export interface CollectionDetailDataProps {
   collectionId: string
 }
 
-const LIMIT = 20
+const LIMIT = 100
 
 export function CollectionDetailData ({ collectionId }: CollectionDetailDataProps) {
   const polybase = usePolybase()
@@ -21,11 +21,11 @@ export function CollectionDetailData ({ collectionId }: CollectionDetailDataProp
 
   // Structure for the table
   const { data: meta, loading: loadingMeta, error: metaError } = useDocument<CollectionMeta>(
-    collectionId ? polybase.collection('Collection').doc(collectionId) : null,
+    collectionId ? polybase.collection('Collection').record(collectionId) : null,
   )
 
   const { data, loading: loadingData, error: dataErr } = useCollection<any>(
-    collectionId ? polybase.collection(collectionId): null,
+    collectionId ? polybase.collection(collectionId).limit(LIMIT * (pageIndex + 1)) : null,
   )
 
   const shortCollectionName = (id: string) => id.split('/').pop()?.replace(/-/g, '_')
@@ -51,6 +51,7 @@ export function CollectionDetailData ({ collectionId }: CollectionDetailDataProp
     }
   })
 
+
   if (!collectionId) return null
 
   return (
@@ -65,7 +66,7 @@ export function CollectionDetailData ({ collectionId }: CollectionDetailDataProp
             columns={columns}
             data={data?.data ?? []}
             // onChange={onChangeHandler}
-            hasMore={!loadingData && LIMIT * (pageIndex + 1) <= (data?.data ?? [])?.length}
+            hasMore={!loadingData && LIMIT * pageIndex < (data?.data ?? [])?.length}
             loadMore={() => {
               if (loadingData) return
               setPageIndex((i) => i + 1)

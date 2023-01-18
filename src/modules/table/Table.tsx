@@ -125,7 +125,7 @@ function Table <T extends Record<string, any>> ({ columns, data, onChange, loadM
                 Loading more requests...
               </Box>
             }
-            useWindow={false}
+            useWindow={true}
           >
             {rows.map((row, i) => {
               prepareRow(row)
