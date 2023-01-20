@@ -13,15 +13,10 @@ export interface PaginationProps {
 
 export default function Pagination ({ page, setPage, pageLength, items }: PaginationProps) {
 
-  const [hasMore, setHasMore] = useState(true)
+  //const [hasMore, setHasMore] = useState(true)
+
   const fetchData = () => {
-    if (items.length >= page * pageLength) {
-      setHasMore(true)
-      setPage(page + 1)
-    } else if (items.length < pageLength) {
-      setHasMore(false)
-    }
-    setHasMore(false)
+    setPage(page + 1)
     return items
   }
 
@@ -30,7 +25,7 @@ export default function Pagination ({ page, setPage, pageLength, items }: Pagina
       <InfiniteScroll
         dataLength={items.length}
         next={fetchData}
-        hasMore={hasMore}
+        hasMore={items.length >= page * pageLength ?  true : false}
         loader={'Loading...'}
         endMessage={
           <p style={{ textAlign: 'center' }}>
