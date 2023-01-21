@@ -1,4 +1,4 @@
-import { Stack, Container } from '@chakra-ui/react'
+import { Stack, Container, Box } from '@chakra-ui/react'
 import { ReactElement } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
@@ -18,22 +18,22 @@ export default function Pagination ({ page, setPage, pageLength, items }: Pagina
   }
 
   return (
-    <Container maxW='container.md' p={4} alignSelf={'center'}>
+    <Box>
       <InfiniteScroll
         dataLength={items.length}
         next={fetchData}
         hasMore={items.length >= page * pageLength ?  true : false}
         loader={'Loading...'}
         endMessage={
-          <p style={{ textAlign: 'center' }}>
-            <b>Yay! You have seen it all</b>
-          </p>
+          <Box textAlign='center' p={10}>
+            <b>That's the end, that's everything!</b>
+          </Box>
         }
       >
         <Stack spacing={4}>
           {items}
         </Stack>
       </InfiniteScroll>
-    </Container>
+    </Box>
   )
 }
