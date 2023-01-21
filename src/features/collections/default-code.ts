@@ -6,6 +6,7 @@ export const DEFAULT_CODE = (name: string) => `// This is a default collection d
 
 collection ${name} {
   // id is required on all collections
+  // id MUST be unique
   id: string;
 
   // Add a public key of the owner
@@ -19,7 +20,8 @@ collection ${name} {
   // Constructor is called when a new record is
   // created, make sure to assign a value to this.id
   constructor (id: string) {
-    // this.id must be assigned in the constructor
+    // this.id MUST be assigned in the constructor 
+    // this.id MUST be unique
     this.id = id;
     
     // You can assign the publicKey of the user who is
