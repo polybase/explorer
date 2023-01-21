@@ -1,5 +1,5 @@
 import { Stack, Container } from '@chakra-ui/react'
-import { ReactElement, useState } from 'react'
+import { ReactElement } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 
@@ -12,9 +12,6 @@ export interface PaginationProps {
 
 
 export default function Pagination ({ page, setPage, pageLength, items }: PaginationProps) {
-
-  //const [hasMore, setHasMore] = useState(true)
-
   const fetchData = () => {
     setPage(page + 1)
     return items
