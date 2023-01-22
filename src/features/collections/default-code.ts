@@ -14,8 +14,11 @@ collection ${name} {
   // calls later
   publicKey: string;
 
+  // A mandatory property
+  name: string; 
+
   // An optional property denoted with ?
-  name?: string; 
+  age?: number; 
 
   // \`constructor\` is called when a new record is
   // created, make sure to assign a value to \`this.id\`
