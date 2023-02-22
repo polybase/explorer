@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { Stack, Box, HStack, Heading  } from '@chakra-ui/react'
+import { Stack, Box, HStack, Heading } from '@chakra-ui/react'
 import useInterval from 'use-interval'
 import { usePolybase, useCollection } from '@polybase/react'
 import { CollectionMetaEx } from '../types'
@@ -11,10 +11,10 @@ import { List } from 'features/common/List'
 
 
 export interface CollectionPanelProps {
-  pk?: string|null
+  pk?: string | null
 }
 
-export function CollectionPanel ({ pk }: CollectionPanelProps) {
+export function CollectionPanel({ pk }: CollectionPanelProps) {
   const api = useApi()
   const [count, setCount] = useState('-')
   const polybase = usePolybase()
@@ -31,17 +31,22 @@ export function CollectionPanel ({ pk }: CollectionPanelProps) {
 
   // TODO: Replace this with a better count
   useInterval(async () => {
-    if (pk) {
-      setCount(`${data?.data?.length ?? '0'}`)
-      return
+    const query = polybase
+      .collection('Collection')
+      .limit(1)
+
+    let res = await query.get()
+    let count = res.data?.length ?? 0
+
+    while (res?.data?.length === 1) {
+      res = await query.limit(1).after(res?.cursor?.after).get()
+      count += res?.data?.length ?? 0
     }
-    const res = await api.get('/v0/collections')
-    const count = res.data?.count
-    setCount(count)
-  }, 1000, true)
+
+    setCount(`${count}`)
+  }, 10000, true)
 
   const items = data?.data ? data?.data
-    .filter(({ data }) => !!data.lastRecordUpdated)
     .map((item) => {
       return (
         <HStack key={item.data.id}>
@@ -66,7 +71,7 @@ export function CollectionPanel ({ pk }: CollectionPanelProps) {
         </Box>
         <Box>
           <List>
-            {items.slice(0,5)}
+            {items.slice(0, 5)}
           </List>
         </Box>
       </Stack>
