@@ -9,18 +9,18 @@ import { Stat } from 'features/common/Stat'
 import { Panel } from 'features/common/Panel'
 import { List } from 'features/common/List'
 
+const LIMIT = 100
 
 export interface CollectionPanelProps {
   pk?: string | null
 }
 
 export function CollectionPanel({ pk }: CollectionPanelProps) {
-  const api = useApi()
   const [count, setCount] = useState('-')
   const polybase = usePolybase()
   const query = polybase
     .collection('Collection')
-    .limit(100)
+    .limit(LIMIT)
 
 
   const { data } = useCollection<CollectionMetaEx>(
@@ -33,12 +33,12 @@ export function CollectionPanel({ pk }: CollectionPanelProps) {
   useInterval(async () => {
     const query = polybase
       .collection('Collection')
-      .limit(1)
+      .limit(LIMIT)
 
     let res = await query.get()
     let count = res.data?.length ?? 0
 
-    while (res?.data?.length === 1) {
+    while (res?.data?.length === LIMIT) {
       res = await query.limit(1).after(res?.cursor?.after).get()
       count += res?.data?.length ?? 0
     }
