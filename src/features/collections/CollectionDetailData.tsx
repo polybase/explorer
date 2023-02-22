@@ -14,7 +14,7 @@ export interface CollectionDetailDataProps {
 
 const LIMIT = 100
 
-export function CollectionDetailData ({ collectionId }: CollectionDetailDataProps) {
+export function CollectionDetailData({ collectionId }: CollectionDetailDataProps) {
   const polybase = usePolybase()
   const [pageIndex, setPageIndex] = useState(0)
   const [ast, setAst] = useState<Program>()
@@ -35,8 +35,8 @@ export function CollectionDetailData ({ collectionId }: CollectionDetailDataProp
       return
     }
 
-    parse(meta?.data?.code).then(ast => setAst(ast))
-  }, [meta?.data?.code])
+    parse(meta?.data?.code, collectionId).then(([ast]) => setAst(ast))
+  }, [meta?.data?.code, collectionId])
 
   const fields = ast?.nodes?.find(node => node?.Collection?.name === shortCollectionName(collectionId || ''))?.Collection?.items?.map((item: any) => item?.Field)?.filter(Boolean)
 
@@ -46,7 +46,7 @@ export function CollectionDetailData ({ collectionId }: CollectionDetailDataProp
       Header: field.name,
       Cell: ({ cell }: { cell: Cell<any> }) => {
         const str = cell.value ? JSON.stringify(cell.value) : '-'
-        return <Box>{str.length > 100 ? `${str.substring(0, 100)}...` : str }</Box>
+        return <Box>{str.length > 100 ? `${str.substring(0, 100)}...` : str}</Box>
       },
     }
   })

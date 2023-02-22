@@ -31,9 +31,13 @@ export function CollectionPanel({ pk }: CollectionPanelProps) {
 
   // TODO: Replace this with a better count
   useInterval(async () => {
-    const query = polybase
+    let query = polybase
       .collection('Collection')
       .limit(LIMIT)
+
+    if (pk) {
+      query = query.where('publicKey', '==', pk)
+    }
 
     let res = await query.get()
     let count = res.data?.length ?? 0
