@@ -39,7 +39,7 @@ export function CollectionPanel({ pk }: CollectionPanelProps) {
     let count = res.data?.length ?? 0
 
     while (res?.data?.length === LIMIT) {
-      res = await query.limit(1).after(res?.cursor?.after).get()
+      res = await query.limit(LIMIT).after(res?.cursor?.after).get()
       count += res?.data?.length ?? 0
     }
 
