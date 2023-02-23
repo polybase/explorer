@@ -29,7 +29,7 @@ const OPTIONS = [
   },
 ]
 
-export function Email () {
+export function Email() {
   const navigate = useNavigate()
   const [publicKey] = useCurrentUserId()
   const [email, setEmail] = useState('')
@@ -38,7 +38,7 @@ export function Email () {
   const onSave = useAsyncCallback(async (e) => {
     e.preventDefault()
     if (!email) throw new Error('Email required')
-    await axios.post('https://polybase.xyz/api/email', {
+    await axios.post('/api/email', {
       email,
       pk: publicKey,
       source: `Explorer/${process.env.REACT_APP_ENV_NAME ?? ''}`,
@@ -90,7 +90,7 @@ export function Email () {
                   <Button type='submit' variant='primary' isLoading={onSave.loading} size='lg'>Save Email</Button>
                   <Spacer />
                   <Link to='/d'>
-                    <Button type='button' color='bw.400' variant='ghost'  size='lg'>Skip</Button>
+                    <Button type='button' color='bw.400' variant='ghost' size='lg'>Skip</Button>
                   </Link>
                 </Flex>
               </Stack>
