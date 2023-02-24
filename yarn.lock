@@ -2831,13 +2831,13 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@polybase/client@^0.3.19":
-  version "0.3.23"
-  resolved "https://registry.yarnpkg.com/@polybase/client/-/client-0.3.23.tgz#859b9c15cafcb03abd08da5e98f9643fac0fac08"
-  integrity sha512-4ICDihtBKwzDYK1WX5+5uTBYI8Ca+uWuj6Ks8C+bV75XOzUONi0PS65JRfTXpxOLuK+K3uDCFPk+NbilTUEHLQ==
+"@polybase/client@^0.3.24-beta.1":
+  version "0.3.24-beta.1"
+  resolved "https://registry.yarnpkg.com/@polybase/client/-/client-0.3.24-beta.1.tgz#2163a5af6c22a711abd61ef8b328a1093658134a"
+  integrity sha512-XotmaXMuHVjzJ92At3r8SOGrgKxpD/Qrjdz1cuvthjgdEfmWhxef4ET2Pjpj2ymN49MIhRbDnuLHxHRysfeFJw==
   dependencies:
     "@polybase/eth" "^0.3.23"
-    "@polybase/polylang" "0.4.4"
+    "@polybase/polylang" "^0.4.5"
     axios "0.27.2"
 
 "@polybase/codemirror-lang-javascript@^6.1.2":
@@ -2870,12 +2870,7 @@
     "@lezer/highlight" "^1.1.3"
     "@lezer/lr" "^1.3.0"
 
-"@polybase/polylang@0.4.4":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@polybase/polylang/-/polylang-0.4.4.tgz#d5a02621af9d1716ca63cab358618cde7519c8e1"
-  integrity sha512-FADipju/wlBKdEeS4xcf85fcW0U+9OwehdYVkq7xNIjEz3DClaT0bQqQoVqmUGn1wMxmXqA1wSvsk9/aEuwzAQ==
-
-"@polybase/polylang@^0.4.4":
+"@polybase/polylang@^0.4.4", "@polybase/polylang@^0.4.5":
   version "0.4.5"
   resolved "https://registry.yarnpkg.com/@polybase/polylang/-/polylang-0.4.5.tgz#2191f1bbfb34891bab77ed3be3f69d7d51c4af73"
   integrity sha512-CRatgyh5GbI/ATNUGp7eU1DEPWz2WTc6wIDrPID/katnT1r8PDdbHZB5hl22FoyBBWaMkzNhvxlheJIAc0Sk3Q==

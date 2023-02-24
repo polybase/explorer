@@ -8,6 +8,6 @@ export interface User {
 }
 
 export interface CollectionMetaEx extends CollectionMeta {
-  publicKey?: string
+  publicKey?: any
   lastRecordUpdated: string
 }
