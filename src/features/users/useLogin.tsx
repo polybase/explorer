@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from './useAuth'
 import { User } from 'features/types'
 
-export function useLogin () {
+export function useLogin() {
   const { login } = useAuth()
   const db = usePolybase()
   const navigate = useNavigate()
@@ -25,7 +25,7 @@ export function useLogin () {
   }
 }
 
-async function getWallet (account: string, db: Polybase): Promise<[string, boolean]> {
+async function getWallet(account: string, db: Polybase): Promise<[string, boolean]> {
   // Lookup account
   const col = db.collection<User>('polybase/apps/explorer/users')
 
@@ -36,7 +36,7 @@ async function getWallet (account: string, db: Polybase): Promise<[string, boole
   const user = await doc.get().catch(() => null)
 
   db.signer(async (data: string) => {
-    return {  h: 'eth-personal-sign', sig: await sign(data, account) }
+    return { h: 'eth-personal-sign', sig: await sign(data, account) }
   })
 
   if (!user) {
@@ -49,7 +49,7 @@ async function getWallet (account: string, db: Polybase): Promise<[string, boole
   return [pk, !user]
 }
 
-export async function getPublicKey (account: string) {
+export async function getPublicKey(account: string) {
   const msg = 'Login to Polybase Explorer'
   const sig = await sign(msg, account)
   const publicKey = await extractPublicKey({ data: msg, signature: sig })

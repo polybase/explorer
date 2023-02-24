@@ -7,7 +7,7 @@ import { useAsyncCallback } from 'modules/common/useAsyncCallback'
 import { useNavigate } from 'react-router-dom'
 import { DEFAULT_CODE } from './default-code'
 
-export function CreateCollection () {
+export function CreateCollection() {
   const db = usePolybase()
   const [name, setName] = useState('')
 
@@ -16,7 +16,7 @@ export function CreateCollection () {
   const createCollection = useAsyncCallback(async (e) => {
     e.preventDefault()
     const path = name.split('/')
-    await db.applySchema(DEFAULT_CODE(path[path.length-1]), path.slice(0, -1).join('/'))
+    await db.applySchema(DEFAULT_CODE(path[path.length - 1]), path.slice(0, -1).join('/'))
     navigate(`/collections/${encodeURIComponent(name)}/schema`)
   })
 

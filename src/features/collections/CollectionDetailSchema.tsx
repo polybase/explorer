@@ -9,12 +9,13 @@ import { CollectionMetaEx } from '../types'
 import { Loading } from 'modules/loading/Loading'
 import { useCurrentUserId } from 'features/users/useCurrentUserId'
 import { useAsyncCallback } from 'modules/common/useAsyncCallback'
+import { decodeFromString, encodeToString } from '@polybase/util'
 
 export interface CollectionDetailSchemaProps {
   collectionId: string
 }
 
-export function CollectionDetailSchema ({ collectionId }: CollectionDetailSchemaProps) {
+export function CollectionDetailSchema({ collectionId }: CollectionDetailSchemaProps) {
   const polybase = usePolybase()
   const [publicKey] = useCurrentUserId()
   const [editedValue, setEditedValue] = useState('')
@@ -35,7 +36,10 @@ export function CollectionDetailSchema ({ collectionId }: CollectionDetailSchema
     await polybase.applySchema(editedValue, namespace)
   })
 
-  const isReadOnly = meta?.data.publicKey !== publicKey || onSave.loading
+  //
+  const metaPublicKey = toPublicKeyHex(meta?.data.publicKey?.x, meta?.data.publicKey?.y)
+
+  const isReadOnly = metaPublicKey !== publicKey || onSave.loading
   const hasChanges = editedValue && editedValue !== code
 
   return (
@@ -54,7 +58,7 @@ export function CollectionDetailSchema ({ collectionId }: CollectionDetailSchema
           </Box>
           <CodeMirror
             theme={vscodeDark}
-            readOnly={meta?.data.publicKey !== publicKey}
+            readOnly={isReadOnly}
             style={{
               borderRadius: 5,
               // color: '#333',
@@ -71,4 +75,14 @@ export function CollectionDetailSchema ({ collectionId }: CollectionDetailSchema
       </Box>
     </Loading>
   )
+}
+
+function toPublicKeyHex(x?: string, y?: string) {
+  if (!x || !y) return
+  const xb = decodeFromString(x.replace(/_/g, '/').replace(/-/g, '+'), 'base64')
+  const yb = decodeFromString(y.replace(/_/g, '/').replace(/-/g, '+'), 'base64')
+  const key = new Uint8Array(64)
+  key.set(xb, 0)
+  key.set(yb, 32)
+  return encodeToString(key, 'hex')
 }
