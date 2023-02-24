@@ -2831,12 +2831,12 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@polybase/client@^0.3.24-beta.1":
-  version "0.3.24-beta.1"
-  resolved "https://registry.yarnpkg.com/@polybase/client/-/client-0.3.24-beta.1.tgz#2163a5af6c22a711abd61ef8b328a1093658134a"
-  integrity sha512-XotmaXMuHVjzJ92At3r8SOGrgKxpD/Qrjdz1cuvthjgdEfmWhxef4ET2Pjpj2ymN49MIhRbDnuLHxHRysfeFJw==
+"@polybase/client@^0.3.24":
+  version "0.3.24"
+  resolved "https://registry.yarnpkg.com/@polybase/client/-/client-0.3.24.tgz#cf967d6c242b956b21da48f54dbd42eb181b5bdf"
+  integrity sha512-buZaBzzJFOH24h1Yn4N7W4l3wLTm0h8ZLdHBWSlkUvmgGaF/4iAjmdk8Q4F1S4lu76m8X8DZ82tElGXypYWA4w==
   dependencies:
-    "@polybase/eth" "^0.3.23"
+    "@polybase/eth" "^0.3.24"
     "@polybase/polylang" "^0.4.5"
     axios "0.27.2"
 
@@ -2853,7 +2853,7 @@
     "@lezer/common" "^1.0.0"
     "@polybase/lezer-parser-javascript" "^1.4.1"
 
-"@polybase/eth@^0.3.11", "@polybase/eth@^0.3.23":
+"@polybase/eth@^0.3.11":
   version "0.3.23"
   resolved "https://registry.yarnpkg.com/@polybase/eth/-/eth-0.3.23.tgz#be1fac1221967c99d4710ca8ead39baabc92fc0a"
   integrity sha512-TQ8BRkEec6f6QLkyyTW/vBeBVnqCSx2uX7cODUUxU3VxuEmYRWTsSCfqq/F2Om4fasRX//vZ7MgHRNgVBzaqWw==
@@ -2861,6 +2861,15 @@
     "@ethersproject/keccak256" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
     "@polybase/util" "^0.3.23"
+
+"@polybase/eth@^0.3.24":
+  version "0.3.24"
+  resolved "https://registry.yarnpkg.com/@polybase/eth/-/eth-0.3.24.tgz#2228827ca02fa929d006354a529629a32b3ec215"
+  integrity sha512-fhf9tpfkaM/d3oVgagVkxdW4176l6V+pzpaMNFsQ7G9HmZoBdyr56cesZrw7dMGmRlOoJ+/DxSy3WerTzBp0yg==
+  dependencies:
+    "@ethersproject/keccak256" "^5.7.0"
+    "@ethersproject/strings" "^5.7.0"
+    "@polybase/util" "^0.3.24"
 
 "@polybase/lezer-parser-javascript@^1.4.1":
   version "1.4.1"
@@ -2884,6 +2893,20 @@
   version "0.3.23"
   resolved "https://registry.yarnpkg.com/@polybase/util/-/util-0.3.23.tgz#f7faa714ffae5062b5059cc9be9237692c204de3"
   integrity sha512-4LFJ6OlaRU85LpYbVfSFKflG7bUJR2JOtXWRNiweT+Hyi7WOOWKTpiiF7CNCNm6XA966I2INuNwYKdV1keNpEg==
+  dependencies:
+    "@ethersproject/bytes" "^5.7.0"
+    "@ethersproject/signing-key" "^5.7.0"
+    "@peculiar/webcrypto" "^1.4.1"
+    elliptic "^6.5.4"
+    process "^0.11.10"
+    secp256k1 "^4.0.3"
+    tweetnacl "^1.0.3"
+    tweetnacl-util "^0.15.1"
+
+"@polybase/util@^0.3.24":
+  version "0.3.24"
+  resolved "https://registry.yarnpkg.com/@polybase/util/-/util-0.3.24.tgz#07458037ec1a28dd51e5e862ae855e4b336fd24d"
+  integrity sha512-1RUPn488RsGZMupjez47Yl3/8DBopZtFwlO+kVeHbebUcn7IqWTFou078gm93c1g3DzEjBLs+8ocvcMfVjbg3Q==
   dependencies:
     "@ethersproject/bytes" "^5.7.0"
     "@ethersproject/signing-key" "^5.7.0"
