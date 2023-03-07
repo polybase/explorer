@@ -10,13 +10,14 @@ export const DEFAULT_CODE = (name: string) => `// This is an example collection 
 // \`public\` means that the collection is public, anyone can view and read
 // the records in the collection. You can still implement rules on who can 
 // edit the data by defining functions on the collection.
+@public
 collection ${name} {
   // \`id\` is unique and required on all collections
   id: string;
 
   // We will use a public key to authenticate function
   // calls later
-  publicKey: string;
+  publicKey: PublicKey;
 
   // A mandatory property
   name: string; 
