@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Flex, Box, useColorMode, Container, Text, Heading, Spacer, Button, Stack } from '@chakra-ui/react'
 import CodeMirror from '@uiw/react-codemirror'
 import { ViewUpdate } from '@codemirror/view'
@@ -15,6 +15,8 @@ export interface StudioAppSchemaProps {
 }
 
 export function StudioAppSchema({ namespace }: StudioAppSchemaProps) {
+  // const [code, setCode] = useState('')
+  const [editedValue, setEditedValue] = useState<string | null>(null)
   const [skipSchemaMismatch, setSkipSchemaMismatch] = useState(false)
   const polybase = usePolybase()
   const { data } = useUserCollections()
@@ -25,20 +27,27 @@ export function StudioAppSchema({ namespace }: StudioAppSchemaProps) {
   const meta = collections[0]
   const code = meta?.data?.code
 
+  useEffect(() => {
+    if (editedValue === null && code) {
+      setEditedValue(code)
+    }
+  }, [code, editedValue])
+
   // Schema mismatch
   const mismatch = isSchemaMismatch(collections)
 
-  const [editedValue, setEditedValue] = useState('')
   const onChange = useCallback((value: string, viewUpdate: ViewUpdate) => {
     setEditedValue(value)
   }, [])
   const colorMode = useColorMode()
 
   const onSave = useAsyncCallback(async () => {
+    if (!editedValue) return
     await polybase.applySchema(editedValue, namespace)
+    setSkipSchemaMismatch(false)
   })
 
-  const hasChanges = editedValue && editedValue !== code
+  const hasChanges = (editedValue && editedValue !== code) || skipSchemaMismatch
 
   if (mismatch && !skipSchemaMismatch) {
     return (
@@ -46,15 +55,16 @@ export function StudioAppSchema({ namespace }: StudioAppSchemaProps) {
         <Stack py={8} spacing={8} maxW='40em'>
           <Heading as='h1'>Schema Mismatch</Heading>
           <Stack spacing={4}>
-            <Heading as='h2' fontSize='2xl'>Import</Heading>
+            <Heading as='h2' fontSize='2xl'>Import & Merge</Heading>
             <Text>
-              It looks like you've made changes to your schema outside of the studio editor, some of your collection schema
-              may be missing. You should copy the latest version of each schema into the editor if you want to make changes to them.
+              It looks like you've made changes to your schema outside of the studio editor. Studio will merge
+              your schema into a single definition, but you should check to ensure each collection definition is still valid.
             </Text>
             <Box>
               <Button onClick={() => {
+                setEditedValue(collections.map((c) => c.data.code).join('\n\n'))
                 setSkipSchemaMismatch(true)
-              }} size='lg' colorScheme='purple'>Continue</Button>
+              }} size='lg' colorScheme='purple'>Merge</Button>
             </Box>
           </Stack>
         </Stack>
@@ -89,7 +99,7 @@ export function StudioAppSchema({ namespace }: StudioAppSchemaProps) {
             width: '100%',
             overflow: 'auto',
           }}
-          value={code}
+          value={editedValue ?? ''}
           height='100%'
           extensions={[javascript({ typescript: true })]}
           onChange={onChange}
