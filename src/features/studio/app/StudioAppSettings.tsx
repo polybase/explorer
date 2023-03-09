@@ -29,7 +29,7 @@ export function StudioAppSettings({ namespace }: StudioAppSettingsProps) {
           </code>
         </Stack>
         <Stack>
-          <Heading as='h2' fontSize='2xl'>Ininitate your client</Heading>
+          <Heading as='h2' fontSize='2xl'>Initiate your client</Heading>
           <CodeMirror
             theme={colorMode.colorMode === 'dark' ? vscodeDark : githubLight}
             readOnly
