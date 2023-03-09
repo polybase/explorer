@@ -5,14 +5,15 @@ import {
 import logo from 'img/logo.svg'
 
 export interface LogoProps {
-  to?: string|null
+  to?: string | null
   external?: boolean
+  height?: string
 }
 
-export function Logo ({ to, external }: LogoProps) {
+export function Logo({ to, external, height = '48px' }: LogoProps) {
   const logoEl = (
     <Box borderRadius='md' overflow='hidden'>
-      <Img src={logo} height={'48px'} minWidth={35} />
+      <Img src={logo} height={height} minWidth={35} />
     </Box>
   )
   return to ? <Link isExternal={external} href={to}>{logoEl}</Link> : logoEl

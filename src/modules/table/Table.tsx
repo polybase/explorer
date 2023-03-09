@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect, useRef } from 'react'
 import { css } from '@emotion/react'
-import { Box } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import InfiniteScroll from 'react-infinite-scroller'
 import {
   useTable,
@@ -33,18 +33,18 @@ export interface TableInstanceWithState<T extends Record<string, any>> extends T
   headerGroups: Array<HeaderGroupProps<T>>
 }
 
-export interface AllUseTableOptions<D extends Record<string, any>> extends UseTableOptions<D>, UsePaginationOptions<D> {}
+export interface AllUseTableOptions<D extends Record<string, any>> extends UseTableOptions<D>, UsePaginationOptions<D> { }
 
 export interface TableProps<T extends Record<string, any>> extends Omit<TableOptions<T>, 'data'> {
-  data?: T[]|null
+  data?: T[] | null
   onChange?: (state: TableState<T>) => void
   hasMore?: boolean
   loadMore: (pageIndex: number) => void
 }
 
-function Table <T extends Record<string, any>> ({ columns, data, onChange, loadMore, hasMore }: TableProps<T>) {
+function Table<T extends Record<string, any>>({ columns, data, onChange, loadMore, hasMore }: TableProps<T>) {
   const dataRef = useRef<T[]>(data ?? [])
-  const initialState = useMemo<any>(() => ({ }), [])
+  const initialState = useMemo<any>(() => ({}), [])
   const defaultColumn = useMemo(
     () => ({
       // When using the useFlexLayout:
@@ -87,28 +87,22 @@ function Table <T extends Record<string, any>> ({ columns, data, onChange, loadM
 
   // Render the UI for your table
   return (
-    <Box height='100%'  width='100%' overflowY='auto'>
-      <Box {...getTableProps()} css={styles.table}>
-        <Box flex='0 0 auto'>
+    <Box height='100%' width='100%'>
+      <Flex height='100%' width='100%' {...getTableProps()} flexDirection='column' position='relative' overflowY='auto'>
+        <Box flex='0 0 auto' position='sticky' top={0} bg='bw.10' backdropFilter={'blur(10px)'} borderBottom='1px solid' borderColor='bws.100'>
           {headerGroups.map((headerGroup) => (
             // eslint-disable-next-line react/jsx-key
-            <Box {...headerGroup.getHeaderGroupProps()} className='tr' borderBottomWidth='3px' borderColor='bw.200' mb={2}>
+            <Box {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                // eslint-disable-next-line react/jsx-key
-                <Box {...column.getHeaderProps()} className='th' color='bw.600'>
+                <Box {...column.getHeaderProps()} position='absolute' top='1px' color='bw.900' width='100%' fontWeight='600' p={2} borderBottom='1px solid' borderColor='bws.100'>
                   {column.render('Header')}
-                  {/* Use column.getResizerProps to hook up the events correctly */}
-                  <Box
-                    {...column.getResizerProps()}
-                    className={`resizer ${column.isResizing ? 'isResizing' : ''}`}
-                  />
                 </Box>
               ))}
             </Box>
           ))}
         </Box>
 
-        <Box {...getTableBodyProps()} height='100%'  minH={0}>
+        <Box {...getTableBodyProps()} height={0} minH={0} flex='1'>
           <InfiniteScroll
             pageStart={0}
             loadMore={loadMore}
@@ -130,12 +124,12 @@ function Table <T extends Record<string, any>> ({ columns, data, onChange, loadM
             {rows.map((row, i) => {
               prepareRow(row)
               return (
-              // eslint-disable-next-line react/jsx-key
-                <Box {...row.getRowProps()} className='tr' borderColor='bw.100'>
+                // eslint-disable-next-line react/jsx-key
+                <Box {...row.getRowProps()} borderColor='bw.100'>
                   {row.cells.map(cell => {
                     return (
-                    // eslint-disable-next-line react/jsx-key
-                      <Box {...cell.getCellProps()}>
+                      // eslint-disable-next-line react/jsx-key
+                      <Box {...cell.getCellProps()} p={2} color='bw.700'>
                         {cell.render('Cell')}
                       </Box>
                     )
@@ -145,79 +139,9 @@ function Table <T extends Record<string, any>> ({ columns, data, onChange, loadM
             })}
           </InfiniteScroll>
         </Box>
-      </Box>
+      </Flex>
     </Box>
-
   )
-}
-
-const styles = {
-  table: css`
-    display: flex;
-    flex-direction: column;
-    border-spacing: 0;
-    width: 100%;
-    height: 100%;
-    font-size: 0.94em;
-
-    .tr {
-      :last-child {
-        .td {
-          border-bottom: 0;
-        }
-      }
-      min-width: 100%;
-    }
-
-    .th {
-      font-weight: 600;
-      text-transform: uppercase;
-      font-size: 0.9em;
-    }
-
-    .td {
-    // background: #fff;
-    }
-
-    .th,
-    .td {
-      margin: 0;
-      min-height: 50px;
-      padding: 0.5em 0.4em;
-      flex: 1 0 auto;
-      word-break: break-word;
-      display: flex !important;
-      align-items: center;
-
-      :first-child {
-        padding-left: 1em;
-      }
-
-      :last-child {
-        border-right: 0;
-      }
-
-      .resizer {
-        display: inline-block;
-        background: transparent;
-        width: 10px;
-        height: 100%;
-        position: absolute;
-        right: 5px;
-        top: 0;
-        transform: translateX(50%);
-        z-index: 1;
-        touch-action:none;
-        :hover {
-          background: #ddd;
-        }
-
-        &.isResizing {
-          background: red;
-        }
-      }
-    }
-  `,
 }
 
 export default Table

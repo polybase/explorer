@@ -3818,6 +3818,13 @@
     "@codemirror/state" "^6.0.0"
     "@codemirror/view" "^6.0.0"
 
+"@uiw/codemirror-theme-github@^4.19.9":
+  version "4.19.9"
+  resolved "https://registry.yarnpkg.com/@uiw/codemirror-theme-github/-/codemirror-theme-github-4.19.9.tgz#eecc75527e56e1278680335f1163eb2a92a11e5d"
+  integrity sha512-TxAJu7eFrIWUvekJ/jbev8fGx4fAYRH3FCxS21rm8B1OzF/aRcJM28zlC1rgKxMV5uG4KjWHOdvT3rNIVs1Meg==
+  dependencies:
+    "@uiw/codemirror-themes" "4.19.9"
+
 "@uiw/codemirror-theme-vscode@^4.19.5":
   version "4.19.9"
   resolved "https://registry.yarnpkg.com/@uiw/codemirror-theme-vscode/-/codemirror-theme-vscode-4.19.9.tgz#c426054e328ffc9515323acc92672f24100255e3"

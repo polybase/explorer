@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom'
 import { useIsLoggedIn } from 'features/users/useIsLoggedIn'
 
 const NAV_LINKS = [{
-  title: 'Dashboard',
-  to: '/d',
+  title: 'Studio',
+  to: '/studio',
   requireAuth: true,
 }, {
   title: 'Collections',
@@ -18,9 +18,9 @@ const NAV_LINKS = [{
   external: true,
 }]
 
-export function Nav () {
+export function Nav() {
   const [isLoggedIn] = useIsLoggedIn()
-  const el = NAV_LINKS.filter(({ requireAuth  }) => isLoggedIn || !requireAuth).map(({ title, to, external }) => {
+  const el = NAV_LINKS.filter(({ requireAuth }) => isLoggedIn || !requireAuth).map(({ title, to, external }) => {
     const el = (
       <Box
         color='bw.800'

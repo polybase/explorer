@@ -1,6 +1,7 @@
 import { useAsyncCallback as useAsyncCallbackBase, UseAsyncCallbackOptions } from 'react-async-hook'
 import { useToast } from '@chakra-ui/react'
 import * as Sentry from '@sentry/react'
+import { UserError } from './UserError'
 
 export type ExtendedOptions<R> = UseAsyncCallbackOptions<R> & {
   logError?: boolean
@@ -8,7 +9,7 @@ export type ExtendedOptions<R> = UseAsyncCallbackOptions<R> & {
   successTitle?: string
 }
 
-export function useAsyncCallback <R = unknown, Args extends any[] = any[]> (asyncFunction: (...args: Args) => Promise<R> | R, options?: ExtendedOptions<R>) {
+export function useAsyncCallback<R = unknown, Args extends any[] = any[]>(asyncFunction: (...args: Args) => Promise<R> | R, options?: ExtendedOptions<R>) {
   const { onError, errorTitle, logError, successTitle, ...baseOptions } = options || {}
   const toast = useToast()
   return useAsyncCallbackBase(async (...params: Args) => {
@@ -31,7 +32,8 @@ export function useAsyncCallback <R = unknown, Args extends any[] = any[]> (asyn
         isClosable: true,
         duration: 9000,
       })
-      if (logError !== false) {
+      // TODO: skip client errors too
+      if (logError !== false && !(e instanceof UserError)) {
         Sentry.captureException(e)
       }
     },

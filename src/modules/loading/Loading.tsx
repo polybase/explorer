@@ -8,8 +8,8 @@ export interface LoadingProps extends SpinnerProps {
 }
 
 export const Loading: React.FC<LoadingProps> = ({ loading, center, children, delay = 100, ...props }) => {
-  const [localLoading, setLocalLoading] = useState<boolean|null>(null)
-  const timer = useRef<null|number>(null)
+  const [localLoading, setLocalLoading] = useState<boolean | null>(null)
+  const timer = useRef<null | number>(null)
 
   useEffect(() => {
     if (timer.current) window.clearTimeout(timer.current)
@@ -33,7 +33,7 @@ export const Loading: React.FC<LoadingProps> = ({ loading, center, children, del
             thickness='5px'
             speed='0.65s'
             emptyColor='gray.200'
-            color='blue.500'
+            color='brand.500'
             size='xl'
           />
         </Center>
