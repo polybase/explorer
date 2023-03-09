@@ -32,7 +32,7 @@ export function StudioAppCollections({ namespace }: StudioAppCollectionsProps) {
             const url = `/studio/${encodeURIComponent(namespace)}/collections/${shortName(collection.data.id)}`
             const match = location.pathname === url
             return (
-              <Button as={Link} to={url} variant={match ? 'solid' : 'ghost'} justifyContent='left' opacity={match ? 1 : 0.5}>
+              <Button key={url} as={Link} to={url} variant={match ? 'solid' : 'ghost'} justifyContent='left' opacity={match ? 1 : 0.5}>
                 {shortName(collection.data.id)}
               </Button>
             )

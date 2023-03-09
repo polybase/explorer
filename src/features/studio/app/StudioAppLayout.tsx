@@ -65,6 +65,7 @@ export function StudioAppLayout({ children, name }: StudioAppLayoutProps) {
             }
             return (
               <IconButton
+                key={label}
                 colorScheme={match ? 'purple' : 'gray'}
                 aria-label={label}
                 size='lg'

@@ -22,7 +22,7 @@ export function StudioAppList() {
                 <SimpleGrid columns={3} spacing={4}>
                   {namespaces.map((namespace) => {
                     return (
-                      <Link to={`/studio/${encodeURIComponent(namespace)}`}>
+                      <Link to={`/studio/${encodeURIComponent(namespace)}`} key={namespace}>
                         <Box
                           minH='13em'
                           bg='bw.10'

@@ -26,3 +26,8 @@ export function getCollections(namespace: string, data?: CollectionRecordRespons
   if (!data) return []
   return data.filter((item) => getNamespace(item.data.id) === namespace)
 }
+
+export function isSchemaMismatch(collections: CollectionRecordResponse<CollectionMeta>[]) {
+  const code = collections[0]?.data.code
+  return collections.length > 0 && collections.some((item) => item.data?.code !== code)
+}
