@@ -6,14 +6,14 @@ collection users {
   id: string; 
 
   constructor () {
-    this.id =  ctx.publicKey;
+    this.id = ctx.publicKey.toHex();
   }
 }
 `
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY ?? ''
 
-async function load () {
+async function load() {
   const db = new Polybase({
     baseURL: `${process.env.REACT_APP_API_URL}/v0`,
     signer: async (data) => {
