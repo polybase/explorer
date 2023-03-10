@@ -37,9 +37,9 @@ export function StudioAppSchema({ namespace }: StudioAppSchemaProps) {
   const mismatch = isSchemaMismatch(collections)
 
   useEffect(() => {
-    if (loading || skipSchemaMismatch !== null) return
+    if (loading || !code || skipSchemaMismatch !== null) return
     setSkipSchemaMismatch(!mismatch)
-  }, [mismatch, loading, skipSchemaMismatch])
+  }, [mismatch, loading, code, skipSchemaMismatch])
 
   const onChange = useCallback((value: string, viewUpdate: ViewUpdate) => {
     setEditedValue(value)
