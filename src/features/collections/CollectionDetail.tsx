@@ -11,7 +11,7 @@ import { TabRouter } from 'features/common/TabRouter'
 import { CollectionDetailSchema } from './CollectionDetailSchema'
 
 
-export function CollectionsDetail () {
+export function CollectionsDetail() {
   const { collectionId } = useParams()
   const polybase = usePolybase()
 
@@ -39,7 +39,7 @@ export function CollectionsDetail () {
     <Layout maxW='container.xl'>
       <Loading loading={loadingMeta}>
         <Container maxW='container.xl' height='100%'>
-          <Stack spacing={4} p={4} height='100%'>
+          <Stack spacing={6} p={4} height='100%'>
             <Stack spacing={4}>
               <Breadcrumb
                 color='bw.700'
@@ -60,7 +60,7 @@ export function CollectionsDetail () {
               <Heading>{collectionName}</Heading>
               {metaError && <Box color='error'>Failed to fetch metadata: {metaError.message}</Box>}
             </Stack>
-            <Stack spacing={4} flex='1 1 auto'>
+            <Stack spacing={6} flex='1 1 auto'>
               <TabRouter
                 flex='1 1 auto'
                 display='flex'

@@ -2831,13 +2831,13 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@polybase/client@^0.3.25-beta.7":
-  version "0.3.25-beta.7"
-  resolved "https://registry.yarnpkg.com/@polybase/client/-/client-0.3.25-beta.7.tgz#057e4eb19ffb82ccef3c121ad2988b23b8d3a264"
-  integrity sha512-4Wh+Fc2Kh5ukHBGfl8NErMMsPdtnxebVMmXXEnr8db45RPbCp9TyghjrxyskXPRdzWSUXpoTxirQdB9FtQ12MA==
+"@polybase/client@^0.3.25-beta.19":
+  version "0.3.25-beta.19"
+  resolved "https://registry.yarnpkg.com/@polybase/client/-/client-0.3.25-beta.19.tgz#3fd2a0ad57058427e04688c352cfa140fde06891"
+  integrity sha512-CeOmxQugpmVf+8NSBuGh1JSCarh6iuTVYRF0g8XrLXpvmaSiTLnPTvV8Sdgft3aUfZ2XLBcAf8WqUA5/3PDoig==
   dependencies:
-    "@polybase/eth" "^0.3.25"
-    "@polybase/polylang" "^0.4.5"
+    "@polybase/eth" "^0.3.28"
+    "@polybase/polylang" "0.4.7"
     axios "0.27.2"
 
 "@polybase/codemirror-lang-javascript@^6.1.2":
@@ -2862,14 +2862,14 @@
     "@ethersproject/strings" "^5.7.0"
     "@polybase/util" "^0.3.23"
 
-"@polybase/eth@^0.3.25":
-  version "0.3.25"
-  resolved "https://registry.yarnpkg.com/@polybase/eth/-/eth-0.3.25.tgz#fd833594cddb02ee7549ea59a8e06d9258c028aa"
-  integrity sha512-NssbYhMc7Hpz5YEY/6wIIgmPUcAa06QVmhiq3vuuUhYU4V+/i+MK8DW8NXMpSwdiJ/fCBrRXYa0BJbdcnFj4TA==
+"@polybase/eth@^0.3.28":
+  version "0.3.28"
+  resolved "https://registry.yarnpkg.com/@polybase/eth/-/eth-0.3.28.tgz#1f9a97d87d0b8fb3ba028a69780f228843e88fb3"
+  integrity sha512-jVMuPbWuhpTJw72JumQpOHL/lLYsCikNLvtJ/9q68U17sEpZCaNjCrhTwIoSgQLjpEU0ACO+2KV6O6paNwEi0A==
   dependencies:
     "@ethersproject/keccak256" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
-    "@polybase/util" "^0.3.25"
+    "@polybase/util" "^0.3.28"
 
 "@polybase/lezer-parser-javascript@^1.4.1":
   version "1.4.1"
@@ -2879,15 +2879,20 @@
     "@lezer/highlight" "^1.1.3"
     "@lezer/lr" "^1.3.0"
 
+"@polybase/polylang@0.4.7":
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/@polybase/polylang/-/polylang-0.4.7.tgz#aaedb638f7b84e796ecdd4dc8f92a25d3638025b"
+  integrity sha512-hkRAWzpgCLcQyfQd37BPCCtH8rkU4n62FCGJvlH5hEvLkNFxbJ2ijgIoMRWarISn/qPaVsCYWIEsgHqTjifkMg==
+
 "@polybase/polylang@^0.4.5":
   version "0.4.5"
   resolved "https://registry.yarnpkg.com/@polybase/polylang/-/polylang-0.4.5.tgz#2191f1bbfb34891bab77ed3be3f69d7d51c4af73"
   integrity sha512-CRatgyh5GbI/ATNUGp7eU1DEPWz2WTc6wIDrPID/katnT1r8PDdbHZB5hl22FoyBBWaMkzNhvxlheJIAc0Sk3Q==
 
-"@polybase/react@^0.3.6":
-  version "0.3.23"
-  resolved "https://registry.yarnpkg.com/@polybase/react/-/react-0.3.23.tgz#70a63cfe9ca33b28dfde986accd01b38472b0488"
-  integrity sha512-tCpGzB/E7RvPAHJKr5Vv6DRWlI2NvFCS6w0Z7rFSXqhJ+ubQB4v4NkqOgfowN2x7Z8Z1gl2WZCjkZAWvdmSnFw==
+"@polybase/react@^0.3.28":
+  version "0.3.28"
+  resolved "https://registry.yarnpkg.com/@polybase/react/-/react-0.3.28.tgz#707f76a5eba124f76491157f4e303c3d543298fe"
+  integrity sha512-S+Dyqi/T/jK0+xQSuh4YtrUaeOh9/QmsJ8MWJLVTEIGqAwM+jfGNoa8wnr/EeBkzu/rLqfBNhCRmLQMMHPtwfA==
 
 "@polybase/util@^0.3.11", "@polybase/util@^0.3.23":
   version "0.3.23"
@@ -2903,14 +2908,13 @@
     tweetnacl "^1.0.3"
     tweetnacl-util "^0.15.1"
 
-"@polybase/util@^0.3.25":
-  version "0.3.25"
-  resolved "https://registry.yarnpkg.com/@polybase/util/-/util-0.3.25.tgz#c930ab5b784ec72b6cf15b4ea4506e119c15af6b"
-  integrity sha512-+bepI7PUY45Oiett++vj35eWHnVNdGBSsiqU+sZvrNa50gIQFl9H3+Qxlf+4wD2PFjZSwKPWFAso8dWh1j3VZA==
+"@polybase/util@^0.3.28":
+  version "0.3.28"
+  resolved "https://registry.yarnpkg.com/@polybase/util/-/util-0.3.28.tgz#6a94070aaffe9434eda9f1ea66788c7aee961ba6"
+  integrity sha512-+bpKvAJR+/HXU+RUDMk27NtKm2Hm+RJyhZiDpr+BFl0DAfS1yatAYtUhnNQS+9PaTQb+rBwU73RKCTyRDh/LTQ==
   dependencies:
     "@ethersproject/bytes" "^5.7.0"
     "@ethersproject/signing-key" "^5.7.0"
-    "@peculiar/webcrypto" "^1.4.1"
     elliptic "^6.5.4"
     process "^0.11.10"
     secp256k1 "^4.0.3"
@@ -3817,6 +3821,13 @@
     "@codemirror/search" "^6.0.0"
     "@codemirror/state" "^6.0.0"
     "@codemirror/view" "^6.0.0"
+
+"@uiw/codemirror-theme-github@^4.19.9":
+  version "4.19.9"
+  resolved "https://registry.yarnpkg.com/@uiw/codemirror-theme-github/-/codemirror-theme-github-4.19.9.tgz#eecc75527e56e1278680335f1163eb2a92a11e5d"
+  integrity sha512-TxAJu7eFrIWUvekJ/jbev8fGx4fAYRH3FCxS21rm8B1OzF/aRcJM28zlC1rgKxMV5uG4KjWHOdvT3rNIVs1Meg==
+  dependencies:
+    "@uiw/codemirror-themes" "4.19.9"
 
 "@uiw/codemirror-theme-vscode@^4.19.5":
   version "4.19.9"

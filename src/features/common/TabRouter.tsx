@@ -12,7 +12,7 @@ export interface TabRouterProps extends Omit<TabsProps, 'children'> {
   tabs: TabPath[]
 }
 
-export function TabRouter ({ tabs, prefix, ...props }: TabRouterProps) {
+export function TabRouter({ tabs, prefix, ...props }: TabRouterProps) {
   const location = useLocation()
   const navigate = useNavigate()
   const paths = tabs.map(({ path }) => prefix ? `${prefix}${path}` : path)
@@ -20,6 +20,7 @@ export function TabRouter ({ tabs, prefix, ...props }: TabRouterProps) {
   return (
     <Tabs
       size='lg'
+      variant='soft-rounded'
       {...props}
       onChange={(i) => {
         const t = tabs[i]
@@ -27,9 +28,9 @@ export function TabRouter ({ tabs, prefix, ...props }: TabRouterProps) {
       }}
       index={paths.indexOf(location.pathname)}
     >
-      <TabList>
+      <TabList mb={1} mt={1}>
         {tabs.map(({ path, title }) => (
-          <Tab key={path}>{title}</Tab>
+          <Tab key={path} py={1} px={4}>{title}</Tab>
         ))}
       </TabList>
       <Routes>
@@ -43,6 +44,6 @@ export function TabRouter ({ tabs, prefix, ...props }: TabRouterProps) {
           )
         })}
       </Routes>
-    </Tabs>
+    </Tabs >
   )
 }

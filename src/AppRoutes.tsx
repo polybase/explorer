@@ -6,11 +6,10 @@ import ReactGA from 'react-ga'
 import { CollectionListPage } from 'features/collections/CollectionListPage'
 import { CollectionsDetail } from 'features/collections/CollectionDetail'
 import { Email } from 'features/users/Email'
-import { Dashboard } from 'features/dashboard/Dashboard'
-import { CreateCollection } from 'features/collections/CreateCollection'
+import { Studio } from 'features/studio/Studio'
 import { useIsLoggedIn } from 'features/users/useIsLoggedIn'
 
-export default function AppRouter () {
+export default function AppRouter() {
   const [isLoggedIn, isLoggedInLoading] = useIsLoggedIn()
   const navigate = useNavigate()
   const location = useLocation()
@@ -22,16 +21,16 @@ export default function AppRouter () {
   }, [location.pathname])
 
   useEffect(() => {
-    if (!isLoggedIn && !isLoggedInLoading && location.pathname.startsWith('/d')) return navigate('/')
+    if (location.pathname.startsWith('/d')) return navigate('/studio')
+    if (!isLoggedIn && !isLoggedInLoading && location.pathname.startsWith('/studio')) return navigate('/')
   }, [location.pathname, location.state, navigate, isLoggedIn, isLoggedInLoading])
 
   return (
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/email' element={<Email />} />
-      <Route path='/d/*' element={<Dashboard />} />
+      <Route path='/studio/*' element={<Studio />} />
       <Route path='/collections' element={<CollectionListPage />} />
-      <Route path='/collections/create' element={<CreateCollection />} />
       <Route path='/collections/:collectionId/*' element={<CollectionsDetail />} />
       <Route path='/*' element={<Navigate to='/' />} />
     </Routes>

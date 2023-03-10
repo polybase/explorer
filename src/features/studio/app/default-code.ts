@@ -1,4 +1,4 @@
-export const DEFAULT_CODE = (name: string) => `// This is an example collection definition.
+export const DEFAULT_CODE = () => `// This is an example collection definition.
 // You should edit it for your use case.
 
 // The language (Polylang) is similar to JavaScript,
@@ -7,11 +7,12 @@ export const DEFAULT_CODE = (name: string) => `// This is an example collection 
 // The \`collection\` keyword defines a named collection.
 // Collection properties define the "columns" in a record.
 
-// \`public\` means that the collection is public, anyone can view and read
+// @\`public\` means that the collection is public, anyone can view and read
 // the records in the collection. You can still implement rules on who can 
-// edit the data by defining functions on the collection.
+// edit the data by defining functions on the collection and checking the public key.
+
 @public
-collection ${name} {
+collection User {
   // \`id\` is unique and required on all collections
   id: string;
 
