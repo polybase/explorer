@@ -17,9 +17,9 @@ export interface StudioAppSchemaProps {
 export function StudioAppSchema({ namespace }: StudioAppSchemaProps) {
   // const [code, setCode] = useState('')
   const [editedValue, setEditedValue] = useState<string | null>(null)
-  const [skipSchemaMismatch, setSkipSchemaMismatch] = useState(false)
+  const [skipSchemaMismatch, setSkipSchemaMismatch] = useState<boolean | null>(null)
   const polybase = usePolybase()
-  const { data } = useUserCollections()
+  const { data, loading } = useUserCollections()
   const collections = getCollections(namespace, data?.data)
 
 
@@ -36,6 +36,11 @@ export function StudioAppSchema({ namespace }: StudioAppSchemaProps) {
   // Schema mismatch
   const mismatch = isSchemaMismatch(collections)
 
+  useEffect(() => {
+    if (loading || skipSchemaMismatch !== null) return
+    setSkipSchemaMismatch(!mismatch)
+  }, [mismatch, loading, skipSchemaMismatch])
+
   const onChange = useCallback((value: string, viewUpdate: ViewUpdate) => {
     setEditedValue(value)
   }, [])
@@ -44,12 +49,11 @@ export function StudioAppSchema({ namespace }: StudioAppSchemaProps) {
   const onSave = useAsyncCallback(async () => {
     if (!editedValue) return
     await polybase.applySchema(editedValue, namespace)
-    setSkipSchemaMismatch(false)
   })
 
-  const hasChanges = (editedValue && editedValue !== code) || skipSchemaMismatch
+  const hasChanges = (editedValue && editedValue !== code)
 
-  if (mismatch && !skipSchemaMismatch) {
+  if (mismatch && skipSchemaMismatch === false) {
     return (
       <Container maxW='container.lg'>
         <Stack py={8} spacing={8} maxW='40em'>
