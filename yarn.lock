@@ -2804,19 +2804,19 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@polybase/auth@^0.3.29":
-  version "0.3.29"
-  resolved "https://registry.yarnpkg.com/@polybase/auth/-/auth-0.3.29.tgz#250108512ba10203cc5932f9a41c1c8d47d4e68d"
-  integrity sha512-wfA+QFSDt34520Jag3xEexQTTxJlkszYC2Wj/WGNEXYX56NwaVxCt/BHA2knQtZLUGmE7ksrLPlV9OI5qMzj8g==
+"@polybase/auth@^0.3.30":
+  version "0.3.30"
+  resolved "https://registry.yarnpkg.com/@polybase/auth/-/auth-0.3.30.tgz#fad26a13805a63c536ba4c03859e5e362db81ef9"
+  integrity sha512-EuXrQt/vKE36nOb+q2CGbO2GQs8GkF7nYo/ni3bbpMthBFIzMtrEQhkvt0MnBkwzw/hWcx0xXQ7eJNQZVFzbgw==
   dependencies:
     penpal "^6.2.2"
 
-"@polybase/client@^0.3.29":
-  version "0.3.29"
-  resolved "https://registry.yarnpkg.com/@polybase/client/-/client-0.3.29.tgz#a9eb82a976113ee1aa030229746633dba1d43887"
-  integrity sha512-zzbCA5BaU4hbRnelYTrtTrmdg+0YB4BJiUXM5RQfZOfXRw6zR5Xa6ciw4zn3utt8JIG+/AllJkXSkTnesUXOfA==
+"@polybase/client@^0.3.30":
+  version "0.3.30"
+  resolved "https://registry.yarnpkg.com/@polybase/client/-/client-0.3.30.tgz#eb92dfffd22fb253bfb5b8ee30eef00eed14578d"
+  integrity sha512-Uv2sXI0obapowEfYPUxZvGUaUolTpZMqcqNoq3+pq7X58KkqWzAGkuTZ+NMB/zmjxtRNq3HHGuH7Gp7mv5hjpA==
   dependencies:
-    "@polybase/eth" "^0.3.29"
+    "@polybase/eth" "^0.3.30"
     "@polybase/polylang" "0.4.7"
     axios "0.27.2"
 
@@ -2833,14 +2833,14 @@
     "@lezer/common" "^1.0.0"
     "@polybase/lezer-parser-javascript" "^1.4.1"
 
-"@polybase/eth@^0.3.29":
-  version "0.3.29"
-  resolved "https://registry.yarnpkg.com/@polybase/eth/-/eth-0.3.29.tgz#357dcd6ee2cce9caa3da6313baea86b2cf33ea20"
-  integrity sha512-R9nSFsnW/WVaYrFlcG4EeQhoL55vYOR8oKh+h9gS3ttgk/Pu9H6sKz5Lu5rgVlwy5lI5/yWH5DwyFTtj6wwXnw==
+"@polybase/eth@^0.3.30":
+  version "0.3.30"
+  resolved "https://registry.yarnpkg.com/@polybase/eth/-/eth-0.3.30.tgz#84e829b06b1fef7201dfa6e3884af0abc53d0548"
+  integrity sha512-OKwI6s6xUWVi/XN+rhUnHHgz9jw/uOHFFx5AH0inC1feHzgtLzrMOgvN/8gvwbHQs/H5rLBE5gYyA7LQ0dRdFw==
   dependencies:
     "@ethersproject/keccak256" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
-    "@polybase/util" "^0.3.29"
+    "@polybase/util" "^0.3.30"
 
 "@polybase/lezer-parser-javascript@^1.4.1":
   version "1.4.1"
@@ -2850,25 +2850,20 @@
     "@lezer/highlight" "^1.1.3"
     "@lezer/lr" "^1.3.0"
 
-"@polybase/polylang@0.4.7":
+"@polybase/polylang@0.4.7", "@polybase/polylang@^0.4.7":
   version "0.4.7"
   resolved "https://registry.yarnpkg.com/@polybase/polylang/-/polylang-0.4.7.tgz#aaedb638f7b84e796ecdd4dc8f92a25d3638025b"
   integrity sha512-hkRAWzpgCLcQyfQd37BPCCtH8rkU4n62FCGJvlH5hEvLkNFxbJ2ijgIoMRWarISn/qPaVsCYWIEsgHqTjifkMg==
 
-"@polybase/polylang@^0.4.5":
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/@polybase/polylang/-/polylang-0.4.5.tgz#2191f1bbfb34891bab77ed3be3f69d7d51c4af73"
-  integrity sha512-CRatgyh5GbI/ATNUGp7eU1DEPWz2WTc6wIDrPID/katnT1r8PDdbHZB5hl22FoyBBWaMkzNhvxlheJIAc0Sk3Q==
+"@polybase/react@^0.3.30":
+  version "0.3.30"
+  resolved "https://registry.yarnpkg.com/@polybase/react/-/react-0.3.30.tgz#9d50654b2410f73d17ca7a41bc31d96fe34270a5"
+  integrity sha512-Pr6m5mnOCXv3U7M/b8DGVO7yC614JeBqIUkXGdy5C+e2hBnVND+JGmwwY+DJ+4loO2TSH35kWm8NtF7GuC51tw==
 
-"@polybase/react@^0.3.29":
-  version "0.3.29"
-  resolved "https://registry.yarnpkg.com/@polybase/react/-/react-0.3.29.tgz#40d60b86224781000ea6e452c97621c7c51cf002"
-  integrity sha512-IVpYysN7QfcPMVSL7PWY/diZlI2+qfcxevDahR3kaEh3PbbTXLl8VdDzCLghLQcvQEa3e41yqQJyilwwYvnong==
-
-"@polybase/util@^0.3.29":
-  version "0.3.29"
-  resolved "https://registry.yarnpkg.com/@polybase/util/-/util-0.3.29.tgz#6a2f889efb966b781bf76d68160b696faf8ac44e"
-  integrity sha512-nE0s08xnHvytry2l/YxaDRthJHw6NkH0K//FPyXK1GlhTpR9DneD+zJfa95389pXk+up2YDau0IKCsLKcgp12w==
+"@polybase/util@^0.3.30":
+  version "0.3.30"
+  resolved "https://registry.yarnpkg.com/@polybase/util/-/util-0.3.30.tgz#3c63c4fa7616a9d1b33f33751ad06995cbbcb32a"
+  integrity sha512-RU0tUsnT5LCV2kSddiZJdpnPyQkqIhY7xzOeTt5jFXHChgCGW/QggbNtcD8bEDRgesxDJJtvMT5hZkxeRC/xQA==
   dependencies:
     "@ethersproject/bytes" "^5.7.0"
     "@ethersproject/signing-key" "^5.7.0"
