@@ -9,6 +9,7 @@ import { javascript } from '@polybase/codemirror-lang-javascript'
 import { useAsyncCallback } from 'modules/common/useAsyncCallback'
 import { useUserCollections } from '../useUserCollections'
 import { getCollections, isSchemaMismatch } from '../util'
+import { DEFAULT_CODE } from './default-code'
 
 export interface StudioAppSchemaProps {
   namespace: string
@@ -28,10 +29,13 @@ export function StudioAppSchema({ namespace }: StudioAppSchemaProps) {
   const code = meta?.data?.code
 
   useEffect(() => {
-    if (editedValue === null && code) {
+    if (editedValue !== null) return
+    if (code) {
       setEditedValue(code)
+    } else if (!loading && collections.length === 0) {
+      setEditedValue(DEFAULT_CODE())
     }
-  }, [code, editedValue])
+  }, [code, collections.length, editedValue, loading])
 
   // Schema mismatch
   const mismatch = isSchemaMismatch(collections)

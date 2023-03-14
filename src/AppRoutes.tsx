@@ -15,9 +15,11 @@ export default function AppRouter() {
   const location = useLocation()
 
   useEffect(() => {
-    ReactGA.set({ page: location.pathname })
-    ReactGA.pageview(location.pathname)
-    posthog.capture('$pageview')
+    if (process.env.REACT_APP_ENV_NAME !== 'production') {
+      ReactGA.set({ page: location.pathname })
+      ReactGA.pageview(location.pathname)
+      posthog.capture('$pageview')
+    }
   }, [location.pathname])
 
   useEffect(() => {
