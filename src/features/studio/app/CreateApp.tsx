@@ -4,12 +4,10 @@ import { Panel } from 'features/common/Panel'
 import { usePolybase } from '@polybase/react'
 import { useAsyncCallback } from 'modules/common/useAsyncCallback'
 import { useNavigate } from 'react-router-dom'
-import { DEFAULT_CODE } from './default-code'
 import { useCurrentUserId } from 'features/users/useCurrentUserId'
 import { StudioLayout } from '../StudioLayout'
 
 export function CreateApp() {
-  const db = usePolybase()
   const [publicKey] = useCurrentUserId()
   const [name, setName] = useState('')
 
@@ -20,7 +18,7 @@ export function CreateApp() {
     const format = name.startsWith('/') ? name.slice(1) : name
     const namespace = `pk/${publicKey}/${format}`
 
-    await db.applySchema(DEFAULT_CODE(), namespace)
+    // await db.applySchema(DEFAULT_CODE(), namespace)
     navigate(`/studio/${encodeURIComponent(namespace)}`)
   })
 

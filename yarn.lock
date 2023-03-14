@@ -2811,12 +2811,12 @@
   dependencies:
     penpal "^6.2.2"
 
-"@polybase/client@^0.3.30":
-  version "0.3.30"
-  resolved "https://registry.yarnpkg.com/@polybase/client/-/client-0.3.30.tgz#eb92dfffd22fb253bfb5b8ee30eef00eed14578d"
-  integrity sha512-Uv2sXI0obapowEfYPUxZvGUaUolTpZMqcqNoq3+pq7X58KkqWzAGkuTZ+NMB/zmjxtRNq3HHGuH7Gp7mv5hjpA==
+"@polybase/client@^0.3.33-beta.295":
+  version "0.3.33-beta.295"
+  resolved "https://registry.yarnpkg.com/@polybase/client/-/client-0.3.33-beta.295.tgz#288d308764c2f7d0c0ac43afe6ee6a344f00809d"
+  integrity sha512-ZSIPr5aUFQi1cqtTAt053/cWZPOW8aLSiIWwWo77cLz9vxqpfxlRkboVq1g0ul5p9iwzo+QT8ZWLjW7HLTvoLw==
   dependencies:
-    "@polybase/eth" "^0.3.30"
+    "@polybase/eth" "^0.3.32"
     "@polybase/polylang" "0.4.7"
     axios "0.27.2"
 
@@ -2842,6 +2842,15 @@
     "@ethersproject/strings" "^5.7.0"
     "@polybase/util" "^0.3.30"
 
+"@polybase/eth@^0.3.32":
+  version "0.3.32"
+  resolved "https://registry.yarnpkg.com/@polybase/eth/-/eth-0.3.32.tgz#01d0224ad4188b57eaffaf085023e6889532c972"
+  integrity sha512-Um5nw3yDjTh3HQde2vvLg642svmczNcfttUXOUV3s3S+umeumznzIqn888GjuEfkZrTm2LD7jmShyoeKlwoMYg==
+  dependencies:
+    "@ethersproject/keccak256" "^5.7.0"
+    "@ethersproject/strings" "^5.7.0"
+    "@polybase/util" "^0.3.32"
+
 "@polybase/lezer-parser-javascript@^1.4.1":
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/@polybase/lezer-parser-javascript/-/lezer-parser-javascript-1.4.1.tgz#2893e6c064b5a64f8fe12ca5e1e54e31ac698686"
@@ -2864,6 +2873,19 @@
   version "0.3.30"
   resolved "https://registry.yarnpkg.com/@polybase/util/-/util-0.3.30.tgz#3c63c4fa7616a9d1b33f33751ad06995cbbcb32a"
   integrity sha512-RU0tUsnT5LCV2kSddiZJdpnPyQkqIhY7xzOeTt5jFXHChgCGW/QggbNtcD8bEDRgesxDJJtvMT5hZkxeRC/xQA==
+  dependencies:
+    "@ethersproject/bytes" "^5.7.0"
+    "@ethersproject/signing-key" "^5.7.0"
+    elliptic "^6.5.4"
+    process "^0.11.10"
+    secp256k1 "^4.0.3"
+    tweetnacl "^1.0.3"
+    tweetnacl-util "^0.15.1"
+
+"@polybase/util@^0.3.32":
+  version "0.3.32"
+  resolved "https://registry.yarnpkg.com/@polybase/util/-/util-0.3.32.tgz#12c19aae5ad2aae7821222bdbecbe1d434e9cb1d"
+  integrity sha512-LlOyhoUH9LZzXa22vLUBnY+vLEIJY+cywoBANZOECUgadn5hmRVPp5319ESw87FNFXJkCOKwKO/0gFa1PZP8aA==
   dependencies:
     "@ethersproject/bytes" "^5.7.0"
     "@ethersproject/signing-key" "^5.7.0"
