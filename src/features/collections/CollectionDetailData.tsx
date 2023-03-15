@@ -45,7 +45,11 @@ export function CollectionDetailData({ collectionId }: CollectionDetailDataProps
       accessor: `data.${field.name}`,
       Header: field.name,
       Cell: ({ cell }: { cell: Cell<any> }) => {
-        const str = cell.value ? JSON.stringify(cell.value) : '-'
+        const str =
+          cell.value === undefined
+            ? '-'
+            : JSON.stringify(cell.value)
+
         return <Box>{str.length > 100 ? `${str.substring(0, 100)}...` : str}</Box>
       },
     }
