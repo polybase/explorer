@@ -27,6 +27,7 @@ export function StudioLayout({ children, name }: StudioLayoutProps) {
           <Spacer />
           <HStack height='100%' alignItems='center' px={2} spacing={4}>
             <ColorModeSwitcher />
+            <CLink as={Link} fontWeight='600' to='/'>Explorer</CLink>
             <CLink isExternal fontWeight='600' href='https://polybase.xyz/docs'>Docs</CLink>
             <NavLogin />
           </HStack>

@@ -7,10 +7,10 @@ import { CollectionListPage } from 'features/collections/CollectionListPage'
 import { CollectionsDetail } from 'features/collections/CollectionDetail'
 import { Email } from 'features/users/Email'
 import { Studio } from 'features/studio/Studio'
-import { useIsLoggedIn } from 'features/users/useIsLoggedIn'
+import { useIsAuthenticated } from '@polybase/react'
 
 export default function AppRouter() {
-  const [isLoggedIn, isLoggedInLoading] = useIsLoggedIn()
+  const [isLoggedIn, isLoggedInLoading] = useIsAuthenticated()
   const navigate = useNavigate()
   const location = useLocation()
 

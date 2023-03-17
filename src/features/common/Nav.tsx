@@ -3,7 +3,7 @@ import {
   Box,
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { useIsLoggedIn } from 'features/users/useIsLoggedIn'
+import { useIsAuthenticated } from '@polybase/react'
 
 const NAV_LINKS = [{
   title: 'Studio',
@@ -19,7 +19,7 @@ const NAV_LINKS = [{
 }]
 
 export function Nav() {
-  const [isLoggedIn] = useIsLoggedIn()
+  const [isLoggedIn] = useIsAuthenticated()
   const el = NAV_LINKS.filter(({ requireAuth }) => isLoggedIn || !requireAuth).map(({ title, to, external }) => {
     const el = (
       <Box

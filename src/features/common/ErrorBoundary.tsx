@@ -3,7 +3,7 @@ import React, { ErrorInfo, createContext } from 'react'
 import * as Sentry from '@sentry/browser'
 import merge from 'lodash/merge'
 import isEqual from 'lodash/isEqual'
-import { useAuth } from 'features/users/useAuth'
+import { useUser } from 'features/users/useUser'
 
 export const ErrorBoundaryContext = createContext<ErrorBoundaryDefaults>({})
 
@@ -27,16 +27,16 @@ interface ErrorBoundaryState {
   hasError: boolean
 }
 
-export default function ErrorBoundary (props: ErrorBoundaryProps) {
-  const { auth } = useAuth()
-  const userId = auth?.publicKey || undefined
+export default function ErrorBoundary(props: ErrorBoundaryProps) {
+  const { publicKey } = useUser()
+  const userId = publicKey || undefined
   return <ErrorBoundaryInner userId={userId} {...props} />
 }
 
 export class ErrorBoundaryInner extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   value: ErrorBoundaryDefaults = {}
 
-  constructor (props: ErrorBoundaryProps) {
+  constructor(props: ErrorBoundaryProps) {
     super(props)
     this.state = { hasError: false }
     this.value = {}
@@ -44,11 +44,11 @@ export class ErrorBoundaryInner extends React.Component<ErrorBoundaryProps, Erro
 
   static contextType = ErrorBoundaryContext
 
-  static getDerivedStateFromError (err: Error) {
+  static getDerivedStateFromError(err: Error) {
     return { hasError: !!err }
   }
 
-  getValue (): ErrorBoundaryDefaults {
+  getValue(): ErrorBoundaryDefaults {
     const val = merge(
       {},
       (this.context as any).defaults,
@@ -60,7 +60,7 @@ export class ErrorBoundaryInner extends React.Component<ErrorBoundaryProps, Erro
     return val
   }
 
-  componentDidCatch (error: Error, info: ErrorInfo) {
+  componentDidCatch(error: Error, info: ErrorInfo) {
     const logFilters = this.getValue().logFilters
     // Skip if matches prevent log
     if (logFilters &&
@@ -87,7 +87,7 @@ export class ErrorBoundaryInner extends React.Component<ErrorBoundaryProps, Erro
     }
   }
 
-  render () {
+  render() {
     const { content } = this.getValue()
     const childEl = this.state.hasError
       ? (content || <p data-error-code={this.props.code}>Sorry, we&apos;re unable to show this right now</p>)

@@ -2,6 +2,7 @@ import { Polybase } from '@polybase/client'
 import { ethPersonalSign } from '@polybase/eth'
 
 const schema = `
+@public
 collection users {
   id: string; 
 
