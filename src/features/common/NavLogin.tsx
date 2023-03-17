@@ -2,25 +2,22 @@ import React from 'react'
 import {
   Button,
 } from '@chakra-ui/react'
-import { useCurrentUserId } from 'features/users/useCurrentUserId'
-import { useAuth } from 'features/users/useAuth'
-import { useLogin } from 'features/users/useLogin'
+import { useIsAuthenticated } from '@polybase/react'
+import { useUser } from 'features/users/useUser'
 
-export function NavLogin () {
-  const auth = useAuth()
-  const [userId, userIdLoading] = useCurrentUserId()
-  const login = useLogin()
+export function NavLogin() {
+  const { signIn, signOut } = useUser()
+  const [isLoggedIn, isLoggedInLoading] = useIsAuthenticated()
 
-  if (userIdLoading) return null
+  if (isLoggedInLoading) return null
 
-  if (!userId) {
-    return <Button width='100%' onClick={login}>Login</Button>
+  if (!isLoggedIn) {
+    return <Button width='100%' onClick={signIn}>Login</Button>
   }
 
   return (
     <Button width='100%' onClick={async () => {
-      await auth.logout()
-      // navigate('/')
+      await signOut()
     }}>
       Logout
     </Button>

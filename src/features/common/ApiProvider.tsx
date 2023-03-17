@@ -1,27 +1,27 @@
 import React, { useState, useEffect, createContext, ReactNode } from 'react'
 import axios, { AxiosInstance } from 'axios'
-import { useAuth } from 'features/users/useAuth'
+import { useUser } from 'features/users/useUser'
 
 export const ApiContext = createContext<AxiosInstance>(axios.create())
 
 export interface ApiProviderProps {
   baseURL?: string
-  children: ReactNode|ReactNode[]
+  children: ReactNode | ReactNode[]
 }
 
-export function ApiProvider ({ children, baseURL }: ApiProviderProps) {
-  const { auth } = useAuth()
+export function ApiProvider({ children, baseURL }: ApiProviderProps) {
+  const { publicKey } = useUser()
   const [client, setClient] = useState<AxiosInstance>(() => axios.create({ baseURL }))
 
   useEffect(() => {
-    if (!auth) return setClient(() => axios.create({ baseURL }))
+    if (!publicKey) return setClient(() => axios.create({ baseURL }))
     setClient(() => axios.create({
       baseURL,
       headers: {
-        authorization: `Bearer ${auth.publicKey}`,
+        authorization: `Bearer ${publicKey}`,
       },
     }))
-  }, [auth, baseURL])
+  }, [publicKey, baseURL])
 
   return (
     <ApiContext.Provider value={client}>
