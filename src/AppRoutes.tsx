@@ -14,6 +14,8 @@ export default function AppRouter() {
   const navigate = useNavigate()
   const location = useLocation()
 
+  console.log(isLoggedIn, isLoggedInLoading)
+
   useEffect(() => {
     if (process.env.REACT_APP_ENV_NAME !== 'production') {
       ReactGA.set({ page: location.pathname })
@@ -24,7 +26,7 @@ export default function AppRouter() {
 
   useEffect(() => {
     if (location.pathname.startsWith('/d')) return navigate('/studio')
-    if (!isLoggedIn && !isLoggedInLoading && location.pathname.startsWith('/studio')) return navigate('/')
+    if (isLoggedIn === false && location.pathname.startsWith('/studio')) return navigate('/')
   }, [location.pathname, location.state, navigate, isLoggedIn, isLoggedInLoading])
 
   return (
