@@ -4,7 +4,6 @@ import { Stack, Box, HStack, Heading } from '@chakra-ui/react'
 import useInterval from 'use-interval'
 import { usePolybase, useCollection } from '@polybase/react'
 import { CollectionMetaEx } from '../types'
-import { useApi } from 'features/common/useApi'
 import { Stat } from 'features/common/Stat'
 import { Panel } from 'features/common/Panel'
 import { List } from 'features/common/List'
@@ -68,10 +67,12 @@ export function CollectionPanel({ pk }: CollectionPanelProps) {
     }) : []
 
   return (
-    <Panel title='Collections'>
+    <Panel title='Collections' to='/collections'>
       <Stack spacing={4}>
         <Box>
-          <Stat size='2xl' stat={count ? count : '-'} />
+          <Link to='/collections'>
+            <Stat size='2xl' stat={count ? count : '-'} />
+          </Link>
         </Box>
         <Box>
           <List>

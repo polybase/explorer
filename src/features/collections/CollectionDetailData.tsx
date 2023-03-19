@@ -65,7 +65,7 @@ export function CollectionDetailData({ collectionId }: CollectionDetailDataProps
         {dataErr && <Box color='error'>Failed to records: {dataErr.message}</Box>}
       </Stack>
       <Box width='100%'>
-        <Loading loading={loadingData || loadingMeta}>
+        <Loading loading={(loadingData || loadingMeta) && !data?.data.length}>
           <Table<any>
             columns={columns}
             data={data?.data ?? []}

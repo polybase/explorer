@@ -7,12 +7,14 @@ import { CollectionListPage } from 'features/collections/CollectionListPage'
 import { CollectionsDetail } from 'features/collections/CollectionDetail'
 import { Email } from 'features/users/Email'
 import { Studio } from 'features/studio/Studio'
-import { useIsLoggedIn } from 'features/users/useIsLoggedIn'
+import { useIsAuthenticated } from '@polybase/react'
 
 export default function AppRouter() {
-  const [isLoggedIn, isLoggedInLoading] = useIsLoggedIn()
+  const [isLoggedIn, isLoggedInLoading] = useIsAuthenticated()
   const navigate = useNavigate()
   const location = useLocation()
+
+  console.log(isLoggedIn, isLoggedInLoading)
 
   useEffect(() => {
     if (process.env.REACT_APP_ENV_NAME !== 'production') {
@@ -24,7 +26,7 @@ export default function AppRouter() {
 
   useEffect(() => {
     if (location.pathname.startsWith('/d')) return navigate('/studio')
-    if (!isLoggedIn && !isLoggedInLoading && location.pathname.startsWith('/studio')) return navigate('/')
+    if (isLoggedIn === false && location.pathname.startsWith('/studio')) return navigate('/')
   }, [location.pathname, location.state, navigate, isLoggedIn, isLoggedInLoading])
 
   return (

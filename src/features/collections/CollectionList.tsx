@@ -14,7 +14,7 @@ export interface CollectionListProps {
 
 const PAGE_LENGTH = 100
 
-export function CollectionList ({ pk }: CollectionListProps) {
+export function CollectionList({ pk }: CollectionListProps) {
   const polybase = usePolybase()
 
   const [page, setPage] = useState(1)
@@ -38,8 +38,8 @@ export function CollectionList ({ pk }: CollectionListProps) {
     )
   })
 
-  const ref:any = useRef([])
-  if (items){
+  const ref: any = useRef([])
+  if (items) {
     ref.current = items
   }
 
@@ -51,9 +51,9 @@ export function CollectionList ({ pk }: CollectionListProps) {
   }
 
   return (
-    <Loading loading={loading}>
+    <Loading loading={loading && items.length === 0}>
       {error && <Box color='error'>{error.message}</Box>}
-      <Pagination {...pageProps} ></Pagination>
+      <Pagination {...pageProps}></Pagination>
     </Loading>
   )
 }

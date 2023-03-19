@@ -58,9 +58,7 @@ export function Home() {
                   </Panel>
                 </Box>
                 <Box>
-                  <Link to='/collections'>
-                    <CollectionPanel />
-                  </Link>
+                  <CollectionPanel />
                 </Box>
               </Stack>
               <Stack spacing={spacingY}>

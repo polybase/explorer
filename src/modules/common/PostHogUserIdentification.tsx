@@ -1,18 +1,17 @@
 import { useEffect } from 'react'
 import posthog from 'posthog-js'
-import { useAuth } from 'features/users/useAuth'
+import { useUser } from 'features/users/useUser'
 
-export default function PostHogUserIdentification () {
-  const { auth } = useAuth()
-  const userId = auth?.publicKey
+export default function PostHogUserIdentification() {
+  const { publicKey } = useUser()
 
   useEffect(() => {
-    if (userId) {
-      posthog.identify(userId /* { email: user.email } */)
+    if (publicKey) {
+      posthog.identify(publicKey /* { email: user.email } */)
     } else {
       posthog.reset()
     }
-  }, [userId])
+  }, [publicKey])
 
   return null
 }
