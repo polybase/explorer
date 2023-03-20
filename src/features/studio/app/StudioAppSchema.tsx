@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Flex, Box, useColorMode, Container, Text, Heading, Spacer, Button, Stack } from '@chakra-ui/react'
+import { Flex, Box, useColorMode, Container, Text, Heading, Spacer, Button, Stack, HStack } from '@chakra-ui/react'
 import CodeMirror from '@uiw/react-codemirror'
 import { ViewUpdate } from '@codemirror/view'
 import { usePolybase } from '@polybase/react'
@@ -68,12 +68,15 @@ export function StudioAppSchema({ namespace }: StudioAppSchemaProps) {
               It looks like you've made changes to your schema outside of the studio editor. Studio will merge
               your schema into a single definition, but you should check to ensure each collection definition is still valid.
             </Text>
-            <Box>
+            <HStack>
               <Button onClick={() => {
                 setEditedValue(collections.map((c) => c.data.code).join('\n\n'))
                 setSkipSchemaMismatch(true)
               }} size='lg' colorScheme='purple'>Merge</Button>
-            </Box>
+              <Button onClick={() => {
+                setSkipSchemaMismatch(true)
+              }} size='lg'>Skip</Button>
+            </HStack>
           </Stack>
         </Stack>
       </Container>
