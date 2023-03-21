@@ -4,9 +4,11 @@ import { StudioLayout } from './StudioLayout'
 import { Loading } from 'modules/loading/Loading'
 import { getNamespaces, shortName } from './util'
 import { useUserCollections } from './useUserCollections'
+import { useCurrentUserId } from 'features/users/useCurrentUserId'
 
 export function StudioAppList() {
   const { data, loading, error } = useUserCollections()
+  const [publicKey] = useCurrentUserId()
 
   const namespaces = getNamespaces(data?.data || [])
 
@@ -41,6 +43,9 @@ export function StudioAppList() {
                     )
                   })}
                 </SimpleGrid>
+                <Box color='blackAlpha.600'>
+                  PublicKey: {publicKey}
+                </Box>
               </Loading>
             </Stack>
           </Box>
