@@ -43,7 +43,7 @@ export function StudioAppList() {
                     )
                   })}
                 </SimpleGrid>
-                <Box color='blackAlpha.600'>
+                <Box color='bw.600'>
                   PublicKey: {publicKey}
                 </Box>
               </Loading>
