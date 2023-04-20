@@ -1,7 +1,7 @@
 name: Vercel Preview Deployment
 
 env:
-  VERCEL_ORG_ID: team_fsDXNOvUQdDOO3MDueUAwhpW
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: prj_P2rIzILBVH8PhisQDAYMp0QFTa95
 
 on:
