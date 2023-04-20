@@ -1,5 +1,5 @@
 {
-  "name": "explorer",
+  "name": "@polybase/explorer",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,9 +8,11 @@
     "test": "react-app-rewired test",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "eject": "react-scripts eject",
-    "load": "ts-node ./schema/load.ts",
-    "env": "env-cmd --no-override --file ${ENV_PATH:-.env.development}",
-    "deploy": "SKIP_PREFLIGHT_CHECK=true NODE_ENV=production yarn build && yarn deploy:netlify",
+    "pull:dev": "vercel env pull --environment development",
+    "pull:preview": "vercel env pull --environment preview",
+    "pull:prod": "vercel env pull --environment production",
+    "load": "ts-node ./scripts/create-schema.ts",
+    "env": "env-cmd --no-override --file ${ENV_PATH:-.env}",
     "fix": "eslint \"./src/**/*.{ts,tsx}\" webpack.config.js --fix"
   },
   "dependencies": {
