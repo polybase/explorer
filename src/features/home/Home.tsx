@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import useInterval from 'use-interval'
-import { Link as ChakraLink, Stack, Box, Container, VStack, SimpleGrid } from '@chakra-ui/react'
+import { Link as ChakraLink, Stack, Box, Container, VStack, SimpleGrid, Tag, HStack } from '@chakra-ui/react'
 import { Layout } from 'features/common/Layout'
 import { Panel } from 'features/common/Panel'
 import { useApi } from 'features/common/useApi'
@@ -9,10 +9,35 @@ import { List } from 'features/common/List'
 import { ListLink } from 'features/common/ListLink'
 import { CollectionPanel } from 'features/collections/CollectionPanel'
 import { Map } from './Map'
+// import { CollectionRecord } from '@polybase/client'
+import { useCollection, usePolybase, useRecordOnce } from '@polybase/react'
+
+const changeTypeColors: Record<Change['type'], string> = {
+  added: 'green',
+  changed: 'yellow',
+  fixed: 'blue',
+  removed: 'red',
+  deprecated: 'gray',
+}
+
+export interface Change {
+  id: string
+  type: 'added' | 'changed' | 'fixed' | 'removed' | 'deprecated'
+  desc: string
+  tags: string[]
+  release: { id: string }
+}
 
 export function Home() {
   const api = useApi()
   const [block, setBlock] = useState('-')
+  const polybase = usePolybase()
+
+  const { data: changelog } = useCollection(
+    polybase.collection<Change>('/polybase/apps/changelog/Change')
+      .sort('date', 'desc')
+      .limit(5),
+  )
 
 
   useInterval(async () => {
@@ -109,17 +134,50 @@ export function Home() {
                 </Box>
                 <Box>
                   <Panel title='Changelog'>
-                    <Box color='bw.700'>
-                      <b>2022-12-16</b>: Deploy new version of the Polybase explorer. Allow collections to be added via the explorer.
-                    </Box>
+                    <Stack color='bw.700'>
+                      {changelog?.data.map((change) => {
+                        return (
+                          <ChangeItem key={change.data.id} change={change.data} />
+                        )
+                      }).filter((v) => !!v).slice(3)}
+                      <Box>
+                        <ListLink href='https://polybase.xyz/changelog' isExternal>
+                          Changelog
+                        </ListLink>
+                      </Box>
+                    </Stack>
+
                   </Panel>
                 </Box>
               </Stack>
             </SimpleGrid>
           </Box>
-        </Container>
-      </VStack>
-    </Layout>
+        </Container >
+      </VStack >
+    </Layout >
+  )
+}
+
+export interface ChangeItemProps {
+  change: Change
+}
+function ChangeItem({ change }: ChangeItemProps) {
+  const polybase = usePolybase()
+  const release = useRecordOnce(polybase.collection('/polybase/apps/changelog/Release').record(change.release?.id))
+
+  if (!release.data?.data.published) return null
+
+  return (
+    <HStack spacing={3}>
+      <Box flex='0 0 auto'>
+        <Tag
+          colorScheme={changeTypeColors[change.type]}
+          userSelect='none'>{change.type}</Tag>
+      </Box>
+      <Box>
+        {change.desc}
+      </Box>
+    </HStack>
   )
 }
 
