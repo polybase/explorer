@@ -10,6 +10,7 @@ import { Layout } from 'features/common/Layout'
 import { Panel } from 'features/common/Panel'
 import { useAsyncCallback } from 'modules/common/useAsyncCallback'
 import { useCurrentUserId } from './useCurrentUserId'
+import { UserError } from 'modules/common/UserError'
 
 const OPTIONS = [
   {
@@ -37,7 +38,7 @@ export function Email() {
 
   const onSave = useAsyncCallback(async (e) => {
     e.preventDefault()
-    if (!email) throw new Error('Email required')
+    if (!email) throw new UserError('Email required')
     await axios.post('/api/email', {
       email,
       pk: publicKey,
