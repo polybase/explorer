@@ -2866,10 +2866,10 @@
   dependencies:
     penpal "^6.2.2"
 
-"@polybase/client@^0.5.1-beta.366":
-  version "0.5.1-beta.366"
-  resolved "https://registry.yarnpkg.com/@polybase/client/-/client-0.5.1-beta.366.tgz#7e010ac80e28fe7d17c532bbac4a8612eda07382"
-  integrity sha512-sbTwQ770bCBf/WI33wFrCXIkdIFzkDf34femrKHZJQLXel2cSF1kipoas9fO+PsRXvGkI69cOJkzTZjgSyyqmg==
+"@polybase/client@^0.5.1-beta.367":
+  version "0.5.1-beta.367"
+  resolved "https://registry.yarnpkg.com/@polybase/client/-/client-0.5.1-beta.367.tgz#38f7d62d14d526678a0e38e810de4c60d2f8351a"
+  integrity sha512-447Psw1dCI9SsyKZxKVoN0gfH6q9fuZ2eu+KiV1PP04elm2ImAYq26rke24Ec2O962qvji/gBXmDsCu+0oVtwg==
   dependencies:
     "@polybase/eth" "^0.5.0"
     "@polybase/polylang" "^0.4.12-beta.103"
