@@ -10,6 +10,8 @@ import { useAsyncCallback } from 'modules/common/useAsyncCallback'
 import { useUserCollections } from '../useUserCollections'
 import { getCollections, isSchemaMismatch } from '../util'
 import { DEFAULT_CODE } from './default-code'
+import { PolybaseError } from '@polybase/client'
+import { UserError } from 'modules/common/UserError'
 
 export interface StudioAppSchemaProps {
   namespace: string
@@ -52,7 +54,13 @@ export function StudioAppSchema({ namespace }: StudioAppSchemaProps) {
 
   const onSave = useAsyncCallback(async () => {
     if (!editedValue) return
-    await polybase.applySchema(editedValue, namespace)
+    await polybase.applySchema(editedValue, namespace).catch((e) => {
+      // Capture user errors
+      if (e instanceof PolybaseError && e.reason !== 'unknown/error') {
+        throw new UserError(e.message)
+      }
+      throw e
+    })
   })
 
   const hasChanges = (editedValue && editedValue !== code)
