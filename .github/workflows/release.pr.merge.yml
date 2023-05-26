@@ -41,6 +41,8 @@ jobs:
         run: |
           git fetch origin main
           git merge --no-edit origin/main
+          git checkout testnet
+          git merge --no-edit origin/release
 
       - name: Create Tag
         id: create_tag
@@ -65,3 +67,30 @@ jobs:
             \"name\": \"Release $PR_VERSION\",
             \"body\": \"Release notes for version $PR_VERSION\"
           }"
+
+  testnet:
+    needs: release
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true && github.base_ref == 'main'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.ADMIN_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "hello@polybase.xyz"
+          git config --global user.name "Polybase CI"
+
+      - name: Merge main into testnet
+        run: |
+          git fetch origin testnet
+          git checkout testnet
+          git merge --no-edit origin/main
+
+      - name: Push Changes
+        run: |
+          git push origin HEAD:testnet
