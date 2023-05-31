@@ -9,8 +9,8 @@ export interface MapProps {
 export function Map({ highlight }: MapProps) {
   const hl = highlight?.map(([cx, cy]) => `${cx}-${cy}`)
   return (
-    <Box css={styles}>
-      <svg viewBox='0 0 845.2 458' css={styles}>
+    <Box>
+      <svg viewBox='0 0 845.2 458'>
         {points.map(([cx, cy]) => {
           return hl && hl.indexOf(`${cx}-${cy}`) > -1 ? (
             <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r='1.9' fill='#4BCA81' filter='url(#shadow)' />
@@ -28,8 +28,3 @@ export function Map({ highlight }: MapProps) {
 }
 
 
-const styles = css`
-  .hl {
-    fill: red;
-  }
-`
