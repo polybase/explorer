@@ -104,7 +104,7 @@ export function Home() {
               </Stack>
               <Stack spacing={spacingY}>
                 <Box>
-                  <Panel title='Testnet'>
+                  <Panel title={process.env.REACT_APP_ENV_NAME ?? 'testnet'}>
                     <Box>
                       Polybase currently runs all the indexers on the network and requests are proxied through our gateway. We are committed to decentralisation, and you can find our <ChakraLink fontWeight='bold' isExternal href='https://polybase.xyz/blog/roadmap-2023'>decentralisation roadmap</ChakraLink> here.
                     </Box>
