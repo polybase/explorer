@@ -11,7 +11,7 @@
     "pull:dev": "vercel env pull --environment development",
     "pull:preview": "vercel env pull --environment preview",
     "pull:prod": "vercel env pull --environment production",
-    "load": "ts-node ./scripts/create-schema.ts",
+    "load": "ts-node ./schema/load.ts",
     "env": "env-cmd --no-override --file ${ENV_PATH:-.env}",
     "fix": "eslint \"./src/**/*.{ts,tsx}\" webpack.config.js --fix"
   },
