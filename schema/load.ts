@@ -18,7 +18,8 @@ async function load() {
   const db = new Polybase({
     baseURL: `${process.env.REACT_APP_API_URL}/v0`,
     signer: async (data) => {
-      const privateKey = Buffer.from(PRIVATE_KEY, 'hex')
+      let key = PRIVATE_KEY.startsWith('0x') ? PRIVATE_KEY.slice(2) : PRIVATE_KEY
+      const privateKey = Buffer.from(key, 'hex')
       return { h: 'eth-personal-sign', sig: ethPersonalSign(privateKey, data) }
     },
   })
