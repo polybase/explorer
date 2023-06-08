@@ -28,11 +28,6 @@ jobs:
     - name: CURL
       run: curl -sSf http://localhost:8080
 
-    - name: Wait for server
-      uses: jakejarvis/wait-action@master
-      with:
-        time: '3s'
-
     - name: Install dependencies
       run: yarn
 
