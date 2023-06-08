@@ -25,6 +25,9 @@ jobs:
         docker pull gcr.io/polybase-prenet/polybase:latest
         docker run -d -p 8080:8080 --name=myserver gcr.io/polybase-prenet/polybase:latest
 
+    - name: CURL
+      run: curl -sSf http://localhost:8080
+
     - name: Wait for server
       uses: jakejarvis/wait-action@master
       with:
