@@ -80,7 +80,7 @@ export function Home() {
                   </Panel>
                 </Box>
                 <Box>
-                  <CollectionPanel testId='collection-amount' />
+                  <CollectionPanel id='collection-amount' />
                 </Box>
               </Stack>
               <Stack spacing={spacingY}>
