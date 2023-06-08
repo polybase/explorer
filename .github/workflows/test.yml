@@ -1,26 +1,45 @@
-name: Playwright Tests
+name: Tests
 on:
   push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+
     - uses: actions/setup-node@v3
       with:
         node-version: 16
+    
+    - name: Login to GCR
+      uses: docker/login-action@v2
+      with:
+        registry: gcr.io
+        username: _json_key
+        password: ${{ secrets.PRENET_GCR_KEY }}
+    
+    - name: Setup Docker
+      run: |
+        docker pull gcr.io/polybase-prenet/polybase:latest
+        docker run -d -p 8080:8080 --name=myserver gcr.io/polybase-prenet/polybase:latest
+
+    - name: Wait for server
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '3s'
+
     - name: Install dependencies
       run: yarn
+
     - name: Install Playwright Browsers
       run: yarn playwright install --with-deps
+      
     - name: Run Playwright tests
       run: yarn ui:test
+
     - uses: actions/upload-artifact@v3
-      if: always()
       with:
         name: playwright-report
         path: playwright-report/
