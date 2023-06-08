@@ -71,7 +71,7 @@ export function Home() {
                   <Panel title='Root Hash'>
                     <Stack spacing={4}>
                       <Box>
-                        <Stat size='lg' stat={block} />
+                        <Stat size='lg' stat={block} testId='root-hash'/>
                       </Box>
                       <Box>
                         {/* <EventList count={5} event='NewBlock' /> */}
@@ -80,7 +80,7 @@ export function Home() {
                   </Panel>
                 </Box>
                 <Box>
-                  <CollectionPanel />
+                  <CollectionPanel testId='collection-amount' />
                 </Box>
               </Stack>
               <Stack spacing={spacingY}>

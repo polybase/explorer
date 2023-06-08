@@ -13,7 +13,9 @@
     "pull:prod": "vercel env pull --environment production",
     "load": "ts-node ./schema/load.ts",
     "env": "env-cmd --no-override --file ${ENV_PATH:-.env}",
-    "fix": "eslint \"./src/**/*.{ts,tsx}\" webpack.config.js --fix"
+    "fix": "eslint \"./src/**/*.{ts,tsx}\" webpack.config.js --fix",
+    "ui:test": "npx playwright test",
+    "ui:test:report": "npm playwright show-report"
   },
   "dependencies": {
     "@1productaweek/react-modal-hooks": "^0.1.14",
@@ -146,6 +148,7 @@
     ]
   },
   "devDependencies": {
+    "@playwright/test": "^1.34.3",
     "@types/cors": "^2.8.13",
     "@types/js-cookie": "^3.0.2",
     "@types/keccak": "^3.0.1",

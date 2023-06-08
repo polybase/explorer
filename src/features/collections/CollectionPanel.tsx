@@ -11,10 +11,11 @@ import { List } from 'features/common/List'
 const LIMIT = 100
 
 export interface CollectionPanelProps {
-  pk?: string | null
+  pk?: string | null,
+  testId: string,
 }
 
-export function CollectionPanel({ pk }: CollectionPanelProps) {
+export function CollectionPanel({ pk, testId }: CollectionPanelProps) {
   const [count, setCount] = useState('-')
   const polybase = usePolybase()
   const query = polybase
@@ -57,7 +58,7 @@ export function CollectionPanel({ pk }: CollectionPanelProps) {
             <Box>
               <Link to={`/collections/${encodeURIComponent(item.data.id)}`}>
                 <Box p={1}>
-                  <Heading display='block' size='xs' >{item.data.id}</Heading>
+                  <Heading display='block' size='xs'>{item.data.id}</Heading>
                 </Box>
               </Link>
             </Box>
@@ -71,7 +72,7 @@ export function CollectionPanel({ pk }: CollectionPanelProps) {
       <Stack spacing={4}>
         <Box>
           <Link to='/collections'>
-            <Stat size='2xl' stat={count ? count : '-'} />
+            <Stat size='2xl' stat={count ? count : '-'} testId={testId}/>
           </Link>
         </Box>
         <Box>
