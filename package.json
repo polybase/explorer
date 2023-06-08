@@ -25,6 +25,7 @@
     "@codemirror/view": "^6.7.2",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@faker-js/faker": "^8.0.2",
     "@fontsource/inter": "^4.5.14",
     "@metamask/eth-sig-util": "^5.0.2",
     "@notionhq/client": "^2.2.3",
