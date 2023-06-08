@@ -12,10 +12,10 @@ const LIMIT = 100
 
 export interface CollectionPanelProps {
   pk?: string | null,
-  id: string,
+  testId: string,
 }
 
-export function CollectionPanel({ pk, id }: CollectionPanelProps) {
+export function CollectionPanel({ pk, testId }: CollectionPanelProps) {
   const [count, setCount] = useState('-')
   const polybase = usePolybase()
   const query = polybase
