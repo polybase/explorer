@@ -72,7 +72,7 @@ export function CollectionPanel({ pk, testId }: CollectionPanelProps) {
       <Stack spacing={4}>
         <Box>
           <Link to='/collections'>
-            <Stat size='2xl' stat={count ? count : '-'} testId='collection-amount'/>
+            <Stat size='2xl' stat={count ? count : '-'} testId={testId}/>
           </Link>
         </Box>
         <Box>
