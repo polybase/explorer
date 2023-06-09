@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test'
+import { config } from './tests/config/config'
 
 /**
  * Read environment variables from file.
@@ -29,7 +30,7 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     screenshot: 'on',
-    baseURL: 'http://localhost:3000',
+    baseURL: config.local,
   },
 
   /* Configure projects for major browsers */
@@ -73,7 +74,7 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: {
     command: 'yarn start',
-    url: 'http://localhost:3000',
+    url: config.local,
     reuseExistingServer: !process.env.CI,
     timeout: 150000,
   },
