@@ -2,7 +2,7 @@ name: Update Beta Packages
 
 on:
   repository_dispatch:
-    types: [update-packages-beta]
+    types: [update-packages-beta, update-polylang-packages]
 
 jobs:
   update-packages:
@@ -20,6 +20,14 @@ jobs:
       - name: Add npm package
         run: yarn add @polybase/client@beta @polybase/eth@beta @polybase/react@beta @polybase/util@beta
 
+      - name: Install cargo
+        uses: baptiste0928/cargo-install@v2
+        with:
+          crate: cargo
+
+      - name: Cargo update
+        run: cargo update
+        
       - name: Get latest beta version
         id: version
         run: |
@@ -33,5 +41,4 @@ jobs:
           title: Update packages to version ${{ steps.version.outputs.latest_beta_version }}
           branch: update-beta-packages
           delete-branch: true
-          base: main
           team-reviewers: engineering
