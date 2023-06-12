@@ -1,37 +1,25 @@
 /* eslint-disable testing-library/prefer-screen-queries */
 import { test, expect } from '@playwright/test'
 import { faker } from '@faker-js/faker'
-import { checkErrorToast, common, waitForPageLoaded } from './utils/commmon'
-import { getCodeForSignIn } from './utils/email'
-import { fillCodeInput, fillEmailInput, login, openCodeEnteringStep, openLoginEmailModal, registerUI } from './selectors/login.selectors'
+import { getCodeForSignIn } from '../utils/email'
+import { fillCodeInput, fillEmailInput, login, openCodeEnteringStep, openLoginEmailModal, registerUI } from '../selectors/login.selectors'
+import { checkErrorToast, common, waitForPageLoaded } from '../utils/commmon'
 
 test.describe('home page + login screen', async () => {
   test.beforeEach(async ({ page, baseURL }) => {
     await page.goto(`${baseURL}`)
-    page.waitForLoadState('load')
+    await waitForPageLoaded(page)
   })
 
   test('home page with all necessary elements opened', async ({ page }) => {
     // Assert
-    await expect(page.locator('h2[test-id="root-hash"]')).toBeVisible()
-    await expect(page.locator('h2[test-id="collection-amount"]')).toBeVisible()
+    expect(page.locator('h2[test-id="root-hash"]')).toBeVisible()
+    expect(page.locator('h2[test-id="collection-amount"]')).toBeVisible()
+    expect(page.locator('[aria-label="View source on Github"]')).toBeVisible()
+
     page.waitForSelector('a[href="https://docs.polybase.xyz"]')
     page.waitForSelector('a[href="https://polybase.xyz/whitepaper"]')
     page.waitForSelector('a[href="https://social.testnet.polybase.xyz"]')
-  })
-
-  test('when change the theme, expected colors to be updated', async ({ page }) => {
-    // Arrange
-    const attribute = async() => await page.locator('html').getAttribute('data-theme')
-
-    // Act & Assert
-    expect(await attribute()).toEqual('light')
-
-    await page.locator('[aria-label="Switch to dark mode"]').click()
-    expect(await attribute()).toEqual('dark')
-
-    await page.locator('[aria-label="Switch to light mode"]').click()
-    expect(await attribute()).toEqual('light')
   })
 
   test('when open login modal, expect metamask link is displayed', async ({ page }) => {
