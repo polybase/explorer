@@ -2869,17 +2869,17 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@polybase/auth@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@polybase/auth/-/auth-0.6.0.tgz#2752393c2548ec1cc52250ab453b9707d70d3315"
-  integrity sha512-95VtYmyWX/7H1aobzHcJ+VKn39sTlq6StvagCxBD/6yYn7ArpgMmKuSActsZsgF2cNkPPME7qwPd4ZhM0QLLtg==
+"@polybase/auth@^0.6.2-beta.380":
+  version "0.6.2-beta.380"
+  resolved "https://registry.yarnpkg.com/@polybase/auth/-/auth-0.6.2-beta.380.tgz#c9c5cf0758c934bbdfacad6831357912907c9cc6"
+  integrity sha512-E5VCBQxV1msz0vG3YG6ULcMYqsl976bfThvmSZeYqr/kuI3qMvvDqhFmmkVnu/BXvR+jS899I+sDVU4wWwbdow==
   dependencies:
     penpal "^6.2.2"
 
-"@polybase/client@^0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@polybase/client/-/client-0.6.1.tgz#79efe50ab5a6669f437182432d46ea9eccfe0335"
-  integrity sha512-kp34gQgrD7oxA+VpyfI4Ft898G2lM5LY4xUWaqViay1q3JKW+veqbVH5Vat/TW9JW4/5d/PkIzQ9jPHabrqjPw==
+"@polybase/client@^0.6.2-beta.379":
+  version "0.6.2-beta.379"
+  resolved "https://registry.yarnpkg.com/@polybase/client/-/client-0.6.2-beta.379.tgz#d5e47182694bf5b935aed9483cdebd7d1177cebc"
+  integrity sha512-QPoi//3rTf/ipsgDpj+pf7U76fmv2ANvNVk9a3o6EHsZBJdXWb1ZbGlnk1neRBnDj4dmt5eMmu3atryp/FgwpQ==
   dependencies:
     "@polybase/eth" "^0.6.1"
     "@polybase/polylang" "^0.6.0"
@@ -2897,6 +2897,15 @@
     "@codemirror/view" "^6.0.0"
     "@lezer/common" "^1.0.0"
     "@polybase/lezer-parser-javascript" "^1.4.1"
+
+"@polybase/eth@^0.5.1-beta.358":
+  version "0.5.1-beta.358"
+  resolved "https://registry.yarnpkg.com/@polybase/eth/-/eth-0.5.1-beta.358.tgz#6c47f72f52e87e23c0ae2c729ce68c40d23e4afd"
+  integrity sha512-UC47nbzNyfCFBv14EQerU1ZPMnIOJ6sb220UABIywryWn6NWYY6B+7DXKiBpi+qvrb+510Y5PFxP6ShHoRwCJg==
+  dependencies:
+    "@ethersproject/keccak256" "^5.7.0"
+    "@ethersproject/strings" "^5.7.0"
+    "@polybase/util" "^0.5.1-beta.358+6ae8d12"
 
 "@polybase/eth@^0.6.1":
   version "0.6.1"
@@ -2920,10 +2929,23 @@
   resolved "https://registry.yarnpkg.com/@polybase/polylang/-/polylang-0.6.0.tgz#bd8dcb1b6275f9a3e4c9e208be2f7f18da07f955"
   integrity sha512-yk2JbnNkJDKs2Gnjedra7H1b8H7MCZKaOlo3n+OjjcTlqsZq8Iz472hE0umxDi74zxcsMnIb/qsR6oj6fGKrpw==
 
-"@polybase/react@^0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@polybase/react/-/react-0.6.1.tgz#cb480faf3ff7f6a0b42c4346e64d1e94e729aa56"
-  integrity sha512-mt17guto/Nb8iArX6AfkWPyX2qli4yCObcxVStejxgzRdXQhBiXWrq8V0mmrR+ncdC6zocQlX6sAae56YAK+0Q==
+"@polybase/react@^0.6.2-beta.380":
+  version "0.6.2-beta.380"
+  resolved "https://registry.yarnpkg.com/@polybase/react/-/react-0.6.2-beta.380.tgz#067dac8bb8fa90fc06249a0a7927d0588cb4e460"
+  integrity sha512-zl344KOETgeCFzeFtkaOp1VQQa6Qp7fYtiviIqllOMlBgkrzcFZTPYtvGLvV0FLTdWWksOBaey8qxilu7QMmzg==
+
+"@polybase/util@^0.5.1-beta.358", "@polybase/util@^0.5.1-beta.358+6ae8d12":
+  version "0.5.1-beta.358"
+  resolved "https://registry.yarnpkg.com/@polybase/util/-/util-0.5.1-beta.358.tgz#eb9d3a85039be77290cf29cdd4377a77e68718a9"
+  integrity sha512-8TFgDEsPoX8yiHG0rJXKoili0q3Wwt+9HqYx2OQwLlHd6AZ40OHzA3fLxQirYY1+gHURyRmuMLGT5VpE3i5VFQ==
+  dependencies:
+    "@ethersproject/bytes" "^5.7.0"
+    "@ethersproject/signing-key" "^5.7.0"
+    elliptic "^6.5.4"
+    process "^0.11.10"
+    secp256k1 "^4.0.3"
+    tweetnacl "^1.0.3"
+    tweetnacl-util "^0.15.1"
 
 "@polybase/util@^0.6.1":
   version "0.6.1"
