@@ -1,21 +1,17 @@
 /* eslint-disable testing-library/prefer-screen-queries */
 import { test, Page, chromium } from '@playwright/test'
-import { common } from '../utils/commmon'
+import { common, pathNameShouldMatchRoute } from '../utils/commmon'
 import { auth } from '../utils/api/auth'
 import { getCodeForSignIn } from '../utils/email'
-import { config } from '../config/config'
+import { collection } from '../selectors/collections.selectors'
 
-test.describe.only('collections', async () => {
+test.describe('collections', async () => {
   let page: Page
 
   test.beforeEach(async ({ baseURL, request }) => {
     const email = 'polybase2@mailto.plus'
     const browser = await chromium.launch()
     const context = await browser.newContext()
-
-    page = await context.newPage()
-    await page.goto(`${config.prenet}`)
-    await common.wait(1000)
 
     await request.post(auth.code, {
       data: {
@@ -32,23 +28,44 @@ test.describe.only('collections', async () => {
       },
     })
     const verifyCookies = await verifyCode.json()
-    const value = `"type":"email","userId":"${verifyCookies.userId}","email":"${email}","publicKey":"${verifyCookies.publicKey}"`
-    await context.addCookies([{ name: 'polybase.auth.auth', url: 'https://auth.testnet.polybase.xyz', value: `{${encodeURI(value).replace(/,/g, '%2C')}}` },
-      { name: 'polybase.auth.token', url: 'https://auth.testnet.polybase.xyz', value: encodeURI(verifyCookies.token) }, { name: 'polybase.auth.domains', url: 'https://auth.testnet.polybase.xyz', value: '%2Cexplorer.testnet.polybase.xyz' }])
-    await common.wait(2000)
+    const value = encodeURI(
+      JSON.stringify({
+        type: 'email',
+        userId: verifyCookies.userId,
+        email: email,
+        publicKey: verifyCookies.publicKey,
+      }),
+    )
 
-    // await waitForPageLoaded(page)
-    console.log(await context.cookies())
+    await context.addCookies([
+      {
+        name: 'polybase.auth.auth',
+        url: 'https://auth.testnet.polybase.xyz/',
+        secure: false,
+        sameSite: 'None',
+        value: value,
+      },
+      {
+        // Value should be different depending on where you are running
+        // localhost:3000 or explorer.prenet.polybase.xyz or explorer.testnet.polybase.xyz
+        name: 'polybase.auth.domains',
+        url: 'https://auth.testnet.polybase.xyz/',
+        secure: false,
+        sameSite: 'None',
+        value: baseURL!.split('://')[1],
+      },
+    ])
+
+    page = await context.newPage()
+    await page.goto(`${baseURL}`)
+    await common.wait(2000)
   })
 
-  test('when click create collection, expected sign in modal shouls be displayed', async () => {
+  test('when click create collection, expected to be navigated to the app creation', async () => {
     // Act
-    await page.getByRole('button', { name: 'Login' }).click()
-    await common.wait(400000)
-    await page.pause()
-    // const iframe = await login.getLoginModalContent(page)
+    await collection.createCollectionBtn(page).click()
 
-    // // Assert
-    // expect(iframe!.getByText('Sign in')).toBeVisible()
+    // Assert
+    await pathNameShouldMatchRoute(page, '/studio/create')
   })
 })
