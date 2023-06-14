@@ -35,6 +35,7 @@ jobs:
       run: yarn playwright install --with-deps
       
     - name: Run Playwright tests
+      id: test
       run: yarn test:ui
 
     - uses: actions/upload-artifact@v3
@@ -42,3 +43,10 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+
+    - name: Check test result
+      run: |
+        if grep -q "failed" playwright-report/results.json; then
+          echo "Playwright tests failed. Failing the pipeline."
+          exit 1
+        fi
