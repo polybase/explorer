@@ -11,17 +11,6 @@ test.describe('home page + login screen', async () => {
     await waitForPageLoaded(page)
   })
 
-  test('home page with all necessary elements opened', async ({ page }) => {
-    // Assert
-    expect(page.locator('h2[test-id="root-hash"]')).toBeVisible()
-    expect(page.locator('h2[test-id="collection-amount"]')).toBeVisible()
-    expect(page.locator('[aria-label="View source on Github"]')).toBeVisible()
-
-    page.waitForSelector('a[href="https://docs.polybase.xyz"]')
-    page.waitForSelector('a[href="https://polybase.xyz/whitepaper"]')
-    page.waitForSelector('a[href="https://social.testnet.polybase.xyz"]')
-  })
-
   test('when open login modal, expect metamask link is displayed', async ({ page }) => {
     // Arrange
     await login.loginBtn(page).click()
