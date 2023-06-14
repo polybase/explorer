@@ -14,8 +14,8 @@
     "load": "ts-node ./schema/load.ts",
     "env": "env-cmd --no-override --file ${ENV_PATH:-.env}",
     "fix": "eslint \"./src/**/*.{ts,tsx}\" webpack.config.js --fix",
-    "ui:test": "npx playwright test",
-    "ui:test:report": "npx playwright show-report"
+    "test:ui": "npx playwright test",
+    "test:ui:report": "npx playwright show-report"
   },
   "dependencies": {
     "@1productaweek/react-modal-hooks": "^0.1.14",
