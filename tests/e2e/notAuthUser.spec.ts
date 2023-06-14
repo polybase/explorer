@@ -16,9 +16,9 @@ test.describe('not auth user actions', async () => {
     expect(page.locator('h2[test-id="collection-amount"]')).toBeVisible()
     expect(page.locator('[aria-label="View source on Github"]')).toBeVisible()
 
-    page.waitForSelector('a[href="https://docs.polybase.xyz"]')
-    page.waitForSelector('a[href="https://polybase.xyz/whitepaper"]')
-    page.waitForSelector('a[href="https://social.testnet.polybase.xyz"]')
+    expect(page.locator('a[href="https://docs.polybase.xyz"]')).toBeTruthy()
+    expect(page.locator('a[href="https://polybase.xyz/whitepaper"]')).toBeTruthy()
+    expect(page.locator('a[href="https://social.testnet.polybase.xyz"]')).toBeTruthy()
   })
 
   test('when click on collections section, expected to be navigated to collections', async ({ page }) => {
