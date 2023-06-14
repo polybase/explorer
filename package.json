@@ -14,8 +14,8 @@
     "load": "ts-node ./schema/load.ts",
     "env": "env-cmd --no-override --file ${ENV_PATH:-.env}",
     "fix": "eslint \"./src/**/*.{ts,tsx}\" webpack.config.js --fix",
-    "ui:test": "npx playwright test",
-    "ui:test:report": "npm playwright show-report"
+    "test:ui": "npx playwright test",
+    "test:ui:report": "npx playwright show-report"
   },
   "dependencies": {
     "@1productaweek/react-modal-hooks": "^0.1.14",
@@ -25,6 +25,7 @@
     "@codemirror/view": "^6.7.2",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@faker-js/faker": "^8.0.2",
     "@fontsource/inter": "^4.5.14",
     "@metamask/eth-sig-util": "^5.0.2",
     "@notionhq/client": "^2.2.3",
