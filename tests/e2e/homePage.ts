@@ -10,7 +10,7 @@ test.describe('not auth user actions', async () => {
     await waitForPageLoaded(page)
   })
 
-  test('when click create collection, expected sign in modal should be displayed', async ({ page }) => {
+  test('when click create collection, expected sign in modal shouls be displayed', async ({ page }) => {
     // Act
     await collection.createCollectionBtn(page).click()
     const iframe = await login.getLoginModalContent(page)
@@ -30,6 +30,24 @@ test.describe('not auth user actions', async () => {
 
     // Assert
     expect(iframe!.getByText('Sign in')).toBeVisible()
+  })
+
+  test('when click on github icon, expected to be navigated to repo in new tab', async ({ page, context }) => {
+    // Act
+    await page.locator('[aria-label="View source on Github"]').click()
+    const newPage = await context.waitForEvent('page')
+
+    // Assert
+    expect(newPage.url()).toEqual('https://github.com/polybase/explorer')
+  })
+
+  test('when click on docs in menu, expected to be navigated docs in new tab', async ({ page, context }) => {
+    // Act
+    await elements.menu(page, 'Docs').click()
+    const newPage = await context.waitForEvent('page')
+
+    // Assert
+    expect(newPage.url()).toEqual('https://polybase.xyz/docs/introduction')
   })
 })
 
