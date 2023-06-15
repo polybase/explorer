@@ -10,7 +10,7 @@ test.describe('not auth user actions', async () => {
     await waitForPageLoaded(page)
   })
 
-  test('when click create collection, expected sign in modal should be displayed', async ({ page }) => {
+  test('when click create collection, expected sign in modal to be displayed', async ({ page }) => {
     // Act
     await collection.createCollectionBtn(page).click()
     const iframe = await login.getLoginModalContent(page)
@@ -19,7 +19,7 @@ test.describe('not auth user actions', async () => {
     expect(iframe!.getByText('Sign in')).toBeVisible()
   })
 
-  test('when open collections and click creat collections, expected sign in modal shouls be displayed', async ({ page }) => {
+  test('when open collections and click create collection, expected sign in modal to be displayed', async ({ page }) => {
     // Arrange
     await elements.menu(page, 'Collections').click()
     await pathNameShouldMatchRoute(page, '/collections')
