@@ -1,5 +1,5 @@
 import { defineConfig, devices } from '@playwright/test'
-import { baseENV, config } from './tests/config/config'
+import { baseENV } from './tests/config/config'
 
 /**
  * Read environment variables from file.
@@ -74,7 +74,7 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: {
     command: 'yarn start',
-    url: config.local,
+    url: baseENV,
     reuseExistingServer: !process.env.CI,
     timeout: 150000,
   },
