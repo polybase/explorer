@@ -6,8 +6,8 @@ import { fillCodeInput, fillEmailInput, login, openCodeEnteringStep, openLoginEm
 import { checkErrorToast, common, waitForPageLoaded } from '../utils/commmon'
 
 test.describe('home page + login screen', async () => {
-  test.beforeEach(async ({ page, baseURL }) => {
-    await page.goto(`${baseURL}`)
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/')
     await waitForPageLoaded(page)
   })
 

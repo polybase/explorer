@@ -21,7 +21,7 @@ export function StudioLayout({ children, name }: StudioLayoutProps) {
               <Img src={color.colorMode === 'dark' ? logoInvert : logo} height='28px' minWidth={35} />
             </Link>
             {name && (
-              <Heading as='h1' size='md'>{name}</Heading>
+              <Heading as='h1' size='md' aria-label='nav-name'>{name}</Heading>
             )}
           </HStack>
           <Spacer />

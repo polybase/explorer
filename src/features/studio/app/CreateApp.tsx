@@ -34,13 +34,13 @@ export function CreateApp() {
             <form onSubmit={createCollection.execute}>
               <Stack spacing={7} mt={1}>
                 <FormControl isInvalid={isError}>
-                  <Input variant='filled' size='lg' p={2} onChange={(e) => setName(e.target.value)} />
+                  <Input variant='filled' size='lg' p={2} onChange={(e) => setName(e.target.value)} aria-label='app-name-input'/>
                   {!isError ? (
                     null
                   ) : (
                     <>
-                      {hasSpaces && (<FormErrorMessage>Spaces are not allowed</FormErrorMessage>)}
-                      {hasSlash && (<FormErrorMessage>Slash `/` is not allowed</FormErrorMessage>)}
+                      {hasSpaces && (<FormErrorMessage aria-label='validation-message'>Spaces are not allowed</FormErrorMessage>)}
+                      {hasSlash && (<FormErrorMessage aria-label='validation-message'>Slash `/` is not allowed</FormErrorMessage>)}
                     </>
                   )}
                 </FormControl>
