@@ -1,11 +1,16 @@
 import { Frame, Page } from '@playwright/test'
-import { waitForElementHidden, waitForPageLoaded } from '../utils/commmon'
+import {
+  common,
+  waitForElementHidden,
+  waitForPageLoaded,
+} from '../utils/commmon'
 import { login } from './login.selectors'
+import { schemaExample } from '../fixture/schema'
 
 interface OpenCollection {
-  publicKey: string
-  page: Page
-  appName?: string
+  publicKey: string;
+  page: Page;
+  appName?: string;
 }
 
 export const collection = {
@@ -30,6 +35,9 @@ export const collection = {
   codeEditor(page: Page) {
     return page.locator('[data-language="typescript"][role="textbox"]')
   },
+  activeLine(page: Page) {
+    return collection.codeEditor(page).locator('[class*="activeLine"]')
+  },
   saveAppBtn(page: Page) {
     return page.getByRole('button', { name: 'Save' })
   },
@@ -41,25 +49,40 @@ export const collection = {
   },
 }
 
-export const openStudio = async(page: Page) => {
+export const openStudio = async (page: Page) => {
   await page.goto('/studio')
-  await waitForElementHidden(page.locator('[aria-label="studio-app-list-loader"]'))
+  await waitForElementHidden(
+    page.locator('[aria-label="studio-app-list-loader"]'),
+  )
 }
 
-export const openStudioCreation = async(page: Page) => {
+export const openStudioCreation = async (page: Page) => {
   await page.goto('/studio/create')
   await waitForPageLoaded(page)
 }
 
-export const openAppSchema = async({ page, publicKey, appName }: OpenCollection) => {
-  await page.goto(`/studio/${encodeURIComponent(`pk/${publicKey}/${appName ?? 'Test'}`)}`)
+export const openAppSchema = async ({
+  page,
+  publicKey,
+  appName,
+}: OpenCollection) => {
+  await page.goto(
+    `/studio/${encodeURIComponent(`pk/${publicKey}/${appName ?? 'Test'}`)}`,
+  )
   await waitForPageLoaded(page)
+  await common.wait(1000)
 }
 
-export const saveSchema = async(page: Page) => {
+export const saveSchema = async (page: Page) => {
   await collection.saveAppBtn(page).click()
+  await common.wait(2000)
   const iframe = await login.getLoginModalContent(page)
   await iframe!.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
   await collection.signBtn(iframe!).click()
   await page.waitForResponse(/\/collections\/Collection\/records/)
+}
+
+export const enterCode = async (page: Page) => {
+  await collection.activeLine(page).fill(schemaExample)
+  await common.wait(1500)
 }
