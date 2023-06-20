@@ -61,4 +61,5 @@ export const saveSchema = async(page: Page) => {
   const iframe = await login.getLoginModalContent(page)
   await iframe!.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
   await collection.signBtn(iframe!).click()
+  await page.waitForResponse(/\/collections\/Collection\/records/)
 }

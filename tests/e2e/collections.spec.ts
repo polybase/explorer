@@ -149,7 +149,6 @@ test.describe('collections', async () => {
 
     // Act
     await saveSchema(page)
-    await page.waitForResponse(/\/collections\/Collection\/records/)
 
     // Assert
     await openStudio(page)
