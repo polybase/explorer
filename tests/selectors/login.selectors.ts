@@ -13,6 +13,9 @@ export const login = {
     return page.getByRole('button', { name: 'Login' })
   },
   async getLoginModalContent(page: Page) {
+    const modalLocator = page.locator('#polybase-auth-modal-iframe')
+    await modalLocator.waitFor({ state: 'visible', timeout: 4000 })
+
     const modal = await page.waitForSelector('#polybase-auth-modal-iframe')
     const iframe = await modal.contentFrame()
     return iframe

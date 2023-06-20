@@ -4,7 +4,6 @@ import { checkValidationMessage, elements, pathNameShouldMatchRoute } from '../u
 import { collection, enterCode, openAppSchema, openStudio, openStudioCreation, saveSchema } from '../selectors/collections.selectors'
 import { faker } from '@faker-js/faker'
 import { AuthData, apiLogin } from '../utils/auth'
-import { schemaExample } from '../fixture/schema'
 
 test.describe('collections', async () => {
   let page: Page
@@ -131,7 +130,7 @@ test.describe('collections', async () => {
   test.skip('when open collection preview, expected the structure to be displayed', async() => {
     // Arrange
     await openAppSchema({ page, publicKey: authData.publicKey! })
-    await collection.codeEditor(page).locator('[class*="activeLine"]').fill(schemaExample)
+    await enterCode(page)
 
     // Act
     await collection.collections(page).click()
