@@ -28,10 +28,12 @@ collection User {
 
   // \`constructor\` is called when a new record is
   // created, make sure to assign a value to \`this.id\`
-  constructor (id: string) {
+  constructor (id: string, name: string) {
     // \`this.id\` must be assigned in the constructor
     // \`this.id\` must be unique in collection
     this.id = id;
+
+    this.name = name;
     
     // You can assign the publicKey of the user who is
     // creating the record, this can then be used to
