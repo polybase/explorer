@@ -6,6 +6,7 @@ import {
 } from '../utils/commmon'
 import { login } from './login.selectors'
 import { schemaExample } from '../fixture/schema'
+import { baseENV } from '../config/config'
 
 interface OpenCollection {
   publicKey: string;
@@ -50,14 +51,14 @@ export const collection = {
 }
 
 export const openStudio = async (page: Page) => {
-  await page.goto('/studio')
+  await page.goto(`${baseENV}/studio`)
   await waitForElementHidden(
     page.locator('[aria-label="studio-app-list-loader"]'),
   )
 }
 
 export const openStudioCreation = async (page: Page) => {
-  await page.goto('/studio/create')
+  await page.goto(`${baseENV}/studio/create`)
   await waitForPageLoaded(page)
 }
 
@@ -67,7 +68,7 @@ export const openAppSchema = async ({
   appName,
 }: OpenCollection) => {
   await page.goto(
-    `/studio/${encodeURIComponent(`pk/${publicKey}/${appName ?? 'Test'}`)}`,
+    `${baseENV}/studio/${encodeURIComponent(`pk/${publicKey}/${appName ?? 'Test'}`)}`,
   )
   await waitForPageLoaded(page)
   await common.wait(1000)
