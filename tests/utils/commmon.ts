@@ -4,7 +4,7 @@ import { baseENV } from '../config/config'
 const wait = (time: number) =>
   new Promise((resolve) => setTimeout(resolve, time))
 
-const inteceptRequests = (page: Page) => {
+export const inteceptRequests = (page: Page) => {
   page.on('request', (request) =>
     console.log('>>', request.method(), request.url()),
   )

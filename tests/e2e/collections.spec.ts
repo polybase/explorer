@@ -1,6 +1,6 @@
 /* eslint-disable testing-library/prefer-screen-queries */
 import { test, Page, expect } from '@playwright/test'
-import { checkValidationMessage, elements, pathNameShouldMatchRoute } from '../utils/commmon'
+import { checkValidationMessage, elements, inteceptRequests, pathNameShouldMatchRoute } from '../utils/commmon'
 import { collection, enterCode, openAppSchema, openStudio, openStudioCreation, saveSchema } from '../selectors/collections.selectors'
 import { faker } from '@faker-js/faker'
 import { AuthData, apiLogin } from '../utils/auth'
@@ -115,12 +115,14 @@ test.describe('collections', async () => {
     await page.waitForSelector(':text("NewUsers")') // name of the new added collection
   })
 
-  test('when save changed, expected schema to be edited', async() => {
+  test('when save changes, expected schema to be edited', async() => {
     // Arrange
     await openAppSchema({ page, publicKey: authData.publicKey! })
 
     // Act
     await enterCode(page)
+
+    inteceptRequests(page)
     await saveSchema(page)
 
     // Assert
@@ -144,6 +146,7 @@ test.describe('collections', async () => {
     // Arrange
     const appName = faker.person.firstName()
     await openAppSchema({ page, publicKey: authData.publicKey!, appName })
+    inteceptRequests(page)
 
     // Act
     await saveSchema(page)
