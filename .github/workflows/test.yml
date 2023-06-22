@@ -34,7 +34,7 @@ jobs:
     - name: Install Playwright Browsers
       run: yarn playwright install --with-deps
 
-    - name: Set Environment Variables
+    - name: Setup Node
       uses: actions/setup-node@v2
       with:
           node-version: 16
