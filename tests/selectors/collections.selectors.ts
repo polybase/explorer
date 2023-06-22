@@ -53,7 +53,7 @@ export const collection = {
 export const openStudio = async (page: Page) => {
   await page.goto(`${baseENV}/studio`)
   await waitForElementHidden(
-    page.locator('[aria-label="studio-app-list-loader"]'),
+    page.locator('[testId="studio-app-list-loader"]'),
   )
 }
 

@@ -1,6 +1,6 @@
 /* eslint-disable testing-library/prefer-screen-queries */
 import { test, Page, expect } from '@playwright/test'
-import { checkValidationMessage, elements, inteceptRequests, pathNameShouldMatchRoute } from '../utils/commmon'
+import { checkValidationMessage, elements, pathNameShouldMatchRoute } from '../utils/commmon'
 import { collection, enterCode, openAppSchema, openStudio, openStudioCreation, saveSchema } from '../selectors/collections.selectors'
 import { faker } from '@faker-js/faker'
 import { AuthData, apiLogin } from '../utils/auth'
@@ -121,8 +121,6 @@ test.describe('collections', async () => {
 
     // Act
     await enterCode(page)
-
-    inteceptRequests(page)
     await saveSchema(page)
 
     // Assert
@@ -146,7 +144,6 @@ test.describe('collections', async () => {
     // Arrange
     const appName = faker.person.firstName()
     await openAppSchema({ page, publicKey: authData.publicKey!, appName })
-    inteceptRequests(page)
 
     // Act
     await saveSchema(page)
