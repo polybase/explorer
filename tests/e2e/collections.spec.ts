@@ -5,7 +5,7 @@ import { collection, enterCode, openAppSchema, openStudio, openStudioCreation, s
 import { faker } from '@faker-js/faker'
 import { AuthData, apiLogin } from '../utils/auth'
 
-test.describe.only('collections', async () => {
+test.describe('collections', async () => {
   let page: Page
   let authData: AuthData
   const email = `polybase${faker.word.noun()}@mailto.plus`
