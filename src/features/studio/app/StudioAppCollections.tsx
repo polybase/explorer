@@ -9,7 +9,7 @@ export interface StudioAppCollectionsProps {
 }
 
 export function StudioAppCollections({ namespace }: StudioAppCollectionsProps) {
-  const { data, loading, error } = useUserCollections()
+  const { data } = useUserCollections()
   const { collectionName } = useParams()
   const location = useLocation()
 
@@ -22,11 +22,6 @@ export function StudioAppCollections({ namespace }: StudioAppCollectionsProps) {
   return (
     <Flex height='100%'>
       <Box height='100%' borderRight='1px solid' borderColor='bw.100' width='13em'>
-        {/* <Box borderBottom='1px solid' borderColor='bw.100' alignItems='center'>
-          <Heading size='md' p={4}>
-            Collections
-          </Heading>
-        </Box> */}
         <Stack p={4}>
           {collections.map((collection) => {
             const url = `/studio/${encodeURIComponent(namespace)}/collections/${shortName(collection.data.id)}`
