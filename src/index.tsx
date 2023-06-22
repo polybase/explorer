@@ -32,7 +32,7 @@ if (NODE_ENV === 'production') {
 // Analytics
 posthog.init('phc_DBZY8MbRdRIIwSwX4ZSwTAjy5ogdQPDMVdPObOuQQf', { api_host: 'https://a.polybase.xyz' })
 // Only log in testnet
-if (REACT_APP_ENV_NAME === 'testnet') {
+if (REACT_APP_ENV_NAME === 'testnet' || REACT_APP_ENV_NAME === 'mainnet') {
   posthog.opt_in_capturing()
 } else {
   posthog.opt_out_capturing()
