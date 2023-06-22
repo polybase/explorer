@@ -36,13 +36,14 @@ export const Loading: React.FC<LoadingProps> = ({ loading, center, children, del
             emptyColor='gray.200'
             color='brand.500'
             size='xl'
-            {...{ 'testId': testId }}
+            {...props}
+            testId={testId}
           />
         </Center>
       )
     }
     return (
-      <Spinner emptyColor='gray.200' color='blue.500' size='md' {...props} {...{ 'testId': testId }}/>
+      <Spinner emptyColor='gray.200' color='blue.500' size='md' {...props} testId={testId} />
     )
   }
 
