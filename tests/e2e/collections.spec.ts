@@ -1,64 +1,36 @@
 /* eslint-disable testing-library/prefer-screen-queries */
-import { test, Page, chromium } from '@playwright/test'
-import { common, pathNameShouldMatchRoute } from '../utils/commmon'
-import { auth } from '../utils/api/auth'
-import { getCodeForSignIn } from '../utils/email'
-import { collection } from '../selectors/collections.selectors'
+import { test, Page, expect } from '@playwright/test'
+import { checkValidationMessage, elements, pathNameShouldMatchRoute } from '../utils/commmon'
+import { collection, enterCode, openAppSchema, openStudio, openStudioCreation, saveSchema } from '../selectors/collections.selectors'
+import { faker } from '@faker-js/faker'
+import { AuthData, apiLogin } from '../utils/auth'
 
 test.describe('collections', async () => {
   let page: Page
+  let authData: AuthData
+  const email = `polybase${faker.word.noun()}@mailto.plus`
 
-  test.beforeEach(async ({ baseURL, request }) => {
-    const email = 'polybase2@mailto.plus'
-    const browser = await chromium.launch()
-    const context = await browser.newContext()
-
-    await request.post(auth.code, {
-      data: {
-        email,
-      },
-    })
-
-    await common.wait(4000)
-    const code = await getCodeForSignIn(request, email)
-    const verifyCode = await request.post(auth.verify, {
-      data: {
-        code: code.replace(/ /g, ''),
-        email,
-      },
-    })
-    const verifyCookies = await verifyCode.json()
-    const value = encodeURI(
-      JSON.stringify({
-        type: 'email',
-        userId: verifyCookies.userId,
-        email: email,
-        publicKey: verifyCookies.publicKey,
-      }),
-    )
-
-    await context.addCookies([
-      {
-        name: 'polybase.auth.auth',
-        url: 'https://auth.testnet.polybase.xyz/',
-        secure: false,
-        sameSite: 'None',
-        value: value,
-      },
-      {
-        // Value should be different depending on where you are running
-        // localhost:3000 or explorer.prenet.polybase.xyz or explorer.testnet.polybase.xyz
-        name: 'polybase.auth.domains',
-        url: 'https://auth.testnet.polybase.xyz/',
-        secure: false,
-        sameSite: 'None',
-        value: baseURL!.split('://')[1],
-      },
-    ])
-
+  test.beforeEach(async ({ context, request }) => {
+    authData = await apiLogin({ context, request, email })
     page = await context.newPage()
-    await page.goto(`${baseURL}`)
-    await common.wait(2000)
+    await page.goto('/')
+  })
+
+  test('when click studio, expected to be navigated to apps page', async () => {
+    // Act
+    await elements.menu(page, 'Studio').click()
+
+    // Assert
+    await pathNameShouldMatchRoute(page, '/studio')
+  })
+
+  test('studio page with all necessary elements opened', async () => {
+    // Arrange
+    await openStudio(page)
+
+    // Assert
+    expect(page.locator(`:text("PublicKey: ${authData.publicKey}")`)).toBeVisible()
+    expect(page.getByRole('link', { name: 'Create App' })).toBeVisible()
   })
 
   test('when click create collection, expected to be navigated to the app creation', async () => {
@@ -67,5 +39,117 @@ test.describe('collections', async () => {
 
     // Assert
     await pathNameShouldMatchRoute(page, '/studio/create')
+  })
+
+  test('when create app with empty name, expected validation should be displayed', async() => {
+    // Arrange
+    await openStudioCreation(page)
+
+    // Act
+    await collection.createAppBtn(page).click()
+
+    // Assert
+    // smth should be displayed
+  })
+
+  test('when invalid app name with spaces, expected to validation message to be displayed', async() => {
+    // Arrange
+    const appName = ' '
+    await openStudioCreation(page)
+
+    // Act
+    await collection.appNameInput(page).fill(appName)
+
+    // Assert
+    await checkValidationMessage(page, 'Spaces are not allowed')
+  })
+
+  test('when invalid app name with slash, expected to validation message to be displayed', async() => {
+    // Arrange
+    const appName = '/'
+    await openStudioCreation(page)
+
+    // Act
+    await collection.appNameInput(page).fill(appName)
+
+    // Assert
+    await checkValidationMessage(page, 'Slash `/` is not allowed')
+  })
+
+  test('when enter valid app name, expected to be navigated to the schema creation', async() => {
+    // Arrange
+    const appName = 'testName'
+    await openStudioCreation(page)
+
+    // Act
+    await collection.appNameInput(page).fill(appName)
+    await collection.createAppBtn(page).click()
+
+    // Assert
+    await pathNameShouldMatchRoute(page, `/studio/${encodeURIComponent(`pk/${authData.publicKey}/${appName}`)}`)
+  })
+
+  test('when open app creation page, expected all necessary elements to be displayed', async() => {
+    // Arrange
+    const appName = 'Test'
+    await openAppSchema({ page, publicKey: authData.publicKey!, appName })
+
+    // Assert
+    expect(collection.appName(page)).toBeVisible()
+    expect(await collection.appName(page).textContent()).toEqual(appName)
+    expect(collection.schema(page)).toBeVisible()
+    expect(collection.collections(page)).toBeVisible()
+    expect(collection.settings(page)).toBeVisible()
+    expect(collection.saveAppBtn(page)).toBeVisible()
+    expect(collection.codeEditor(page)).toBeVisible()
+  })
+
+  test('when change code, expected schema to be edited', async() => {
+    // Arrange
+    await openAppSchema({ page, publicKey: authData.publicKey! })
+
+    // Act
+    await enterCode(page)
+
+    // Assert
+    await page.waitForSelector(':text("NewUsers")') // name of the new added collection
+  })
+
+  test('when save changes, expected schema to be edited', async() => {
+    // Arrange
+    await openAppSchema({ page, publicKey: authData.publicKey! })
+
+    // Act
+    await enterCode(page)
+    await saveSchema(page)
+
+    // Assert
+    expect(collection.saveAppBtn(page)).toBeDisabled()
+  })
+
+  test.skip('when open collection preview, expected the structure to be displayed', async() => {
+    // Arrange
+    await openAppSchema({ page, publicKey: authData.publicKey! })
+    await enterCode(page)
+
+    // Act
+    await collection.collections(page).click()
+
+    // Assert
+    expect(page.locator(':text("User")')).toBeVisible()
+    expect(page.locator(':text("NewUsers")')).toBeVisible()
+  })
+
+  test('when app created, expected app to be added to the list', async() => {
+    // Arrange
+    const appName = faker.person.firstName()
+    await openAppSchema({ page, publicKey: authData.publicKey!, appName })
+
+    // Act
+    await saveSchema(page)
+
+    // Assert
+    await openStudio(page)
+    expect(page.locator(`[aria-label='app-name']:text("${appName}")`)).toBeVisible()
   })
 })

@@ -33,12 +33,20 @@ jobs:
 
     - name: Install Playwright Browsers
       run: yarn playwright install --with-deps
+
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+          node-version: 16
       
     - name: Run Playwright tests
       id: test
       run: yarn test:ui
+      env:
+        REACT_APP_API_URL: "http://127.0.0.1:8080"
 
     - uses: actions/upload-artifact@v3
+      if: ${{ always() }} 
       with:
         name: playwright-report
         path: playwright-report/

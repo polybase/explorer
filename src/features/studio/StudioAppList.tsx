@@ -20,7 +20,7 @@ export function StudioAppList() {
             <Stack spacing={4}>
               <Heading as='h1' size='xl'>Apps</Heading>
               <Button as={Link} to='/studio/create' size='md' maxW='10em' variant='primary'>Create App</Button>
-              <Loading loading={loading}>
+              <Loading loading={loading} testId='studio-app-list-loader'>
                 <SimpleGrid columns={3} spacing={4}>
                   {namespaces.map((namespace) => {
                     return (
@@ -35,7 +35,7 @@ export function StudioAppList() {
                           boxShadow='md'
                         >
                           <Stack>
-                            <Heading as='h2' fontSize='xl' fontWeight={700}>{shortName(namespace)}</Heading>
+                            <Heading as='h2' fontSize='xl' fontWeight={700} aria-label='app-name'>{shortName(namespace)}</Heading>
                             <Heading as='h3' fontSize='md' color='bw.600' fontWeight={400}>{namespace}</Heading>
                           </Stack>
                         </Box>

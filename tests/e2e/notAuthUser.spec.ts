@@ -5,8 +5,8 @@ import { elements, pathNameShouldMatchRoute, waitForPageLoaded } from '../utils/
 import { collection } from '../selectors/collections.selectors'
 
 test.describe('not auth user actions', async () => {
-  test.beforeEach(async ({ page, baseURL }) => {
-    await page.goto(`${baseURL}`)
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/')
     await waitForPageLoaded(page)
   })
 

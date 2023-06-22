@@ -3,8 +3,8 @@ import { test, expect } from '@playwright/test'
 import { elements, pathNameShouldMatchRoute, waitForPageLoaded } from '../utils/commmon'
 
 test.describe('home page tests', async () => {
-  test.beforeEach(async ({ page, baseURL }) => {
-    await page.goto(`${baseURL}`)
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/')
     await waitForPageLoaded(page)
   })
 

@@ -5,9 +5,10 @@ export interface LoadingProps extends SpinnerProps {
   loading?: boolean
   center?: boolean
   delay?: number
+  testId?: string
 }
 
-export const Loading: React.FC<LoadingProps> = ({ loading, center, children, delay = 100, ...props }) => {
+export const Loading: React.FC<LoadingProps> = ({ loading, center, children, delay = 100, testId ,...props }) => {
   const [localLoading, setLocalLoading] = useState<boolean | null>(null)
   const timer = useRef<null | number>(null)
 
@@ -35,12 +36,14 @@ export const Loading: React.FC<LoadingProps> = ({ loading, center, children, del
             emptyColor='gray.200'
             color='brand.500'
             size='xl'
+            {...props}
+            testId={testId}
           />
         </Center>
       )
     }
     return (
-      <Spinner emptyColor='gray.200' color='blue.500' size='md' {...props} />
+      <Spinner emptyColor='gray.200' color='blue.500' size='md' {...props} testId={testId} />
     )
   }
 
