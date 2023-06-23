@@ -33,7 +33,12 @@ export function UserProvider({ children, storagePrefix = 'polybase.', domain }: 
   const navigate = useNavigate()
 
   const signIn = useCallback(async () => {
-    const authState = await auth.signIn()
+    const authState = await auth.signIn().catch((e) => {
+      if (e.message.startsWith('user-cancelled-request')) {
+        return null
+      }
+      throw e
+    })
     if (!authState) return
 
     const publicKey = authState.publicKey
@@ -47,10 +52,13 @@ export function UserProvider({ children, storagePrefix = 'polybase.', domain }: 
 
     // Create if new user
     if (!user) {
-      await col.create([]).catch((e) => {
-        console.error(e)
+      const user = await col.create([]).catch((e) => {
+        if (e.message.startsWith('user-cancelled-request')) {
+          return null
+        }
         throw e
       })
+      if (!user) return
     }
 
     Cookies.set(userPkPath, publicKey, { domain })
