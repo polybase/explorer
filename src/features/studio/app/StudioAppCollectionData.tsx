@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { map } from 'lodash'
+import { useAsync } from 'react-async-hook'
 import { CollectionMeta } from '@polybase/client'
 import { usePolybase, useCollection, useDocument } from '@polybase/react'
 import { parse, Program } from '@polybase/polylang'
-import { Box, Stack } from '@chakra-ui/react'
+import { Box, Flex, Alert, AlertIcon } from '@chakra-ui/react'
 import { Cell } from 'react-table'
-import { Loading } from 'modules/loading/Loading'
 import Table from 'modules/table/Table'
 
 const LIMIT = 100
@@ -19,13 +19,17 @@ export function StudioAppCollectionData({ collectionId }: StudioAppCollectionsDa
   const [ast, setAst] = useState<Program>()
 
   // Structure for the table
-  const { data: meta, loading: loadingMeta, error: metaError } = useDocument<CollectionMeta>(
+  const { data: meta } = useDocument<CollectionMeta>(
     collectionId ? polybase.collection('Collection').record(collectionId) : null,
   )
 
-  const { data, loading: loadingData, error: dataErr } = useCollection<any>(
+  const { data, loading: loadingData } = useCollection<any>(
     collectionId ? polybase.collection(collectionId).limit(LIMIT * (pageIndex + 1)) : null,
   )
+  const {
+    result: isReadPubliclyAccessible,
+    loading: loadingIsReadPubliclyAccessible,
+  } = useAsync(() => polybase.collection(collectionId).isReadPubliclyAccessible(), [collectionId])
 
   const shortCollectionName = (id: string) => id.split('/').pop()?.replace(/-/g, '_')
 
@@ -57,17 +61,26 @@ export function StudioAppCollectionData({ collectionId }: StudioAppCollectionsDa
   if (!collectionId) return null
 
   return (
-    <Box height='100%' overflowX='auto'>
-      <Table<any>
-        columns={columns}
-        data={data?.data ?? []}
-        // onChange={onChangeHandler}
-        hasMore={!loadingData && LIMIT * pageIndex < (data?.data ?? [])?.length}
-        loadMore={() => {
-          if (loadingData) return
-          setPageIndex((i) => i + 1)
-        }}
-      />
-    </Box>
+    <Flex height='100%' flexDirection='column'>
+      {!loadingIsReadPubliclyAccessible && !isReadPubliclyAccessible && (
+        <Box p={2}>
+          <Alert status='info' p={2} borderRadius='md'>
+            <AlertIcon />
+            Collection is not publicly accessible, you can only see records that you have read access to according to the collection rules.
+          </Alert>
+        </Box>
+      )}
+      <Box height='100%' overflowX='auto'>
+        <Table<any>
+          columns={columns}
+          data={data?.data ?? []}
+          hasMore={!loadingData && LIMIT * pageIndex < (data?.data ?? [])?.length}
+          loadMore={() => {
+            if (loadingData) return
+            setPageIndex((i) => i + 1)
+          }}
+        />
+      </Box>
+    </Flex>
   )
 }
