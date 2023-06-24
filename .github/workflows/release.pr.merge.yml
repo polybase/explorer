@@ -39,10 +39,8 @@ jobs:
 
       - name: Merge main into release (to deploy)
         run: |
-          git fetch origin main
+          git fetch origin main:main
           git merge --no-edit origin/main
-          git checkout testnet
-          git merge --no-edit origin/release
 
       - name: Create Tag
         id: create_tag
