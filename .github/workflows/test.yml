@@ -25,6 +25,10 @@ jobs:
         docker pull gcr.io/polybase-prenet/polybase:latest
         docker run -d -p 8080:8080 --name=myserver gcr.io/polybase-prenet/polybase:latest
 
+    - name: Wait for port to be ready
+      run: |
+        timeout 5 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8080)" != "200" ]]; do sleep 1; done' || false
+
     - name: CURL
       run: curl -sSf http://localhost:8080
 
