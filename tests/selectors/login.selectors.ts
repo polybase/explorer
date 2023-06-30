@@ -68,6 +68,6 @@ export const registerUI = async({ page, fakeEmail, request }: RegisterUI) => {
   await iframe!.locator('input').fill(code)
   await iframe!.getByRole('button', { name: 'Continue' }).click()
   waitForPageLoaded(page)
-  // await iframe!.getByRole('button', { name: 'Sign' }).click()
-  // waitForPageLoaded(page)
+  await iframe!.getByRole('button', { name: 'Sign' }).click()
+  waitForPageLoaded(page)
 }

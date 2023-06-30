@@ -121,8 +121,8 @@ test.describe('login screen', async () => {
     await common.wait(4000)
     const code = await getCodeForSignIn(request, fakeEmail)
     await fillCodeInput(iframe!, code)
-    // await iframe!.waitForSelector(':text("The app is requesting for you to sign the following request.")')
-    // await login.signModalBtn(iframe!).click()
+    await iframe!.waitForSelector(':text("The app is requesting for you to sign the following request.")')
+    await login.signModalBtn(iframe!).click()
     await common.wait(2000)
 
     expect(login.logoutBtn(page)).toBeVisible()
@@ -140,7 +140,7 @@ test.describe('login screen', async () => {
     await newIframe!.waitForSelector(':text("You are logged in using email as:")')
     await newIframe!.waitForSelector(`:text("${fakeEmail}")`)
     await newIframe!.getByRole('button', { name: 'Allow Access' }).click()
-    // await login.signModalBtn(newIframe!).click()
+    await login.signModalBtn(newIframe!).click()
     await waitForPageLoaded(page)
 
     // Assert
