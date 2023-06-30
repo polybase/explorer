@@ -64,3 +64,18 @@ export const pathNameShouldMatchRoute = async (page: Page, path: string) =>
   expect(page.url()).toEqual(baseENV + path)
 
 export const common = { wait, inteceptRequests, theme }
+
+export const scrollUntilElementFound = async (selector: string, page: Page) => {
+  while (true) {
+    try {
+      await page.waitForSelector(selector, { state: 'visible' })
+      break // when element found, exit the loop
+    } catch (error) {
+      // Scroll to the bottom of the page
+      await page.evaluate(() => {
+        window.scrollBy(0, window.innerHeight)
+      })
+    }
+  }
+}
+

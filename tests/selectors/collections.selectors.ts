@@ -48,12 +48,22 @@ export const collection = {
   appName(page: Page) {
     return page.locator('[aria-label="nav-name"]')
   },
+  collectionItem(page: Page) {
+    return page.locator('[testid="collection-list-item"]')
+  },
 }
 
 export const openStudio = async (page: Page) => {
   await page.goto(`${baseENV}/studio`)
   await waitForElementHidden(
     page.locator('[testId="studio-app-list-loader"]'),
+  )
+}
+
+export const openCollections = async (page: Page) => {
+  await page.goto(`${baseENV}/collections`)
+  await waitForElementHidden(
+    page.locator('[testId="collections-list-loader"]'),
   )
 }
 

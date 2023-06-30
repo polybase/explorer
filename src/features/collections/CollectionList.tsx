@@ -10,11 +10,12 @@ import { useRef, useState } from 'react'
 
 export interface CollectionListProps {
   pk?: string | null,
+  testId?: string
 }
 
 const PAGE_LENGTH = 100
 
-export function CollectionList({ pk }: CollectionListProps) {
+export function CollectionList({ pk, ...props }: CollectionListProps) {
   const polybase = usePolybase()
 
   const [page, setPage] = useState(1)
@@ -32,7 +33,7 @@ export function CollectionList({ pk }: CollectionListProps) {
     return (
       <Link to={`/collections/${encodeURIComponent(item.data.id)}`} key={item.data.id}>
         <Box bg='bw.50' borderRadius='md' p={4}>
-          <Heading size='md'>{item.data.id}</Heading>
+          <Heading size='md' {...props}>{item.data.id}</Heading>
         </Box>
       </Link>
     )
@@ -51,7 +52,7 @@ export function CollectionList({ pk }: CollectionListProps) {
   }
 
   return (
-    <Loading loading={loading && items.length === 0}>
+    <Loading loading={loading && items.length === 0} testId='collections-list-loader'>
       {error && <Box color='error'>{error.message}</Box>}
       <Pagination {...pageProps}></Pagination>
     </Loading>
