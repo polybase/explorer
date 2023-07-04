@@ -8,7 +8,7 @@ export interface LoadingProps extends SpinnerProps {
   testId?: string
 }
 
-export const Loading: React.FC<LoadingProps> = ({ loading, center, children, delay = 100, testId ,...props }) => {
+export const Loading: React.FC<LoadingProps> = ({ loading, center, children, delay = 100, testId, ...props }) => {
   const [localLoading, setLocalLoading] = useState<boolean | null>(null)
   const timer = useRef<null | number>(null)
 

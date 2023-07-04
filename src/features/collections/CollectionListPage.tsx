@@ -1,4 +1,4 @@
-import { Heading, Stack, Container, VStack } from '@chakra-ui/react'
+import { Heading, Stack, Container } from '@chakra-ui/react'
 import { Layout } from 'features/common/Layout'
 import { CollectionList } from './CollectionList'
 
@@ -8,7 +8,7 @@ export function CollectionListPage () {
       <Container maxW='container.xl'>
         <Stack spacing={4} p={4}>
           <Heading>Collections</Heading>
-          <CollectionList />
+          <CollectionList testId='collection-list-item'/>
         </Stack>
       </Container>
     </Layout>

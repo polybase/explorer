@@ -5,7 +5,7 @@ import { getCodeForSignIn } from '../utils/email'
 import { fillCodeInput, fillEmailInput, login, openCodeEnteringStep, openLoginEmailModal, registerUI } from '../selectors/login.selectors'
 import { checkErrorToast, common, waitForPageLoaded } from '../utils/commmon'
 
-test.describe('home page + login screen', async () => {
+test.describe('login screen', async () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
     await waitForPageLoaded(page)
@@ -123,7 +123,7 @@ test.describe('home page + login screen', async () => {
     await fillCodeInput(iframe!, code)
     await iframe!.waitForSelector(':text("The app is requesting for you to sign the following request.")')
     await login.signModalBtn(iframe!).click()
-    await waitForPageLoaded(page)
+    await common.wait(2000)
 
     expect(login.logoutBtn(page)).toBeVisible()
   })
