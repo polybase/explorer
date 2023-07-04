@@ -9,7 +9,13 @@ export function NavLogin() {
   const { signIn, signOut } = useUser()
   const [isLoggedIn, isLoggedInLoading] = useIsAuthenticated()
 
-  const signInAsync = useAsyncCallback(signIn)
+  const signInAsync = useAsyncCallback(async () => {
+    await signIn().catch((err) => {
+      if (err.message.startsWith('user-cancelled-request')) {
+        return null
+      }
+    })
+  })
   const signOutAsync = useAsyncCallback(signOut)
 
   if (isLoggedInLoading) return null
