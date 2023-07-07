@@ -21,6 +21,25 @@ test.describe('login screen', async () => {
     expect(link).toContain('https://chrome.google.com/webstore/detail/metamask')
   })
 
+  test('when metamask is installed, expect matamask buttton to be displayed', async({ page }) => {
+    // Arrange
+    await page.addInitScript(() => {
+      window.ethereum = {
+        enable: () => Promise.resolve(),
+        selectedAddress: '0x67ccdac3ef693a24b67db9d5303253023de358d6',
+      }
+    })
+    await page.reload({ waitUntil: 'load' })
+    await login.loginBtn(page).click()
+
+    // Act
+    const iframe = await login.getLoginModalContent(page)
+
+    // Assert
+    expect(iframe!.getByRole('link' , { name: 'Metamask' })).toBeVisible()
+    expect(iframe!.getByRole('link' , { name: 'Metamask' })).toBeEnabled()
+  })
+
   test('when login with empty email field, expected validation to be displayed', async ({ page }) => {
     // Arrange
     const iframe = await openLoginEmailModal(page)
