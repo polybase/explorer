@@ -54,11 +54,11 @@ export function CollectionPanel({ pk, testId }: CollectionPanelProps) {
     .map((item) => {
       return (
         <HStack key={item.data.id}>
-          <Stack spacing={1}>
+          <Stack spacing={1} width='100%'>
             <Box>
               <Link to={`/collections/${encodeURIComponent(item.data.id)}`}>
                 <Box p={1}>
-                  <Heading display='block' size='xs'>{item.data.id}</Heading>
+                  <Heading textOverflow='ellipsis' overflow='hidden' whiteSpace='nowrap' display='block' size='xs'>{item.data.id}</Heading>
                 </Box>
               </Link>
             </Box>
@@ -72,7 +72,7 @@ export function CollectionPanel({ pk, testId }: CollectionPanelProps) {
       <Stack spacing={4}>
         <Box>
           <Link to='/collections'>
-            <Stat size='2xl' stat={count ? count : '-'} testId={testId}/>
+            <Stat size='2xl' stat={count ? count : '-'} testId={testId} />
           </Link>
         </Box>
         <Box>
