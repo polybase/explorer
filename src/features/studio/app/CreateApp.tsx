@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import { Stack, Center, Input, Button, Box, FormControl, FormHelperText, FormErrorMessage } from '@chakra-ui/react'
+import { Stack, Center, Input, Button, Box, FormControl, FormErrorMessage } from '@chakra-ui/react'
 import { Panel } from 'features/common/Panel'
-import { usePolybase } from '@polybase/react'
 import { useAsyncCallback } from 'modules/common/useAsyncCallback'
 import { useNavigate } from 'react-router-dom'
 import { useCurrentUserId } from 'features/users/useCurrentUserId'
@@ -34,7 +33,7 @@ export function CreateApp() {
             <form onSubmit={createCollection.execute}>
               <Stack spacing={7} mt={1}>
                 <FormControl isInvalid={isError}>
-                  <Input variant='filled' size='lg' p={2} onChange={(e) => setName(e.target.value)} aria-label='app-name-input'/>
+                  <Input variant='filled' size='lg' p={2} onChange={(e) => setName(e.target.value)} aria-label='app-name-input' />
                   {!isError ? (
                     null
                   ) : (

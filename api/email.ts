@@ -1,6 +1,8 @@
-import { Client } from '@notionhq/client'
+
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import Cors from 'cors'
+import { upsertHubspotContact } from './_hubspot'
+import { sendMessageToDiscord } from './_discord'
 
 const cors = Cors({
   methods: ['POST', 'GET', 'HEAD'],
@@ -14,65 +16,24 @@ export default wrapper(async function handler(
   const source = request.body.source as string
   const pk = request.body.pk as string
   const tags = request.body.tags as string[] ?? []
-  const databaseId = process.env.NOTION_EMAILS_DB_ID ?? ''
-  const notion = new Client({ auth: process.env.NOTION_TOKEN })
 
   if (!email) {
     response.statusCode = 404
     throw new Error('Email required')
   }
 
-  const { results } = await notion.databases.query({
-    database_id: databaseId,
-    filter: {
-      type: 'title',
-      property: 'Email',
-      title: {
-        equals: email,
-      },
-    },
-  })
-
-  // Skip adding if already present
-  if (results.length) {
-    return response.json({
-      created: false,
-      email,
-    })
+  const contact = {
+    email,
+    source,
+    pk,
+    tags,
   }
 
-  await notion.pages.create({
-    parent: {
-      database_id: databaseId,
-    },
-    properties: {
-      Email: {
-        title: [
-          {
-            text: {
-              content: email,
-            },
-          },
-        ],
-      },
-      Source: {
-        select: {
-          name: source ?? 'Default',
-        },
-      },
-      Tags: {
-        multi_select: Array.isArray(tags) ? tags.map((name) => ({ name })) : [],
-      },
-      Pk: {
-        rich_text: [{
-          text: {
-            content: pk ?? '',
-          },
-        }],
-      },
-    },
-  })
-
+  // Add to both sources
+  await Promise.all([
+    upsertHubspotContact(contact).catch(console.error),
+    sendMessageToDiscord(contact).catch(console.error),
+  ])
 
   return response.json({
     created: true,

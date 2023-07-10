@@ -1,16 +1,18 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
-  Stack, Center, Input, Button, Box, Checkbox, Heading, Text, Flex, Spacer,
+  Stack, Center, Input, Button, Box, Checkbox, Heading, Text, Flex,
 } from '@chakra-ui/react'
 import posthog from 'posthog-js'
 import * as Sentry from '@sentry/react'
+import { usePolybase } from '@polybase/react'
 import axios from 'axios'
 import { Layout } from 'features/common/Layout'
 import { Panel } from 'features/common/Panel'
 import { useAsyncCallback } from 'modules/common/useAsyncCallback'
 import { useCurrentUserId } from './useCurrentUserId'
 import { UserError } from 'modules/common/UserError'
+import { User } from 'features/types'
 
 const OPTIONS = [
   {
@@ -31,6 +33,7 @@ const OPTIONS = [
 ]
 
 export function Email() {
+  const db = usePolybase()
   const navigate = useNavigate()
   const [publicKey] = useCurrentUserId()
   const [email, setEmail] = useState('')
@@ -38,16 +41,33 @@ export function Email() {
 
   const onSave = useAsyncCallback(async (e) => {
     e.preventDefault()
+
+    // Check email
     if (!email) throw new UserError('Email required')
+    if (!email.includes('@')) throw new UserError('Invalid email')
+
+    // Create if new user in Polybase (for checking onboarding status)
+    const col = db.collection<User>('polybase/apps/explorer/users')
+    await col.create([]).catch((e) => {
+      if (e.message.startsWith('user-cancelled-request')) {
+        throw new Error('Sign message to create account')
+      }
+      throw e
+    })
+
+    // Save email
     await axios.post('/api/email', {
       email,
       pk: publicKey,
       source: `Explorer/${process.env.REACT_APP_ENV_NAME ?? ''}`,
       tags: Array.from(tags),
     })
+
+    // Associate email
     if (publicKey) posthog.identify(publicKey, { email })
     if (publicKey) Sentry.setUser({ id: publicKey, email })
-    navigate('/d')
+
+    navigate('/studio')
   })
 
   return (
@@ -89,10 +109,6 @@ export function Email() {
                 </Box>
                 <Flex>
                   <Button type='submit' variant='primary' isLoading={onSave.loading} size='lg'>Save Email</Button>
-                  <Spacer />
-                  <Link to='/d'>
-                    <Button type='button' color='bw.400' variant='ghost' size='lg'>Skip</Button>
-                  </Link>
                 </Flex>
               </Stack>
             </form>
