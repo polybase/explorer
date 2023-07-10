@@ -13,7 +13,6 @@ import { useAsyncCallback } from 'modules/common/useAsyncCallback'
 import { useCurrentUserId } from './useCurrentUserId'
 import { UserError } from 'modules/common/UserError'
 import { User } from 'features/types'
-import { PolybaseError } from '@polybase/client'
 
 export function Email() {
   const db = usePolybase()
