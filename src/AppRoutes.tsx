@@ -23,6 +23,7 @@ export default function AppRouter() {
   }, [location.pathname])
 
   useEffect(() => {
+    // Redirect existing URL path
     if (location.pathname.startsWith('/d')) return navigate('/studio')
     if (isLoggedIn === false && location.pathname.startsWith('/studio')) return navigate('/')
   }, [location.pathname, location.state, navigate, isLoggedIn, isLoggedInLoading])

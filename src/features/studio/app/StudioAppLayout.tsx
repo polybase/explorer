@@ -35,7 +35,7 @@ export function StudioAppLayout({ children, name }: StudioAppLayoutProps) {
   const location = useLocation()
   const { namespace } = useParams()
   const [lastCollectionId, setLastCollectionId] = useState<string | null>(null)
-  const { data, loading, error } = useUserCollections()
+  const { data } = useUserCollections()
 
   useEffect(() => {
     if (!namespace) return

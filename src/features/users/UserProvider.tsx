@@ -44,30 +44,20 @@ export function UserProvider({ children, storagePrefix = 'polybase.', domain }: 
     const publicKey = authState.publicKey
     if (!publicKey) return
 
-    const col = db.collection<User>('polybase/apps/explorer/users')
-    const user = await col
-      .record(publicKey)
-      .get()
-      .catch(() => null)
-
-    // Create if new user
-    if (!user) {
-      const user = await col.create([]).catch((e) => {
-        if (e.message.startsWith('user-cancelled-request')) {
-          return null
-        }
-        throw e
-      })
-      if (!user) return
-    }
-
     Cookies.set(userPkPath, publicKey, { domain })
-
     if (publicKey) posthog.identify(publicKey)
     if (publicKey) Sentry.setUser({ id: publicKey })
 
+    const col = db.collection<User>('polybase/apps/explorer/users')
+    const userExists: boolean = await col
+      .record(publicKey)
+      .get()
+      .then((user) => {
+        return user.data?.v === 1
+      })
+
     // Check if this is a new user
-    navigate(user ? '/studio' : '/email')
+    navigate(userExists ? '/studio' : '/email')
   }, [auth, db, domain, navigate, userPkPath])
 
   const signOut = useCallback(async () => {

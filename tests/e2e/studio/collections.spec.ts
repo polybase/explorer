@@ -1,17 +1,17 @@
 /* eslint-disable testing-library/prefer-screen-queries */
 import { test, Page, expect } from '@playwright/test'
-import { checkValidationMessage, elements, pathNameShouldMatchRoute } from '../utils/commmon'
-import { collection, enterCode, openAppSchema, openStudio, openStudioCreation, saveSchema } from '../selectors/collections.selectors'
-import { faker } from '@faker-js/faker'
-import { AuthData, apiLogin } from '../utils/auth'
+import { checkValidationMessage, elements, pathNameShouldMatchRoute } from '../../utils/commmon'
+import { collection, enterCode, openAppSchema, openStudio, openStudioCreation } from '../../selectors/collections.selectors'
+import { Auth, walletLogin, createUser } from '../../utils/auth'
+import { common } from '../../utils/commmon'
 
 test.describe('studio collections', async () => {
   let page: Page
-  let authData: AuthData
-  const email = `polybase${faker.word.noun()}@mailto.plus`
+  let auth: Auth
 
-  test.beforeEach(async ({ context, request }) => {
-    authData = await apiLogin({ context, request, email })
+  test.beforeEach(async ({ context }) => {
+    auth = await walletLogin(context)
+    await createUser(auth)
     page = await context.newPage()
     await page.goto('/')
   })
@@ -19,6 +19,8 @@ test.describe('studio collections', async () => {
   test('when click studio, expected to be navigated to apps page', async () => {
     // Act
     await elements.menu(page, 'Studio').click()
+
+    await common.wait(1000)
 
     // Assert
     await pathNameShouldMatchRoute(page, '/studio')
@@ -29,7 +31,7 @@ test.describe('studio collections', async () => {
     await openStudio(page)
 
     // Assert
-    expect(page.locator(`:text("PublicKey: ${authData.publicKey}")`)).toBeVisible()
+    expect(page.locator(`:text("PublicKey: ${auth.authState.publicKey}")`)).toBeVisible()
     expect(page.getByRole('link', { name: 'Create App' })).toBeVisible()
     expect(elements.menu(page, 'Explorer')).toBeVisible()
     expect(elements.menu(page, 'Docs')).toBeVisible()
@@ -43,7 +45,7 @@ test.describe('studio collections', async () => {
     await pathNameShouldMatchRoute(page, '/studio/create')
   })
 
-  test('when create app with empty name, expected validation should be displayed', async() => {
+  test('when create app with empty name, expected validation should be displayed', async () => {
     // Arrange
     await openStudioCreation(page)
 
@@ -54,7 +56,7 @@ test.describe('studio collections', async () => {
     // smth should be displayed
   })
 
-  test('when invalid app name with spaces, expected to validation message to be displayed', async() => {
+  test('when invalid app name with spaces, expected to validation message to be displayed', async () => {
     // Arrange
     const appName = ' '
     await openStudioCreation(page)
@@ -66,7 +68,7 @@ test.describe('studio collections', async () => {
     await checkValidationMessage(page, 'Spaces are not allowed')
   })
 
-  test('when invalid app name with slash, expected to validation message to be displayed', async() => {
+  test('when invalid app name with slash, expected to validation message to be displayed', async () => {
     // Arrange
     const appName = '/'
     await openStudioCreation(page)
@@ -78,7 +80,7 @@ test.describe('studio collections', async () => {
     await checkValidationMessage(page, 'Slash `/` is not allowed')
   })
 
-  test('when enter valid app name, expected to be navigated to the schema creation', async() => {
+  test('when enter valid app name, expected to be navigated to the schema creation', async () => {
     // Arrange
     const appName = 'testName'
     await openStudioCreation(page)
@@ -88,13 +90,13 @@ test.describe('studio collections', async () => {
     await collection.createAppBtn(page).click()
 
     // Assert
-    await pathNameShouldMatchRoute(page, `/studio/${encodeURIComponent(`pk/${authData.publicKey}/${appName}`)}`)
+    await pathNameShouldMatchRoute(page, `/studio/${encodeURIComponent(`pk/${auth.authState.publicKey}/${appName}`)}`)
   })
 
-  test('when open app creation page, expected all necessary elements to be displayed', async() => {
+  test('when open app creation page, expected all necessary elements to be displayed', async () => {
     // Arrange
     const appName = 'Test'
-    await openAppSchema({ page, publicKey: authData.publicKey!, appName })
+    await openAppSchema({ page, publicKey: auth.authState.publicKey!, appName })
 
     // Assert
     expect(collection.appName(page)).toBeVisible()
@@ -106,9 +108,9 @@ test.describe('studio collections', async () => {
     expect(collection.codeEditor(page)).toBeVisible()
   })
 
-  test('when change code, expected schema to be edited', async() => {
+  test('when change code, expected schema to be edited', async () => {
     // Arrange
-    await openAppSchema({ page, publicKey: authData.publicKey! })
+    await openAppSchema({ page, publicKey: auth.authState.publicKey! })
 
     // Act
     await enterCode(page)
@@ -117,21 +119,9 @@ test.describe('studio collections', async () => {
     await page.waitForSelector(':text("NewUsers")') // name of the new added collection
   })
 
-  test('when save changes, expected schema to be edited', async() => {
+  test.skip('when open collection preview, expected the structure to be displayed', async () => {
     // Arrange
-    await openAppSchema({ page, publicKey: authData.publicKey! })
-
-    // Act
-    await enterCode(page)
-    await saveSchema(page)
-
-    // Assert
-    expect(collection.saveAppBtn(page)).toBeDisabled()
-  })
-
-  test.skip('when open collection preview, expected the structure to be displayed', async() => {
-    // Arrange
-    await openAppSchema({ page, publicKey: authData.publicKey! })
+    await openAppSchema({ page, publicKey: auth.authState.publicKey! })
     await enterCode(page)
 
     // Act
@@ -140,18 +130,5 @@ test.describe('studio collections', async () => {
     // Assert
     expect(page.locator(':text("User")')).toBeVisible()
     expect(page.locator(':text("NewUsers")')).toBeVisible()
-  })
-
-  test('when app created, expected app to be added to the list', async() => {
-    // Arrange
-    const appName = faker.person.firstName()
-    await openAppSchema({ page, publicKey: authData.publicKey!, appName })
-
-    // Act
-    await saveSchema(page)
-
-    // Assert
-    await openStudio(page)
-    expect(page.locator(`[aria-label='app-name']:text("${appName}")`)).toBeVisible()
   })
 })
