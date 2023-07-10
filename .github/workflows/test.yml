@@ -40,7 +40,7 @@ jobs:
       run: yarn playwright install --with-deps
 
     - name: Load schema
-      run: yarn env yarn load
+      run: yarn load
       env:
         REACT_APP_API_URL: "http://127.0.0.1:8080"
         # Don't worry, this is a test key
