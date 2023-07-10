@@ -48,7 +48,7 @@ jobs:
       
     - name: Run Playwright tests
       id: test
-      run: yarn test:ui
+      run: yarn test:ui --workers 16
       env:
         REACT_APP_API_URL: "http://127.0.0.1:8080"
 
