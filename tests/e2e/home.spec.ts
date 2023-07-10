@@ -29,7 +29,7 @@ test.describe('home page tests', async () => {
 
   test('when change the theme, expected colors to be updated', async ({ page }) => {
     // Arrange
-    const attribute = async() => await page.locator('html').getAttribute('data-theme')
+    const attribute = async () => await page.locator('html').getAttribute('data-theme')
 
     // Act & Assert
     expect(await attribute()).toEqual('light')
@@ -53,7 +53,7 @@ test.describe('home page tests', async () => {
   test('when click on docs in menu, expected to be navigated docs in new tab', async ({ page, context }) => {
     // Act
     await elements.menu(page, 'Docs').click()
-    const newPage = await context.waitForEvent('page')
+    const newPage = await context.waitForEvent('page', { timeout: 10000 })
 
     // Assert
     expect(newPage.url()).toEqual('https://polybase.xyz/docs/introduction')

@@ -3,20 +3,22 @@ import { test, Page, expect } from '@playwright/test'
 import { elements, pathNameShouldMatchRoute, scrollUntilElementFound, waitForPageLoaded } from '../utils/commmon'
 import { collection, openCollections } from '../selectors/collections.selectors'
 import { faker } from '@faker-js/faker'
-import { AuthData, apiLogin } from '../utils/auth'
+import { Auth, walletLogin, createUser } from '../utils/auth'
 import { createCollection } from '../utils/collections'
 
-test.describe('studio collections', async () => {
+test.describe('collections', async () => {
   let page: Page
-  let authData: AuthData
-  const email = `polybase${faker.word.noun()}@mailto.plus`
+  let auth: Auth
+  // const email = `polybase${faker.word.noun()}@mailto.plus`
   const name = faker.lorem.word()
-  const fullName = `newCollection/${name}`
+  let fullName: string
 
   test.beforeEach(async ({ context, request }) => {
-    authData = await apiLogin({ context, request, email })
+    auth = await walletLogin(context)
+    await createUser(auth)
     page = await context.newPage()
-    await createCollection(request, authData, name)
+    fullName = `tests/e2e/${Date.now()}/${name}`
+    await createCollection(auth, fullName)
     await page.goto('/')
   })
 
@@ -51,11 +53,11 @@ test.describe('studio collections', async () => {
     await expect(page.getByRole('tab', { name: 'Data' })).toBeVisible()
     await expect(page.locator('[role="columnheader"]:text("id")')).toBeVisible() // headers are set in
     await expect(page.locator('[role="columnheader"]:text("name")')).toBeVisible() // created collection
-    await pathNameShouldMatchRoute(page, `/collections/newCollection%2F${name}`)
+    await pathNameShouldMatchRoute(page, `/collections/${encodeURIComponent(fullName)}`)
     await expect(page.getByRole('tab', { name: 'Schema' })).toBeVisible()
     await page.getByRole('tab', { name: 'Schema' }).click()
     expect(collection.codeEditor(page)).toBeVisible()
-    await pathNameShouldMatchRoute(page, `/collections/newCollection%2F${name}/schema`)
+    await pathNameShouldMatchRoute(page, `/collections/${encodeURIComponent(fullName)}/schema`)
   })
 
   test('when click create collection, expected to be navigated to the app creation', async () => {

@@ -13,7 +13,7 @@ export interface CollectionDetailSchemaProps {
 export function CollectionDetailSchema({ collectionId }: CollectionDetailSchemaProps) {
   const polybase = usePolybase()
 
-  const { data: meta, loading: loadingMeta, error: metaError } = useRecord<CollectionMetaEx>(
+  const { data: meta, loading: loadingMeta } = useRecord<CollectionMetaEx>(
     collectionId ? polybase.collection('Collection').record(collectionId) : null,
   )
 
