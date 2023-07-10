@@ -26,13 +26,12 @@ export async function upsertHubspotContact(contact: Contact) {
 
 
 async function createHubspotContact(contact: Contact) {
-  const { email, pk, source, tags } = contact
+  const { email, pk, source } = contact
   const contactData = {
     properties: {
       email,
       pks: pk,
       source,
-      contact_pref: tags.join(';'),
     },
   }
 
@@ -50,15 +49,23 @@ async function updateContact(email: string, newPks: string[]) {
         pks: newPks.join(','),
       },
     },
+    {
+      params: {
+        idProperty: 'email',
+      },
+    },
   )
 }
-
-
 
 async function getContactByEmail(email: string) {
   try {
     const response = await hubspotClient.get(
       `/crm/v3/objects/contacts/${email}`,
+      {
+        params: {
+          idProperty: 'email',
+        },
+      },
     )
     return response.data
   } catch (error) {

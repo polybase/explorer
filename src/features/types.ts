@@ -3,8 +3,7 @@ import { CollectionMeta } from '@polybase/client'
 
 export interface User {
   id: string
-  email: string
-  enkey: string
+  v: number
 }
 
 export interface CollectionMetaEx extends CollectionMeta {

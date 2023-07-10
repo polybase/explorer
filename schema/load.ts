@@ -5,9 +5,15 @@ const schema = `
 @public
 collection users {
   id: string; 
+  v?: number;
 
   constructor () {
     this.id = ctx.publicKey.toHex();
+    this.v = 1;
+  }
+
+  function updateV () {
+    this.v = 1;
   }
 }
 `

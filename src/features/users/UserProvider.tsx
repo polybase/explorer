@@ -49,12 +49,15 @@ export function UserProvider({ children, storagePrefix = 'polybase.', domain }: 
     if (publicKey) Sentry.setUser({ id: publicKey })
 
     const col = db.collection<User>('polybase/apps/explorer/users')
-    const user = await col
+    const userExists: boolean = await col
       .record(publicKey)
       .get()
+      .then((user) => {
+        return user.data?.v === 1
+      })
 
     // Check if this is a new user
-    navigate(user.exists() ? '/studio' : '/email')
+    navigate(userExists ? '/studio' : '/email')
   }, [auth, db, domain, navigate, userPkPath])
 
   const signOut = useCallback(async () => {

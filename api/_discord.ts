@@ -6,8 +6,8 @@ const {
 } = process.env
 
 export async function sendMessageToDiscord(contact: Contact) {
-  const { email, pk, source, tags } = contact
-  const messageContent = `${email} signed up from ${source} with tags ${tags.join(', ')} (pk: ${pk})`
+  const { email, pk, source } = contact
+  const messageContent = `${email} signed up from ${source} with pk ${pk}`
   await axios.post(DISCORD_WEBHOOK_URL, {
     content: messageContent,
   })

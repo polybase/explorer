@@ -17,11 +17,14 @@ export function Studio() {
 
     (async () => {
       const col = db.collection('polybase/apps/explorer/users')
-      const u = await col
+      const userExists: boolean = await col
         .record(pk)
         .get()
+        .then((user) => {
+          return user.data?.v === 1
+        })
 
-      if (!u.exists()) {
+      if (!userExists) {
         navigate('/email')
       }
     })()

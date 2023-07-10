@@ -15,7 +15,6 @@ export default wrapper(async function handler(
   const email = request.body.email as string
   const source = request.body.source as string
   const pk = request.body.pk as string
-  const tags = request.body.tags as string[] ?? []
 
   if (!email) {
     response.statusCode = 404
@@ -26,7 +25,6 @@ export default wrapper(async function handler(
     email,
     source,
     pk,
-    tags,
   }
 
   // Add to both sources
