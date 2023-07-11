@@ -20,14 +20,6 @@ jobs:
       - name: Add npm package
         run: yarn add @polybase/client @polybase/eth @polybase/react @polybase/util
 
-      - name: Install cargo
-        uses: baptiste0928/cargo-install@v2
-        with:
-          crate: cargo
-
-      - name: Cargo update
-        run: cargo update
-
       - name: Get latest version
         id: version
         run: |
