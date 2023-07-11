@@ -39,7 +39,7 @@ export function Email() {
     if (!email) throw new UserError('Email required')
     if (!email.includes('@')) throw new UserError('Invalid email')
 
-    const col = db.collection<User>('polybase/apps/explorer/users')
+    const col = db.collection<User>('polybase/apps/explorer/v2/users')
 
     // Create if new user in Polybase (for checking onboarding status)
     const userExists = publicKey

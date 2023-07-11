@@ -16,7 +16,7 @@ export function Studio() {
     if (!pk) return
 
     (async () => {
-      const col = db.collection('polybase/apps/explorer/users')
+      const col = db.collection('polybase/apps/explorer/v2/users')
       const userExists: boolean = await col
         .record(pk)
         .get()
