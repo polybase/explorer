@@ -48,7 +48,7 @@ export function UserProvider({ children, storagePrefix = 'polybase.', domain }: 
     if (publicKey) posthog.identify(publicKey)
     if (publicKey) Sentry.setUser({ id: publicKey })
 
-    const col = db.collection<User>('polybase/apps/explorer/users')
+    const col = db.collection<User>('polybase/apps/explorer/v2/users')
     const userExists: boolean = await col
       .record(publicKey)
       .get()

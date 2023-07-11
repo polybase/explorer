@@ -34,7 +34,7 @@ async function load() {
     throw new Error('No private key provided')
   }
 
-  await db.applySchema(schema, 'polybase/apps/explorer')
+  await db.applySchema(schema, 'polybase/apps/explorer/v2')
 
   return 'Schema loaded'
 }
