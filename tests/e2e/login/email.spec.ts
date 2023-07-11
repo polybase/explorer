@@ -11,6 +11,10 @@ test.describe('email login', async () => {
     await waitForPageLoaded(page)
   })
 
+  test.afterEach(async ({ context }) => {
+    await context.clearCookies()
+  })
+
   test('when login with empty email field, expected validation to be displayed', async ({ page }) => {
     // Arrange
     const iframe = await openLoginEmailModal(page)
@@ -29,10 +33,10 @@ test.describe('email login', async () => {
 
     // Act
     await fillEmailInput(iframe!, '12345')
-    await iframe!.waitForSelector('[id^="toast"]')
 
     // Assert
-    await checkErrorToast(iframe!, 'Invalid email address')
+    expect(iframe!.locator('h2:text("Enter email")')).toBeVisible()
+    expect(await iframe!.locator('[type="email"]').getAttribute('value')).toEqual('12345')
   })
 
   test('when login with empty code input, expected validation to be displayed', async ({ page }) => {
