@@ -5,7 +5,7 @@ import { getCodeForSignIn } from '../../utils/auth/email'
 import { fillCodeInput, fillEmailInput, login, openCodeEnteringStep, openLoginEmailModal, registerUI } from '../../selectors/login.selectors'
 import { checkErrorToast, common, waitForPageLoaded } from '../../utils/commmon'
 
-test.describe.only('email login', async () => {
+test.describe('email login', async () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
     await waitForPageLoaded(page)
