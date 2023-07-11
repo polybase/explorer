@@ -14,20 +14,12 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20.x
           cache: 'yarn'
 
       - name: Add npm package
         run: yarn add @polybase/client@beta @polybase/eth@beta @polybase/react@beta @polybase/util@beta
 
-      - name: Install cargo
-        uses: baptiste0928/cargo-install@v2
-        with:
-          crate: cargo
-
-      - name: Cargo update
-        run: cargo update
-        
       - name: Get latest beta version
         id: version
         run: |
