@@ -207,8 +207,7 @@ test.describe('email login', async () => {
 
     const fakeEmail = faker.internet.userName() + '@mailto.plus'
     const iframe = await openLoginEmailModal(page)
-    await fillEmailInput(iframe!, fakeEmail)
-    await iframe!.waitForSelector(`:text("Enter the code sent to ${fakeEmail}")`)
+    await openCodeEnteringStep(iframe!, fakeEmail)
     await common.wait(4000)
     const code = await getCodeForSignIn(request, fakeEmail)
 
@@ -229,8 +228,7 @@ test.describe('email login', async () => {
 
     const fakeEmail = faker.internet.userName() + '@mailto.plus'
     const iframe = await openLoginEmailModal(page)
-    await fillEmailInput(iframe!, fakeEmail)
-    await iframe!.waitForSelector(`:text("Enter the code sent to ${fakeEmail}")`)
+    await openCodeEnteringStep(iframe!, fakeEmail)
     await common.wait(4000)
     const code = await getCodeForSignIn(request, fakeEmail)
 
@@ -245,16 +243,12 @@ test.describe('email login', async () => {
   test('when login with email, expected to be logged in', async ({ page, request }) => {
     // Arrange
     const fakeEmail = faker.internet.userName() + '@mailto.plus'
-    const iframe = await openLoginEmailModal(page)
 
-    // Act & Assert
-    await fillEmailInput(iframe!, fakeEmail)
-    await iframe!.waitForSelector(`:text("Enter the code sent to ${fakeEmail}")`)
-    await common.wait(4000)
-    const code = await getCodeForSignIn(request, fakeEmail)
-    await fillCodeInput(iframe!, code)
-    await common.wait(2000)
+    // Act
+    await registerUI({ page, fakeEmail, request })
+    await page.waitForSelector('iframe', { state: 'hidden' })
 
+    // Assert
     expect(login.logoutBtn(page)).toBeVisible()
   })
 

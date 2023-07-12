@@ -86,7 +86,7 @@ export const openAppSchema = async ({
 
 export const saveSchema = async (page: Page) => {
   await collection.saveAppBtn(page).click()
-  await common.wait(2000)
+  await page.waitForSelector('iframe', { state: 'visible' })
   const iframe = await login.getLoginModalContent(page)
   await iframe!.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
   await collection.signBtn(iframe!).click()
@@ -95,5 +95,5 @@ export const saveSchema = async (page: Page) => {
 
 export const enterCode = async (page: Page) => {
   await collection.activeLine(page).fill(schemaExample)
-  await common.wait(1500)
+  await page.waitForSelector(`:text("${schemaExample}")`, { state: 'visible' })
 }
