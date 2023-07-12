@@ -81,7 +81,6 @@ export const openAppSchema = async ({
     `${baseENV}/studio/${encodeURIComponent(`pk/${publicKey}/${appName ?? 'Test'}`)}`,
   )
   await waitForPageLoaded(page)
-  await common.wait(1000)
 }
 
 export const saveSchema = async (page: Page) => {
@@ -95,5 +94,5 @@ export const saveSchema = async (page: Page) => {
 
 export const enterCode = async (page: Page) => {
   await collection.activeLine(page).fill(schemaExample)
-  await page.waitForSelector(`:text("${schemaExample}")`, { state: 'visible' })
+  await page.waitForSelector(':text("function setAge (age: number) {")', { state: 'visible' })
 }
