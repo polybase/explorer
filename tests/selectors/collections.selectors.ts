@@ -1,6 +1,5 @@
 import { Frame, Page } from '@playwright/test'
 import {
-  common,
   waitForElementHidden,
   waitForPageLoaded,
 } from '../utils/commmon'
@@ -90,6 +89,7 @@ export const saveSchema = async (page: Page) => {
   await iframe!.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
   await collection.signBtn(iframe!).click()
   await page.waitForResponse(/\/collections\/Collection\/records/)
+  await page.waitForSelector('iframe', { state: 'hidden' })
 }
 
 export const enterCode = async (page: Page) => {

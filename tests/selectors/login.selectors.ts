@@ -67,9 +67,3 @@ export const registerUI = async ({ page, fakeEmail, request }: RegisterUI) => {
   const code = await getCodeForSignIn(request, fakeEmail)
   await fillCodeInput(iframe!, code)
 }
-
-// export const openCodeEnteringStep = async (page: Page, fakeEmail: string) => {
-//   const iframe = await openLoginEmailModal(page)
-//   await fillEmailInput(iframe!, fakeEmail)
-//   await iframe!.waitForSelector(`:text("Enter the code sent to ${fakeEmail}")`)
-// }
