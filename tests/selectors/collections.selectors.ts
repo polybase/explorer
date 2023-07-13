@@ -90,6 +90,7 @@ export const saveSchema = async (page: Page) => {
   await collection.signBtn(iframe!).click()
   await page.waitForResponse(/\/collections\/Collection\/records/)
   await page.waitForSelector('iframe', { state: 'hidden' })
+  await page.waitForTimeout(2000)
 }
 
 export const enterCode = async (page: Page) => {
