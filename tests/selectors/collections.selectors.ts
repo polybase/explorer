@@ -1,6 +1,5 @@
 import { Frame, Page } from '@playwright/test'
 import {
-  common,
   waitForElementHidden,
   waitForPageLoaded,
 } from '../utils/commmon'
@@ -81,19 +80,20 @@ export const openAppSchema = async ({
     `${baseENV}/studio/${encodeURIComponent(`pk/${publicKey}/${appName ?? 'Test'}`)}`,
   )
   await waitForPageLoaded(page)
-  await common.wait(1000)
 }
 
 export const saveSchema = async (page: Page) => {
   await collection.saveAppBtn(page).click()
-  await common.wait(2000)
+  await page.waitForSelector('iframe', { state: 'visible' })
   const iframe = await login.getLoginModalContent(page)
   await iframe!.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
   await collection.signBtn(iframe!).click()
   await page.waitForResponse(/\/collections\/Collection\/records/)
+  await page.waitForSelector('iframe', { state: 'hidden' })
+  await page.waitForTimeout(2000)
 }
 
 export const enterCode = async (page: Page) => {
   await collection.activeLine(page).fill(schemaExample)
-  await common.wait(1500)
+  await page.waitForSelector(':text("function setAge (age: number) {")', { state: 'visible' })
 }

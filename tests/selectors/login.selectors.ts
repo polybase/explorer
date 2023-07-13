@@ -56,16 +56,14 @@ export const fillCodeInput = async (iframe: Frame, code: string) => {
 
 export const openCodeEnteringStep = async (iframe: Frame, email: string) => {
   await fillEmailInput(iframe, email)
+  await iframe!.waitForSelector(`:text("Enter the code sent to ${email}")`)
   await iframe!.waitForSelector(':text("Enter email code")')
 }
 
 export const registerUI = async ({ page, fakeEmail, request }: RegisterUI) => {
   const iframe = await openLoginEmailModal(page)
-  await fillEmailInput(iframe!, fakeEmail)
+  openCodeEnteringStep(iframe!, fakeEmail)
   await common.wait(4000)
-
   const code = await getCodeForSignIn(request, fakeEmail)
-  await iframe!.locator('input').fill(code)
-  await iframe!.getByRole('button', { name: 'Continue' }).click()
-  waitForPageLoaded(page)
+  await fillCodeInput(iframe!, code)
 }

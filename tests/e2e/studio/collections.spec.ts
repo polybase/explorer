@@ -1,9 +1,8 @@
 /* eslint-disable testing-library/prefer-screen-queries */
 import { test, Page, expect } from '@playwright/test'
-import { checkValidationMessage, elements, pathNameShouldMatchRoute } from '../../utils/commmon'
+import { checkValidationMessage, elements, pathNameShouldMatchRoute, waitForPageLoaded } from '../../utils/commmon'
 import { collection, enterCode, openAppSchema, openStudio, openStudioCreation } from '../../selectors/collections.selectors'
 import { Auth, walletLogin, createUser } from '../../utils/auth'
-import { common } from '../../utils/commmon'
 
 test.describe('studio collections', async () => {
   let page: Page
@@ -19,8 +18,7 @@ test.describe('studio collections', async () => {
   test('when click studio, expected to be navigated to apps page', async () => {
     // Act
     await elements.menu(page, 'Studio').click()
-
-    await common.wait(1000)
+    await waitForPageLoaded(page)
 
     // Assert
     await pathNameShouldMatchRoute(page, '/studio')
