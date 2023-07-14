@@ -26,9 +26,6 @@ export const login = {
   continueModalBtn(iframe: Frame) {
     return iframe.getByRole('button', { name: 'Continue' })
   },
-  signModalBtn(iframe: Frame) {
-    return iframe.getByRole('button', { name: 'Sign' })
-  },
 }
 
 export const fillEmailInput = async (iframe: Frame, email: string) => {
@@ -62,7 +59,7 @@ export const openCodeEnteringStep = async (iframe: Frame, email: string) => {
 
 export const registerUI = async ({ page, fakeEmail, request }: RegisterUI) => {
   const iframe = await openLoginEmailModal(page)
-  openCodeEnteringStep(iframe!, fakeEmail)
+  await openCodeEnteringStep(iframe!, fakeEmail)
   await common.wait(4000)
   const code = await getCodeForSignIn(request, fakeEmail)
   await fillCodeInput(iframe!, code)
