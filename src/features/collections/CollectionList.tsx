@@ -26,7 +26,7 @@ export function CollectionList({ pk, ...props }: CollectionListProps) {
   const { data, loading, error } = useCollection<CollectionMeta>(
     pk
       ? query.where('publicKey', '==', pk)
-      : query.sort('lastRecordUpdated', 'desc'),
+      : query.sort('createdAt', 'desc'),
   )
 
   const items = map(data?.data, (item) => {
