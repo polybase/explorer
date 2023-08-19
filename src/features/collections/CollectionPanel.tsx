@@ -26,7 +26,7 @@ export function CollectionPanel({ pk, testId }: CollectionPanelProps) {
   const { data } = useCollection<CollectionMetaEx>(
     pk
       ? query.where('publicKey', '==', pk)
-      : query.sort('lastRecordUpdated', 'desc'),
+      : query.sort('createdAt', 'desc'),
   )
 
   // TODO: Replace this with a better count
